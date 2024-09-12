@@ -1,8 +1,8 @@
-#Startup Notes
+# Startup Notes
 
 Hello, welcome to my **notes**.
 
-###2024.09.11
+### 2024.09.11
 
 Today, I learned a lot about what a Git repository is, and how to use it. It's pretty fascinating that you can do all this just from the command line of your computer's terminal.
 
