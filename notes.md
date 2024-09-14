@@ -17,6 +17,6 @@ Today, I set up my web server for my "startup" using AWS. It was really easy to 
 
 The IP of my server is `3.232.254.241`. An important thing for me to remember is how to log into my server's remote shell from my computer's terminal. It's pretty easy, I just need to type in the following:
 
-`ssh -i [key pair file] ubuntu@3.232.254.241`
+`ssh -i [secret key pair file] ubuntu@3.232.254.241`
 
 That's it for now!
