@@ -15,7 +15,7 @@ Time to get good with all the `git` commands!
 
 Today, I set up my web server for my "startup" using AWS. It was really easy to set up a web service instance.
 
-The IP of my server is `3.232.254.241`. An important thing for me to remember is how to log into my server's remote shell from my computer's terminal. It's pretty easy, I just need to type in the following:
+The IP of my server is [`3.232.254.241`](http://3.232.254.241). An important thing for me to remember is how to log into my server's remote shell from my computer's terminal. It's pretty easy, I just need to type in the following:
 
 `ssh -i [secret key pair file] ubuntu@3.232.254.241`
 
