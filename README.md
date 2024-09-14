@@ -1,4 +1,4 @@
-# Startup
+# Laundry Room Timer
 *Startup application for BYU CS 260, created by Alex Evans.* [Read development notes for the project](https://github.com/aaevans03/startup/blob/main/notes.md)
 
 ## Specification Deliverable
