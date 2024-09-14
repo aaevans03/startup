@@ -12,7 +12,7 @@ Have you ever lived in an apartment or dormitory building where everyone has to 
 
 ### Key Features
 - User accounts system, where users input their building number, and room number
-- Ability to enter in which laundry machines user is currently using, with a built-in timer system
+- Ability to enter in which laundry machines a user is currently using, with a built-in timer system
 - Live, realtime updates for laundry room use
 - Ability to see which user is using which machine
 - A notification system that alerts user when their laundry machines are done
