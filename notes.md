@@ -20,3 +20,10 @@ The IP of my server is [`3.232.254.241`](http://3.232.254.241). An important thi
 `ssh -i [secret key pair file] ubuntu@3.232.254.241`
 
 That's it for now!
+
+
+## 2024.09.20
+
+This week, I set up a domain name for my website, [laundryapp.click](https://laundryapp.click). It was pretty easy to use the AWS Route 53 service to request a domain name.
+
+I also was able to get a HTTPS certificate for my website. The AMI used for my web server already had a web service called Caddy that could automatically request a certificate for free from a service called Let's Encrypt.
