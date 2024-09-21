@@ -27,3 +27,8 @@ That's it for now!
 This week, I set up a domain name for my website, [laundryapp.click](https://laundryapp.click). It was pretty easy to use the AWS Route 53 service to request a domain name.
 
 I also was able to get a HTTPS certificate for my website. The AMI used for my web server already had a web service called Caddy that could automatically request a certificate for free from a service called Let's Encrypt.
+
+
+## 2024.09.21
+
+Today, I reviewed the basics of HTML: structure, elements, forms, and media. HTML is the raw structure of a website, there's no styling but it just provides the outline for the content you want to present. Pretty neat.
