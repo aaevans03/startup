@@ -36,3 +36,20 @@ Here is a list of the technologies I will implement.
     <!-- Also, the ability to prove you live in the building with your BYU login.-->
 - **Authentication/Database** - The ability to create accounts and login. Stores login information, building number, and room number. Cannot use laundry machines, unless you live in the building.
 - **WebSocket** - Live updates of laundry room use visible to all users
+
+
+## HTML Deliverable
+
+For this deliverable, I built the structure of my web app using HTML. There is no functionality, but there are many placeholders for where all of the future technologies will go.
+
+- **HTML pages** - Three HTML pages that are linked to each other and are easily accessible
+- **HTML tags** - Proper use of BODY, NAV, MAIN, HEADER, and FOOTER tags in the HTML files.
+- **Textual Content** - There is lots of text.
+    - Notification alert
+    - Timer interface, a place to input a new load, a statistics area describing the laundry room's usage
+    - A description of the app on the about page, and a laundry quote
+- **Web services** - A GIF image that serves as a placeholder for the future random laundry GIF picker. Also, placeholders for laundry machine times, statistics, etc.
+- **Images** - The GIF image, a timer image and graph image that will be generated
+- **Authentication** - Create account/login interface on the main page.
+- **Database/Login** - A placeholder for where the laundry statistics will be displayed, as well as placeholders for laundry machine usage data
+- **WebSocket** - Placeholder timers for where the laundry machine times will be displayed, as well as a placeholder for viewing more detailed information about a laundry machine's current usage
