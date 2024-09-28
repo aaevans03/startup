@@ -46,7 +46,7 @@
                     <td>Washer 6 - open</td>
                 </tr>
                 <tr>
-                    <td>Washer 7 - in use 33:21</td>
+                    <td><b>Washer 7 - in use 33:21</b> (currently viewing)</td>
                 </tr>
                 <tr>
                     <td>Washer 8 - in use 12:42</td>
@@ -84,7 +84,7 @@
         
 
         <div class="current-machine">
-            <h3>Currently Viewing: <span id="current-machine-number">Machine 6</span></h3>
+            <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
             <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
             </p>
             <h3>33:21</h3>
@@ -93,7 +93,35 @@
         </div>
         
         <br />
+        <br />
 
+        <div class="view-statistics">
+
+        </div>
+
+        <br />
+        <br />
+
+        <div class="add-load">
+            <h3>Enter in new load</h3>
+            <form id="add-load" method="get">
+                <div>
+                    <input type="radio" id="washer" name="load-type" val="Washer" checked />
+                    <label for="washer">Washer</label>
+                    <input type="radio" id="dryer" name="load-type" val="Dryer" />
+                    <label for="dryer">Dryer</label>
+                </div>
+
+                <div></div>
+
+                <div><button>Submit Load</button></div>
+
+
+
+                
+            </form>
+
+        </div>
 
 
         <footer>
