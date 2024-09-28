@@ -22,6 +22,10 @@
         <h2><u>Laundry Room - Building 4</u></h2>
         <h3>Welcome, First Name</h3>
 
+        <!-- Notification for loads that are done -->
+        <p>🔔 Reminder: your load in <b>Dryer 2</b> is finished.</p>
+
+        <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
         <table>
             <tbody>
                 <tr>
@@ -64,7 +68,7 @@
             <tbody>
                 <tr>
                     <td>Dryer 1 - in use 1:13</td>
-                    <td>Dryer 2 - load done 0:00</td>
+                    <td><b>Dryer 2 - load done 0:00</b></td>
                     <td>Dryer 3 - out of order</td>
                     <td>Dryer 4 - open</td>
                     <td>Dryer 5 - open</td>
@@ -83,6 +87,7 @@
         <br />
         
 
+        <!-- The machine you have currently selected -->
         <div class="current-machine">
             <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
             <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
@@ -95,6 +100,8 @@
         <br />
         <br />
 
+
+        <!-- Form to add new laundry loads -->
         <div class="add-load">
             <h3>Enter in new load</h3>
             <form id="add-load" method="get">
@@ -116,6 +123,7 @@
         <br />
         <br />
 
+        <!-- Place to view laundry room statistics from the previous week -->
         <div class="view-statistics">
             <!-- Future: add a bar graph that shows you load numbers per hour -->
             <h3>Statistics for this building</h3>
@@ -131,7 +139,7 @@
                 <option>Saturday</option>
             </select>
 
-            <p>The busiest time in the laundry room on last <span id="day-of-week"><b>Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
+            <p>The busiest time in the laundry room <span id="day-of-week"><b>last Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
 
             <div>
                 <img width="500px" style="border: 1px solid;" src="/images/sample_loads.svg" alt="Bar graph with laundry times" />
