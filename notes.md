@@ -32,3 +32,7 @@ I also was able to get a HTTPS certificate for my website. The AMI used for my w
 ## 2024.09.21
 
 Today, I reviewed the basics of HTML: structure, elements, forms, and media. HTML is the raw structure of a website, there's no styling but it just provides the outline for the content you want to present. Pretty neat.
+
+## 2024.09.28
+
+Today and throughout this past week, I worked on the HTML for my web application. I implemented many HTML elements, such as unordered lists, forms, buttons, images, links, tables, dropdown selectors, and more. I feel like I'm pretty comfortable with how HTML works as a language.
