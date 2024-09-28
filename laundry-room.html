@@ -88,17 +88,10 @@
             <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
             </p>
             <h3>33:21</h3>
-            <div id="timer"><img width="200px" src="/images/timer.svg" alt="timer wheel" /></div>
+            <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
 
         </div>
         
-        <br />
-        <br />
-
-        <div class="view-statistics">
-
-        </div>
-
         <br />
         <br />
 
@@ -118,9 +111,33 @@
                 <div><button>Submit Load</button></div>
                 
             </form>
+        </div>
+
+        <br />
+        <br />
+
+        <div class="view-statistics">
+            <!-- Future: add a bar graph that shows you load numbers per hour -->
+            <h3>Statistics for this building</h3>
+
+            <label for="day-of-week">Select day of week to view: </label>
+            <select id="day-of-week" name="sel-day-of-week">
+                <option>Sunday</option>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option selected>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+                <option>Saturday</option>
+            </select>
+
+            <div>
+                <img width="500px" style="border: 1px solid;" src="/images/sample_loads.svg" alt="Bar graph with laundry times" />
+            </div>
 
         </div>
 
+        <br />
 
         <footer>
             <hr />
