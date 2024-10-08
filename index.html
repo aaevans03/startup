@@ -17,44 +17,58 @@
     </head>
 
     <body>
-        <header>
-            <h1>Laundry App</h1>
-            <menu>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="laundry-room.html">Laundry Room</a></li>
-                <li><a href="about.html">About</a></li>
-            </menu>
 
-            <br />
-            <hr />
+        <header class="container-fluid">
+            <nav class="navbar fixed-top navbar-dark">
+
+                <a class="navbar-brand" href="/index.html">
+                    <h1>Laundry App</h1>
+                </a>
+                
+                <menu class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="laundry-room.html">Laundry Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </menu>
+            </nav>
         </header>
 
+        <main>
 
-        <h2>Welcome</h2>
 
-        <h3>Create Account</h3>
-        <form id="create-acc" method="get" action="laundry-room.html">
-            <div><input type="text" placeholder="Name"/></div>
-            <div><input type="email" placeholder="Email"/></div>
-            <div><input type="password" placeholder="Create Password"/></div>
-            <div><input type="number" min="2" max="16" placeholder="Building Number"/></div>
-            <div><input type="number" maxlength="4" value="1234" placeholder="Room Number"/></div>   <!-- To implement: select from a list of rooms -->
+            <h2>Welcome</h2>
+
+            <h3>Create Account</h3>
+            <form id="create-acc" method="get" action="laundry-room.html">
+                <div><input type="text" placeholder="Name"/></div>
+                <div><input type="email" placeholder="Email"/></div>
+                <div><input type="password" placeholder="Create Password"/></div>
+                <div><input type="number" min="2" max="16" placeholder="Building Number"/></div>
+                <div><input type="number" maxlength="4" value="1234" placeholder="Room Number"/></div>   <!-- To implement: select from a list of rooms -->
+                
+                <div><button type="submit">Create Account</button></div>
+            </form>
+
+            <!-- In future: automatically default to creating an account, and have login screen appear instead if they click a button -->
+            <br />
+
+            <h3>Login</h3>
+            <form id="login" method="get" action="laundry-room.html">
+                <div></div><input type="email" placeholder="Email"/></div>
+                <div></div><input type="password" placeholder="Enter Password"/></div>
+
+                <div><button type="submit">Login</button></div>
+            </form>
             
-            <div><button type="submit">Create Account</button></div>
-        </form>
+            <br />
 
-        <!-- In future: automatically default to creating an account, and have login screen appear instead if they click a button -->
-        <br />
-
-        <h3>Login</h3>
-        <form id="login" method="get" action="laundry-room.html">
-            <div></div><input type="email" placeholder="Email"/></div>
-            <div></div><input type="password" placeholder="Enter Password"/></div>
-
-            <div><button type="submit">Login</button></div>
-        </form>
-        
-        <br />
+        </main>
 
 
 

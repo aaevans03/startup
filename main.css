@@ -3,3 +3,51 @@
 * {
     font-family: Lexend, Helvetica, Arial, sans-serif;
   }
+
+
+  body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+  }
+
+  header {
+    flex: 0 80px;
+    background-color: #a8beff;
+    align-content: center;
+  }
+
+  menu {
+    display: flex;
+    flex-direction: row !important;
+    list-style-type: none;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  menu li {
+    text-align: left;
+    float: left;
+  }
+
+  a, a:visited {
+    text-decoration: none;
+  }
+
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+
+  main {
+    flex: 1 ;
+    text-align: center;
+    align-content: center;
+  }
+
+  footer {
+    flex: 0;
+  }
