@@ -10,165 +10,178 @@
         <!-- Include Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         
-        <!-- Include my own stylesheets -->
+        <!-- Include my own stylesheet -->
         <link rel="stylesheet" href="main.css" />
-        
+
     </head>
 
     <body>
-        <header>
-            <h1>Laundry App</h1>
-            <menu>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="laundry-room.html">Laundry Room</a></li>
-                <li><a href="about.html">About</a></li>
-            </menu>
 
-            <br />
-            <hr />
+        <header class="container-fluid">
+            <nav class="navbar fixed-top navbar-dark">
+
+                <a class="navbar-brand" href="/index.html">
+                    <h1>Laundry App</h1>
+                </a>
+                
+                <menu class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="laundry-room.html">Laundry Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </menu>
+            </nav>
         </header>
 
+        <main class="temp">
 
-        <h2><u>Laundry Room - Building 4</u></h2>
-        <h3>Welcome, First Name</h3>
+            <h4>This page has been temporarily scaled down to fit all content</h4>
 
-        <!-- Notification for loads that are done -->
-        <p>🔔 <b>Reminder:</b> your load in <b>Dryer 2</b> is finished.</p>
-
-        <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
-        <table>
-            <tbody>
-                <tr>
-                    <th>Washers</th>
-                </tr>
-                <tr>
-                    <td><button>Washer 1 - in use 23:29</button></td>
-                </tr>
-                <tr>
-                    <td><button>Washer 2 - in use 31:34</button></td>
-                </tr>
-                <tr>
-                    <td><button>Washer 3 - out of order</button></td>
-                </tr>
-                <tr>
-                    <td><button>Washer 4 - open</button></td>
-                </tr>
-                <tr>
-                    <td><button>Washer 5 - open</button></td>
-                </tr>
-                <tr>
-                    <td><button>Washer 6 - open</button></td>
-                </tr>
-                <tr>
-                    <td><button><b>Washer 7 - in use 33:21</button></b> (currently viewing)</td>
-                </tr>
-                <tr>
-                    <td><button>Washer 8 - in use 12:42</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <br />
-        <table>
-            <thead>
-                <tr>
-                    <th>Dryers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><button>Dryer 1 - in use 1:13</button></td>
-                    <td><button><b>Dryer 2 - load done 0:00</b></button></td>
-                    <td><button>Dryer 3 - out of order</button></td>
-                    <td><button>Dryer 4 - open</button></td>
-                    <td><button>Dryer 5 - open</button></td>
-                </tr>
-                <tr>
-                    <td><button>Dryer 6 - open</button></td>
-                    <td><button>Dryer 7 - open</button></td>
-                    <td><button>Dryer 8 - in use 32:34</button></td>
-                    <td><button>Dryer 9 - in use 21:42</button></td>
-                    <td><button>Dryer 10 - in use 40:00</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <br />
-        <br />
-        
-
-        <!-- The machine you have currently selected -->
-        <div class="current-machine">
-            <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
-            <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
-            </p>
-            <h3>33:21</h3>
-            <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
-
-        </div>
-        
-        <br />
-        <br />
-
-
-        <!-- Form to add new laundry loads -->
-        <div class="add-load">
-            <h3>Enter in new load</h3>
-            <form id="add-load" method="get">
-                <div>
-                    <input type="radio" id="washer" name="load-type" val="Washer" checked />
-                    <label for="washer">Washer</label>
-                    <input type="radio" id="dryer" name="load-type" val="Dryer" />
-                    <label for="dryer">Dryer</label>
-                </div>
-
-                <div><label for="machine-number">Machine #: </label><input type="number" id="machine-number" min="1" max="10" /></div>
-                <div><label for="load-length">Length of load (minutes)</label><input type="number" id="load-length" min="20" max="60" value="40"/></div>
-
-                <div><button>Submit Load</button></div>
-
-                <p><b>The laundry room is currently experiencing heavier usage than normal, you are #3 in the queue.</b></p>
+            <h2><u>Laundry Room - Building 4</u></h2>
+            <h3>Welcome, First Name</h3>
+            
+            <!-- Notification for loads that are done -->
+            <p>🔔 <b>Reminder:</b> your load in <b>Dryer 2</b> is finished.</p>
+            
+            <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Washers</th>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 1 - in use 23:29</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 2 - in use 31:34</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 3 - out of order</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 4 - open</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 5 - open</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 6 - open</button></td>
+                    </tr>
+                    <tr>
+                        <td><button><b>Washer 7 - in use 33:21</button></b> (currently viewing)</td>
+                    </tr>
+                    <tr>
+                        <td><button>Washer 8 - in use 12:42</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br />
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dryers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><button>Dryer 1 - in use 1:13</button></td>
+                        <td><button><b>Dryer 2 - load done 0:00</b></button></td>
+                        <td><button>Dryer 3 - out of order</button></td>
+                        <td><button>Dryer 4 - open</button></td>
+                        <td><button>Dryer 5 - open</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>Dryer 6 - open</button></td>
+                        <td><button>Dryer 7 - open</button></td>
+                        <td><button>Dryer 8 - in use 32:34</button></td>
+                        <td><button>Dryer 9 - in use 21:42</button></td>
+                        <td><button>Dryer 10 - in use 40:00</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br />
+            <br />
+            
+            
+            <!-- The machine you have currently selected -->
+            <div class="current-machine">
+                <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
+                <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
+                </p>
+                <h3>33:21</h3>
+                <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
                 
-            </form>
-        </div>
-
-        <br />
-        <br />
-
-        <!-- Place to view laundry room statistics from the previous week -->
-        <div class="view-statistics">
-            <!-- Future: add a bar graph that shows you load numbers per hour -->
-            <h3>Statistics for this building</h3>
-
-            <label for="day-of-week">Select day of week to view: </label>
-            <select id="day-of-week" name="sel-day-of-week">
-                <option>Sunday</option>
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option selected>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-                <option>Saturday</option>
-            </select>
-
-            <p>The busiest time in the laundry room <span id="day-of-week"><b>last Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
-
-            <div>
-                <img width="500px" style="border: 1px solid;" src="/images/sample_loads.svg" alt="Bar graph with laundry times" />
             </div>
-
-        </div>
-
-        <br />
-        <br />
-
-        <footer>
-            <hr />
-            <div>
-                <br />
-                <span>Developed by Alex Evans / 賴亞遜</span>
-                <br />
-                <a href="https://github.com/aaevans03/startup">GitHub Repo</a>
+            
+            <br />
+            <br />
+            
+            
+            <!-- Form to add new laundry loads -->
+            <div class="add-load">
+                <h3>Enter in new load</h3>
+                <form id="add-load" method="get">
+                    <div>
+                        <input type="radio" id="washer" name="load-type" val="Washer" checked />
+                        <label for="washer">Washer</label>
+                        <input type="radio" id="dryer" name="load-type" val="Dryer" />
+                        <label for="dryer">Dryer</label>
+                    </div>
+                    
+                    <div><label for="machine-number">Machine #: </label><input type="number" id="machine-number" min="1" max="10" /></div>
+                    <div><label for="load-length">Length of load (minutes)</label><input type="number" id="load-length" min="20" max="60" value="40"/></div>
+                    
+                    <div><button>Submit Load</button></div>
+                    
+                    <p><b>The laundry room is currently experiencing heavier usage than normal, you are #3 in the queue.</b></p>
+                    
+                </form>
+            </div>
+            
+            <br />
+            <br />
+            
+            <!-- Place to view laundry room statistics from the previous week -->
+            <div class="view-statistics">
+                <!-- Future: add a bar graph that shows you load numbers per hour -->
+                <h3>Statistics for this building</h3>
+                
+                <label for="day-of-week">Select day of week to view: </label>
+                <select id="day-of-week" name="sel-day-of-week">
+                    <option>Sunday</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option selected>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                </select>
+                
+                <p>The busiest time in the laundry room <span id="day-of-week"><b>last Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
+                
+                <div>
+                    <img width="500px" style="border: 1px solid;" src="/images/sample_loads.svg" alt="Bar graph with laundry times" />
+                </div>
+                
+            </div>
+            
+            <br />
+            <br />
+        </main>
+            
+        <footer class="bg-dark text-white-50">
+            <div class="container-fluid">
+                Developed by <span class="developer-name">Alex Evans / 賴亞遜</span>
+                <span class="github-link">
+                    <a class="text-reset" href="https://github.com/aaevans03/startup">GitHub</a>
+                </span>
 
             </div>
         </footer>

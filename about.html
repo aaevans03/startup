@@ -16,53 +16,65 @@
     </head>
 
     <body>
-        <header>
-            <h1>Laundry App</h1>
-            <menu>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="laundry-room.html">Laundry Room</a></li>
-                <li><a href="about.html">About</a></li>
-            </menu>
+        <header class="container-fluid">
+            <nav class="navbar fixed-top navbar-dark">
 
-            <br />
-            <hr />
+                <a class="navbar-brand" href="/index.html">
+                    <h1>Laundry App</h1>
+                </a>
+                
+                <menu class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="laundry-room.html">Laundry Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                </menu>
+            </nav>
         </header>
 
+        <main>
 
-        <h2>About</h2>
 
-        <p>
-            Have you ever lived in an apartment or dormitory building where everyone has to share the same laundry machines? With this new web application, you can easily avoid the inconveniences that come with it. With this app, you can see what laundry machines are being used, so you can know when the best time to do your laundry is.
-        </p>
+            <h2>About</h2>
 
-        <br />
+            <p>
+                Have you ever lived in an apartment or dormitory building where everyone has to share the same laundry machines? With this new web application, you can easily avoid the inconveniences that come with it. With this app, you can see what laundry machines are being used, so you can know when the best time to do your laundry is.
+            </p>
 
-        <h3>Inspiration Zone:</h3>
-        <p>
-            Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
-        </p>
+            <br />
 
-        <div id="gif">
-            <!-- In the future, a link to an external web service will be put here that grabs a random laundry gif from GIPHY -->
-            <img width="200px" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExODdudjlzZWN3dTFidmE5am5laHZibDcydXRwbHRzdnRkcmlpc2R6MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bCvO8biVh8WyI/giphy.webp" alt="Random GIF">
-        </div>
+            <h3>Inspiration Zone:</h3>
+            <p>
+                Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
+            </p>
 
-        <br />
-        
-        <div id="quote">
-            <div>"Laundry today or naked tomorrow"</div>
-            <div>~ A sign that used to be in our laundry room</div>
-        </div>
+            <div id="gif">
+                <!-- In the future, a link to an external web service will be put here that grabs a random laundry gif from GIPHY -->
+                <img width="200px" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExODdudjlzZWN3dTFidmE5am5laHZibDcydXRwbHRzdnRkcmlpc2R6MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bCvO8biVh8WyI/giphy.webp" alt="Random GIF">
+            </div>
 
-        <br />
+            <br />
+            
+            <div id="quote">
+                <div>"Laundry today or naked tomorrow"</div>
+                <div>~ A sign that used to be in our laundry room</div>
+            </div>
 
-        <footer>
-            <hr />
-            <div>
-                <br />
-                <span>Developed by Alex Evans / 賴亞遜</span>
-                <br />
-                <a href="https://github.com/aaevans03/startup">GitHub Repo</a>
+            <br />
+
+        </main>
+
+        <footer class="bg-dark text-white-50">
+            <div class="container-fluid">
+                Developed by <span class="developer-name">Alex Evans / 賴亞遜</span>
+                <span class="github-link">
+                    <a class="text-reset" href="https://github.com/aaevans03/startup">GitHub</a>
+                </span>
 
             </div>
         </footer>
