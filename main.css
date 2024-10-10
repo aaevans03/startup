@@ -25,10 +25,11 @@
     flex-direction: row !important;
     list-style-type: none;
   }
-  
+  /*
   .temp, .temp h2, .temp h3 {
     font-size: 0;
   }
+    */
 
   h1 {
     font-size: 35px;
@@ -60,6 +61,7 @@
     flex: 1;
     text-align: center;
     align-content: center;
+    overflow: scroll;
   }
 
   footer {
