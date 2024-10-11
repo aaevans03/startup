@@ -44,32 +44,32 @@
 
         <main>
 
+            <div>
+                <h2>Welcome</h2>
 
-            <h2>Welcome</h2>
+                <h3>Create Account</h3>
+                <form id="create-acc" method="get" action="laundry-room.html">
+                    <div><input type="text" class="form-control" placeholder="Name"/></div>
+                    <div><input type="email" class="form-control" placeholder="Email"/></div>
+                    <div><input type="password" class="form-control" placeholder="Create Password"/></div>
+                    <div><input type="number" class="form-control" min="2" max="16" placeholder="Building Number (2-16)"/></div>
+                    <div><input type="number" class="form-control" min="1000" maxlength="4" value="1234" placeholder="Room Number"/></div>   <!-- To implement: select from a list of rooms -->
+                    
+                    <div><button class="btn btn-primary" type="submit">Create Account</button></div>
+                </form>
 
-            <h3>Create Account</h3>
-            <form id="create-acc" method="get" action="laundry-room.html">
-                <div><input type="text" placeholder="Name"/></div>
-                <div><input type="email" placeholder="Email"/></div>
-                <div><input type="password" placeholder="Create Password"/></div>
-                <div><input type="number" min="2" max="16" placeholder="Building Number"/></div>
-                <div><input type="number" maxlength="4" value="1234" placeholder="Room Number"/></div>   <!-- To implement: select from a list of rooms -->
-                
-                <div><button type="submit">Create Account</button></div>
-            </form>
+                <!-- In future: automatically default to creating an account, and have login screen appear instead if they click a button -->
+                <br />
 
-            <!-- In future: automatically default to creating an account, and have login screen appear instead if they click a button -->
-            <br />
+                <h3>Login</h3>
+                <form id="login" method="get" action="laundry-room.html">
+                    <div><input type="email" class="form-control" placeholder="Email"/></div>
+                    <div><input type="password" class="form-control" placeholder="Enter Password"/></div>
 
-            <h3>Login</h3>
-            <form id="login" method="get" action="laundry-room.html">
-                <div></div><input type="email" placeholder="Email"/></div>
-                <div></div><input type="password" placeholder="Enter Password"/></div>
+                    <div><button class="btn btn-primary" type="submit">Login</button></div>
+                </form>
 
-                <div><button type="submit">Login</button></div>
-            </form>
-            
-            <br />
+            </div>
 
         </main>
 
