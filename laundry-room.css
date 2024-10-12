@@ -11,6 +11,10 @@
     margin: 0 0.5em;
 }
 
+.alert-success {
+    width: 60%;
+}
+
 
 main .view-stats {
     min-width: fit-content;

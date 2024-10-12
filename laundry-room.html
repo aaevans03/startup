@@ -50,15 +50,22 @@
             </nav>
         </header>
 
-        <main class="temp">
+        <main>
 
-            <h2><u>Laundry Room - Building 4</u></h2>
-            <h3>Welcome, First Name</h3>
+            <h2><u>Laundry Room - Building <span id="buildingNumber">4</span></u></h2>
+            <h3>Welcome, <span id=firstName">First Name</span></h3>
             
             <!-- Notification for loads that are done -->
-            <p>🔔 <b>Reminder:</b> your load in <b>Dryer 2</b> is finished.</p>
+            <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                    <b>Reminder:</b> your load in <b>Dryer <span id="userMachineNumber">2</span></b> is finished.
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
-            <!-- Bootstrap Button trigger modal -->
+
+            <!-- Bootstrap button trigger modals -->
             <div class="top-buttons">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics">
                     View Statistics
@@ -69,7 +76,7 @@
             </div>
             
             
-            <!-- Bootstrap Modal -->
+            <!-- Bootstrap modal for viewing statistics -->
             <div class="modal fade" id="view-statistics" tabindex="-1" aria-labelledby="viewStatistics" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered view-stats">
                     <div class="modal-content">
@@ -106,7 +113,7 @@
                 </div>
             </div>
 
-            <!-- Bootstrap Modal -->
+            <!-- Bootstrap modal for adding a new load -->
             <div class="modal fade" id="new-load" tabindex="-1" aria-labelledby="newLoad" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered new-load">
                     <div class="modal-content">
@@ -141,7 +148,7 @@
                                     
                                     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                     <div>
-                                        The laundry room is currently experiencing heavier usage than normal, you are #3 in the queue.
+                                        The laundry room is currently experiencing heavier usage than normal, you are #<span id="queueNumber">3</span> in the queue.
                                     </div>
                                 </div>
 
@@ -237,7 +244,7 @@
             <br />
             
             
-            <!-- Form to add new laundry loads -->
+            <!-- Old form to add new laundry loads
             <div class="add-load">
                 <h3>Enter in new load</h3>
                 <form id="add-load" method="get">
@@ -257,13 +264,14 @@
                     
                 </form>
             </div>
+             -->
             
             <br />
             <br />
             
-            <!-- Place to view laundry room statistics from the previous week -->
+            <!-- Old place to view laundry room statistics from the previous week. Future: add a bar graph that shows you load numbers per hour
             <div class="view-statistics">
-                <!-- Future: add a bar graph that shows you load numbers per hour -->
+                
                 <h3>Statistics for this building</h3>
                 
                 <label for="day-of-week">Select day of week to view: </label>
@@ -284,6 +292,7 @@
                 </div>
                 
             </div>
+            -->
             
             <br />
             <br />
