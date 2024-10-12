@@ -69,7 +69,7 @@
   }
 
   input {
-    margin-bottom: 0.7em;
+    margin-bottom: 0.5em;
   }
 
   #inputs {
@@ -97,4 +97,30 @@
 
   .github-link:hover {
     text-decoration: underline !important;
+  }
+
+
+  /* Once I add a separate login and create account page with JavaScript, change this because afterwards, stuff can fit on the screen for longer. */
+  @media (max-height: 715px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+  }
+
+  @media (max-width: 530px) {
+    header {
+      flex: 0 55px;
+    }
+    nav {
+      font-size: 10px;
+    }
+    nav h1 {
+      font-size: 25px;
+    }
+    footer {
+      font-size: 14px;
+    }
   }
