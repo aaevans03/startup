@@ -12,10 +12,22 @@
         
         <!-- Include my own stylesheet -->
         <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="laundry-room.css" />
 
     </head>
 
     <body>
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+            <symbol id="check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+          </svg>
 
         <header class="container-fluid">
             <nav class="navbar fixed-top navbar-dark">
@@ -40,71 +52,172 @@
 
         <main class="temp">
 
-            <h4>This page has been temporarily scaled down to fit all content</h4>
-
             <h2><u>Laundry Room - Building 4</u></h2>
             <h3>Welcome, First Name</h3>
             
             <!-- Notification for loads that are done -->
             <p>🔔 <b>Reminder:</b> your load in <b>Dryer 2</b> is finished.</p>
+
+            <!-- Bootstrap Button trigger modal -->
+            <div class="top-buttons">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics">
+                    View Statistics
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-load">
+                    New Load
+                </button>
+            </div>
             
-            <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Washers</th>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 1 - in use 23:29</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 2 - in use 31:34</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 3 - out of order</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 4 - open</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 5 - open</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 6 - open</button></td>
-                    </tr>
-                    <tr>
-                        <td><button><b>Washer 7 - in use 33:21</button></b> (currently viewing)</td>
-                    </tr>
-                    <tr>
-                        <td><button>Washer 8 - in use 12:42</button></td>
-                    </tr>
-                </tbody>
-            </table>
             
-            <br />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Dryers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><button>Dryer 1 - in use 1:13</button></td>
-                        <td><button><b>Dryer 2 - load done 0:00</b></button></td>
-                        <td><button>Dryer 3 - out of order</button></td>
-                        <td><button>Dryer 4 - open</button></td>
-                        <td><button>Dryer 5 - open</button></td>
-                    </tr>
-                    <tr>
-                        <td><button>Dryer 6 - open</button></td>
-                        <td><button>Dryer 7 - open</button></td>
-                        <td><button>Dryer 8 - in use 32:34</button></td>
-                        <td><button>Dryer 9 - in use 21:42</button></td>
-                        <td><button>Dryer 10 - in use 40:00</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="view-statistics" tabindex="-1" aria-labelledby="viewStatistics" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered view-stats">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="viewStatistics">Statistics for building <span id="buildingNumber">4</span></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="day-of-week">Select day of week to view: </label>
+                            <select class="form-select" id="day-of-week" name="sel-day-of-week">
+                                <option>Sunday</option>
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option selected>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                            </select>
+                            
+                            <br>
+                            <br>
+                            
+                            <p>The busiest time in the laundry room <span id="day-of-week"><b>last Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
+                            
+                            <div>
+                                <img width="500px" style="border: 1px solid;" src="/images/sample_loads.svg" alt="Bar graph with laundry times" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Close</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="new-load" tabindex="-1" aria-labelledby="newLoad" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered new-load">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="newLoad">Enter in a new laundry load</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-load" method="get">
+                                <div class="radials">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="washer" name="load-type" val="Washer" checked />
+                                        <label for="washer">Washer</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="dryer" name="load-type" val="Dryer" />
+                                        <label for="dryer">Dryer</label>
+                                    </div>
+                                </div>
+
+                                <div id="input-time">
+                                    <div>
+                                        <input type="number" class="form-control form-check-inline" id="machine-number" min="1" max="10" placeholder="Machine Number (1-16)" />
+                                    </div>
+                                    <div>
+                                        <input type="number" class="form-control form-check-inline" id="load-length" min="20" max="60" placeholder="Length of Load (20-60 minutes)"/>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                    
+                                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                    <div>
+                                        The laundry room is currently experiencing heavier usage than normal, you are #3 in the queue.
+                                    </div>
+                                </div>
+
+                            
+                                
+                            
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="machines">
+            
+                <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
+                <table id="washers">
+                    <tbody>
+                        <tr>
+                            <th>Washers</th>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 1 - in use 23:29</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 2 - in use 31:34</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 3 - out of order</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 4 - open</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 5 - open</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 6 - open</button></td>
+                        </tr>
+                        <tr>
+                            <td><button><b>Washer 7 - in use 33:21</button></b> (currently viewing)</td>
+                        </tr>
+                        <tr>
+                            <td><button>Washer 8 - in use 12:42</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <br />
+                <table id="dryers">
+                    <thead>
+                        <tr>
+                            <th>Dryers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button>Dryer 1 - in use 1:13</button></td>
+                            <td><button><b>Dryer 2 - load done 0:00</b></button></td>
+                            <td><button>Dryer 3 - out of order</button></td>
+                            <td><button>Dryer 4 - open</button></td>
+                            <td><button>Dryer 5 - open</button></td>
+                        </tr>
+                        <tr>
+                            <td><button>Dryer 6 - open</button></td>
+                            <td><button>Dryer 7 - open</button></td>
+                            <td><button>Dryer 8 - in use 32:34</button></td>
+                            <td><button>Dryer 9 - in use 21:42</button></td>
+                            <td><button>Dryer 10 - in use 40:00</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             
             <br />
             <br />

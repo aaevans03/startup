@@ -1,0 +1,46 @@
+
+.top-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 80%
+}
+
+.top-buttons button {
+    flex: 1;
+    min-width: 100px;
+    margin: 0 0.5em;
+}
+
+
+main .view-stats {
+    min-width: fit-content;
+}
+
+main .form-select {
+    display: inline-block;
+    width: auto;
+}
+
+td {
+    outline: 1px black solid;
+}
+
+main .form-control {
+    max-width: 50%
+    
+}
+
+.radials {
+    margin-bottom: 0.7em;
+}
+
+#input-time {
+    margin-bottom: 1em;
+}
+
+.bi {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+    fill: currentcolor;
+}
