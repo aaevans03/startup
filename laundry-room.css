@@ -52,10 +52,10 @@ table {
 td {
     border-width: 4px;
     border-color: black;
-    height: 80px;
-    width: 120px;
+    height: 70px;
+    width: 110px;
     color: white;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .machines {
@@ -119,15 +119,37 @@ td {
     flex-direction: column;
 }
 
-
 .current-machine {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    height: 350px;
+    align-items: center;
+    height: 300px;
     width: 450px;
     border: 4px solid black;
     border-radius: 20px;
     background-color: #cfe2f3;
+}
+
+.current-machine h3 {
+    margin-top: 0.5em
+}
+
+.progress {
+    border-radius: 15px;
+    width: 90%;
+    --bs-progress-bg: #9fc5e8;
+    --bs-progress-bar-bg: #0b5394;
+    margin-bottom: 1em;
+}
+
+@media (max-height: 890px) {
+    td {
+        height: 55px;
+        font-size: 17px;
+    }
+    .current-machine {
+        height: auto;
+    }
 }

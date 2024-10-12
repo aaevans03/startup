@@ -153,10 +153,7 @@
                                         The laundry room is currently experiencing heavier usage than normal, you are #<span id="queueNumber">3</span> in the queue.
                                     </div>
                                 </div>
-
-                            
                                 
-                            
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -166,6 +163,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="machines">
 
@@ -221,7 +219,7 @@
                                 </tr>
                                 <tr>
                                     <td class="in-use">in use 1:13</td>
-                                    <td class="load-done"">load done 0:00</td>
+                                    <td class="load-done"">done 0:00</td>
                                     <td class="out-of-order">out of order</td>
                                     <td class="open-machine">open</td>
                                 </tr>
@@ -247,8 +245,11 @@
                         <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
                         <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
                         </p>
-                        <h3>33:21</h3>
-                        <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
+                        <h3>Time left: <span id="timeLeft">33:21</span></h3>
+                        <div class="progress" role="progressbar" aria-label="Timer progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 20px">
+                            <div class="progress-bar" style="width: 25%"></div>
+                        </div>
+                        <p>Time done: <span id="timeDone">3:02pm</span></p>
                         
                     </div>
 
