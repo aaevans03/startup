@@ -50,33 +50,84 @@ table {
 }
 
 td {
-    border-width: 2px;
+    border-width: 4px;
     border-color: black;
-    height: 60px;
-    width: 90px;
-
-}
-
-.washing-machine-number-table {
-    width: 1.5em;
-}
-
-.machine-time-table {
-
-}
-
-.current-machine {
-    display: none;
-}
-
-#currently-viewing-label {
-    font-size: 10px;
+    height: 80px;
+    width: 120px;
+    color: white;
+    font-size: 20px
 }
 
 .machines {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
 }
 
-.dryer-machine-number-table {
+.washers {
+    flex: 0 0 auto;
+    flex-grow: 0;
+    align-self: flex-start;
+    margin-right: 2em;
+}
+
+.dryers {
+    flex: 0 0 auto;
+    flex-grow: 0;
+    align-self: flex-start;
+    margin-bottom: 2em;
+}
+
+.numbering {
+    font-size: 15px;
+    background-color: black;
+    color: white;
+}
+
+.washer-numbering {
+    width: 1.5em;
+}
+
+.dryer-numbering {
     height: 1.5em;
+}
+
+.in-use {
+    background-color: #e06666;
+}
+
+.load-done {
+    background-color: #ffd966;
+}
+
+.open-machine {
+    background-color: #b6d7a8;
+}
+
+.out-of-order {
+    background-color: #434343;
+}
+
+.currently-viewing {
+    font-weight: bolder;
+}
+
+.dryers-and-timer {
+    align-content: baseline;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.current-machine {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    height: 350px;
+    width: 450px;
+    border: 4px solid black;
+    border-radius: 20px;
+    background-color: #cfe2f3;
 }

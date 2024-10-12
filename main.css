@@ -65,7 +65,7 @@
     text-align: center;
     align-items: center;
     overflow: scroll;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   input {

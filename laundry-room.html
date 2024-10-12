@@ -168,85 +168,92 @@
             </div>
 
             <div class="machines">
-            
+
                 <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
-                <table id="washers">
+                <table class="washers" id="washers">
                     <tbody>
                         <tr>
-                            <td class="washing-machine-number-table">1</td>
-                            <td class="machine-time-table">in use 23:29</td>
+                            <td class="numbering washer-numbering">1</td>
+                            <td class="in-use">in use 23:29</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">2</td>
-                            <td class="machine-time-table">in use 31:34</td>
+                            <td class="numbering washer-numbering">2</td>
+                            <td class="in-use">in use 31:34</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">3</td>
-                            <td class="machine-time-table">out of order</td>
+                            <td class="numbering washer-numbering">3</td>
+                            <td class="out-of-order">out of order</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">4</td>
-                            <td class="machine-time-table">open</td>
+                            <td class="numbering washer-numbering">4</td>
+                            <td class="open-machine">open</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">5</td>
-                            <td class="machine-time-table">open</td>
+                            <td class="numbering washer-numbering">5</td>
+                            <td class="open-machine">open</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">6</td>
-                            <td class="machine-time-table">open</td>
+                            <td class="numbering washer-numbering">6</td>
+                            <td class="open-machine">open</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">7</td>
-                            <td class="machine-time-table"><b>in use 33:21</b></td>
+                            <td class="numbering washer-numbering currently-viewing">7</td>
+                            <td class="in-use currently-viewing">in use 33:21</td>
                         </tr>
                         <tr>
-                            <td class="washing-machine-number-table">8</td>
-                            <td class="machine-time-table">in use 12:42</td>
+                            <td class="numbering washer-numbering">8</td>
+                            <td class="in-use">in use 12:42</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="dryers-and-timer"">
+
+                    <div>
+
+                        <table class="dryers" id="dryers">
+                            <tbody>
+                                <tr>
+                                    <td class="numbering dryer-numbering">1</td>
+                                    <td class="numbering dryer-numbering">2</td>
+                                    <td class="numbering dryer-numbering">3</td>
+                                    <td class="numbering dryer-numbering">4</td>
+                                </tr>
+                                <tr>
+                                    <td class="in-use">in use 1:13</td>
+                                    <td class="load-done"">load done 0:00</td>
+                                    <td class="out-of-order">out of order</td>
+                                    <td class="open-machine">open</td>
+                                </tr>
+                                <tr>
+                                    <td class="numbering dryer-numbering">5</td>
+                                    <td class="numbering dryer-numbering">6</td>
+                                    <td class="numbering dryer-numbering">7</td>
+                                    <td class="numbering dryer-numbering">8</td>
+                                </tr>
+                                <tr>
+                                    <td class="open-machine">open</td>
+                                    <td class="open-machine">open</td>
+                                    <td class="in-use">in use 32:34</td>
+                                    <td class="in-use">in use 21:42
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 
-                <br />
-                <table id="dryers">
-                    <tbody>
-                        <tr>
-                            <td class="dryer-machine-number-table">1</td>
-                            <td class="dryer-machine-number-table">2</td>
-                            <td class="dryer-machine-number-table">3</td>
-                            <td class="dryer-machine-number-table">4</td>
-                        </tr>
-                        <tr>
-                            <td>in use 1:13</td>
-                            <td>load done 0:00</td>
-                            <td>out of order</td>
-                            <td>open</td>
-                        </tr>
-                        <tr>
-                            <td class="dryer-machine-number-table">5</td>
-                            <td class="dryer-machine-number-table">6</td>
-                            <td class="dryer-machine-number-table">7</td>
-                            <td class="dryer-machine-number-table">8</td>
-                        </tr>
-                        <tr>
-                            <td>open</td>
-                            <td>open</td>
-                            <td>in use 32:34</td>
-                            <td>in use 21:42
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            
-            <!-- The machine you have currently selected -->
-            <div class="current-machine">
-                <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
-                <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
-                </p>
-                <h3>33:21</h3>
-                <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
                 
+                    <!-- The machine you have currently selected -->
+                    <div class="current-machine">
+                        <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
+                        <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
+                        </p>
+                        <h3>33:21</h3>
+                        <div id="timer"><img width="150px" src="/images/timer.svg" alt="timer wheel" /></div>
+                        
+                    </div>
+
+                </div>
+
             </div>
             
         </main>
