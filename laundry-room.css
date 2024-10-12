@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-around;
     max-width: 700px;
-    width: 80%
+    width: 80%;
 }
 
 .top-buttons button {
@@ -26,8 +26,7 @@ main .form-select {
 }
 
 main .form-control {
-    max-width: 65%
-    
+    max-width: 65%;
 }
 
 .radials {
@@ -44,11 +43,6 @@ main .form-control {
     height: 1em;
     vertical-align: -.125em;
     fill: currentcolor;
-}
-
-.fun-tabs {
-    display: none;
-    width: 70%
 }
 
 table {
@@ -139,7 +133,7 @@ td {
 }
 
 .current-machine h3 {
-    margin-top: 0.5em
+    margin-top: 0.5em;
 }
 
 .progress {
