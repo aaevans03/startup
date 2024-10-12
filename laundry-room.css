@@ -15,7 +15,6 @@
     width: 60%;
 }
 
-
 main .view-stats {
     min-width: fit-content;
 }
@@ -25,12 +24,8 @@ main .form-select {
     width: auto;
 }
 
-td {
-    outline: 1px black solid;
-}
-
 main .form-control {
-    max-width: 50%
+    max-width: 65%
     
 }
 
@@ -40,6 +35,7 @@ main .form-control {
 
 #input-time {
     margin-bottom: 1em;
+    align-content: center;
 }
 
 .bi {
@@ -47,4 +43,40 @@ main .form-control {
     height: 1em;
     vertical-align: -.125em;
     fill: currentcolor;
+}
+
+table {
+    border-radius: 2px;
+}
+
+td {
+    border-width: 2px;
+    border-color: black;
+    height: 60px;
+    width: 90px;
+
+}
+
+.washing-machine-number-table {
+    width: 1.5em;
+}
+
+.machine-time-table {
+
+}
+
+.current-machine {
+    display: none;
+}
+
+#currently-viewing-label {
+    font-size: 10px;
+}
+
+.machines {
+    display: inline;
+}
+
+.dryer-machine-number-table {
+    height: 1.5em;
 }
