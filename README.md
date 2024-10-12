@@ -53,3 +53,14 @@ For this deliverable, I built the structure of my web app using HTML. There is n
 - **Authentication** - Create account/login interface on the main page.
 - **Database/Login** - A placeholder for where the laundry statistics will be displayed, as well as placeholders for laundry machine usage data
 - **WebSocket** - Placeholder timers for where the laundry machine times will be displayed, as well as a placeholder for viewing more detailed information about a laundry machine's current usage
+
+
+## CSS Deliverable
+
+For this deliverable, I completely changed the look of the website using CSS. My main focuses are a clean, simple interface that is responsive to window size.
+
+- **Header, footer, and main content body** - A header and footer have been created, which stay static with the CSS flex feature.
+- **Navigation elements** - I made the navigation elements simple so that they match the text on the rest of the page. No underlines or page-visited color changes.
+- **Responsive to window resizing** - My application will change element and font sizes to match the user's screen size, in order to ensure maximum usability.
+- **Application elements** - I improved the login screen. On the laundry room page, I added elements such as a pop-up window when you want to look at statistics or input a new load, as well as colors and a simple way to look at the laundry room machines. Finally, on the about page, I formatted the next nicely.
+- **Application images** - Integrated the GIF nicely besides some text. Also, implemented the timer as a progress bar.
