@@ -56,7 +56,6 @@
                 <h3>Welcome, <span id=firstName">First Name</span></h3>
             </div>
             
-            <!-- Notification for loads that are done
             <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
                 <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                 <div>
@@ -64,7 +63,6 @@
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-             -->
 
 
             <!-- Bootstrap button trigger modals -->
@@ -153,7 +151,7 @@
                                         The laundry room is currently experiencing heavier usage than normal, you are #<span id="queueNumber">3</span> in the queue.
                                     </div>
                                 </div>
-                                
+
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -163,8 +161,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="machines">
 
                 <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information -->
@@ -172,35 +168,35 @@
                     <tbody>
                         <tr>
                             <td class="numbering washer-numbering">1</td>
-                            <td class="in-use">in use 23:29</td>
+                            <td class="in-use">in use <span class="machine-time">23:29</span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">2</td>
-                            <td class="in-use">in use 31:34</td>
+                            <td class="in-use">in use <span class="machine-time">31:34</span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">3</td>
-                            <td class="out-of-order">out of order</td>
+                            <td class="out-of-order">out of order<span class="machine-time"></span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">4</td>
-                            <td class="open-machine">open</td>
+                            <td class="open-machine">open<span class="machine-time"></span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">5</td>
-                            <td class="open-machine">open</td>
+                            <td class="open-machine">open<span class="machine-time"></span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">6</td>
-                            <td class="open-machine">open</td>
+                            <td class="open-machine">open<span class="machine-time"></span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering currently-viewing">7</td>
-                            <td class="in-use currently-viewing">in use 33:21</td>
+                            <td class="in-use currently-viewing">in use <span class="machine-time">33:21</span></td>
                         </tr>
                         <tr>
                             <td class="numbering washer-numbering">8</td>
-                            <td class="in-use">in use 12:42</td>
+                            <td class="in-use">in use <span class="machine-time">12:42</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -218,10 +214,10 @@
                                     <td class="numbering dryer-numbering">4</td>
                                 </tr>
                                 <tr>
-                                    <td class="in-use">in use 1:13</td>
-                                    <td class="load-done"">done 0:00</td>
-                                    <td class="out-of-order">out of order</td>
-                                    <td class="open-machine">open</td>
+                                    <td class="in-use">in use <span class="machine-time">1:13</span></td>
+                                    <td class="load-done"">done <span class="machine-time">0:00</span></td>
+                                    <td class="out-of-order">out of order<span class="machine-time"></span></td>
+                                    <td class="open-machine">open<span class="machine-time"></span></td>
                                 </tr>
                                 <tr>
                                     <td class="numbering dryer-numbering">5</td>
@@ -230,10 +226,10 @@
                                     <td class="numbering dryer-numbering">8</td>
                                 </tr>
                                 <tr>
-                                    <td class="open-machine">open</td>
-                                    <td class="open-machine">open</td>
-                                    <td class="in-use">in use 32:34</td>
-                                    <td class="in-use">in use 21:42
+                                    <td class="open-machine">open<span class="machine-time"></span></td>
+                                    <td class="open-machine">open<span class="machine-time"></span></td>
+                                    <td class="in-use">in use <span class="machine-time">32:34</span></td>
+                                    <td class="in-use">in use <span class="machine-time">21:42</span></td>
                                 </tr>
                             </tbody>
                         </table>

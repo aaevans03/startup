@@ -2,6 +2,7 @@
 .top-buttons {
     display: flex;
     justify-content: space-around;
+    max-width: 700px;
     width: 80%
 }
 
@@ -43,6 +44,11 @@ main .form-control {
     height: 1em;
     vertical-align: -.125em;
     fill: currentcolor;
+}
+
+.fun-tabs {
+    display: none;
+    width: 70%
 }
 
 table {
@@ -152,4 +158,19 @@ td {
     .current-machine {
         height: auto;
     }
+}
+
+@media (max-width: 750px) {
+
+    .machine-time {
+        display: none;
+    }
+    td {
+        width: 80px;
+        font-size: 17px;
+    }
+    .current-machine {
+        width: 320px;
+    }
+
 }
