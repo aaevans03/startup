@@ -101,12 +101,12 @@
 
 
   /* Once I add a separate login and create account page with JavaScript, change this because afterwards, stuff can fit on the screen for longer. */
-  @media (max-height: 715px) {
+  @media (max-height: 720px) {
     header {
       display: none;
     }
     footer {
-      display: none;
+      font-size: 14px;
     }
   }
 
