@@ -548,7 +548,14 @@ JavaScript code that tells Node.js to run local server.
 
 I've got a lot to prepare for in this midterm review.
 
+"The test focuses on general knowledge of the primary topics. You will need to know the basic syntax and usage of the languages and protocols of interest. This includes, but is not limited to, topics such as HTTP, console commands, DNS, HTML, CSS, and JavaScript."
+
+
 ### Git
 - Use `git init` in the console to initialize a directory as a Git repository
 - Type `git status` to check the status of git in a directory
+- 
+
+## HTML
+- By default, the HTML span element has a default CSS display property value of: none?
 - 
