@@ -219,6 +219,7 @@ You can also animate elements, and use keyframes!
 
 ### Units
 | Unit | Description |
+| --- | --- |
 | px | The number of pixels
 | pt | The number of points (1/72 of an inch)
 | % | A percentage of the parent element
@@ -556,6 +557,197 @@ I've got a lot to prepare for in this midterm review.
 - Type `git status` to check the status of git in a directory
 - 
 
-## HTML
+### Console
+- This command makes a script excutable: `chmod +x deploy.sh`
+  - `chmod`: change permissions of a file/directory
+  - `+x`: adds execute permission for a file.
+  - `deploy.sh`: the name of the file.
+
+### HTML
 - By default, the HTML span element has a default CSS display property value of: none?
-- 
+- The `<div>` element means division element. It separates the text from everything else.
+- The `<ul>` tag is for an unordered list, and the `<ol>` tag is for an ordered list.
+- Here are the ways you include JavaScript in an HTML document: `<script>1+1</script>`, `<script src='main.js' />`, `<div onclick='1+1' />`.
+  - You can't do `<javascript>1+1</javascript>`.
+- VALID:
+  - `<script src="script.js"></script>`
+  - `<script> … </script>`
+  - `<script>` can be put in the head or body
+- Valid hyperlink: `<a href='https://c.com'>x</a>`
+- The link element can link a stylesheet
+- How would you display an image with a hyperlink in HTML?
+```html
+<a href="link">
+<img src="img.gif" alt="alt text">
+</a>
+```
+- What is the opening HTML tag for a paragraph, ordered list, unordered list, second level heading, first level heading, third level heading?
+  - `<p> <ol> <ul> <h2> <h1> <h3>`
+- How do you declare the document type to be html?
+  - `<!DOCTYPE html>`
+
+
+
+
+
+
+### CSS
+- Order of CSS box model from outside in: **margin, border, padding, content**
+- What is the difference between the `#title` and `.grid` selector?
+  - #title selects `id="title"`
+  - .grid selects `class="grid"`
+- What is the difference between `padding` and `margin`?
+  - `padding`: space around object, inside the border
+  - `margin`: space around outside of border of object (deals more with spacing in relation to other objs)
+- Given an HTML and CSS how will images be displayed using flex?
+  - column flex: stacks everything on top of each other, to make everything in the same 1 column.
+  - row flex: squeezes everything to the right and left of each other, to make everything in the same 1 row.
+- How would you use CSS to change all the div elements to have a background color of red?
+```css
+div {
+	background-color: red;
+}
+```
+
+- What CSS would you use to set text to green and leave other text unaffected?
+  - use classes or ids
+
+
+
+
+
+### JavaScript
+- The following will output 4. `y` is passed in as a parameter.
+```js
+const f = y => ++y;
+console.log(f(3))
+```
+- Array object functions:
+
+| Function | Meaning                                                   | Example                       |
+| -------- | --------------------------------------------------------- | ----------------------------- |
+| push     | Add an item to the end of the array                       | `a.push(4)`                   |
+| pop      | Remove an item from the end of the array                  | `x = a.pop()`                 |
+| slice    | Return a sub-array                                        | `a.slice(1,-1)`               |
+| sort     | Run a function to sort an array in place                  | `a.sort((a,b) => b-a)`        |
+| values   | Creates an iterator for use with a `for of` loop          | `for (i of a.values()) {...}` |
+| find     | Find the first item satisfied by a test function          | `a.find(i => i < 2)`          |
+| forEach  | Run a function on each array item                         | `a.forEach(console.log)`      |
+| reduce   | Run a function to reduce each array item to a single item | `a.reduce((a, c) => a + c)`   |
+| map      | Run a function to map an array to a new array             | `a.map(i => i+i)`             |
+| filter   | Run a function to remove items                            | `a.filter(i => i%2)`          |
+| every    | Run a function to test if all items match                 | `a.every(i => i < 3)`         |
+| some     | Run a function to test if any items match                 | `a.some(i => i < 1)`          |
+
+- Example of using array functions:
+```js
+const a = [1, 2, 3];
+
+console.log(a.map((i) => i + i));
+// OUTPUT: [2,4,6]
+console.log(a.reduce((v1, v2) => v1 + v2));
+// OUTPUT: 6
+console.log(a.sort((v1, v2) => v2 - v1));
+// OUTPUT: [3,2,1]
+
+a.push(4);
+console.log(a.length);
+// OUTPUT: 4
+```
+
+- The following will output `['rat', 'fish']`. `/` and `|` are regular expressions. `/A|f/` means everything that has either a or f, and the `i` serves to say that it's case insensitive.
+```js
+let a = ['cow', 'rat', 'fish'];
+let b = a.filter(v => v.match(/A|f/i));
+console.log(b);
+```
+
+- The following will output `cow:rat:fish`. It looks at every element in the `a` vector, and attatches stuff onto it. In `(a,v)`, the `a` means the output left from previous iterations, and the `v` is the next value in the inputting array. The `a.reduce` function reduces `a` to a single value.
+```js
+let a = ['cow', 'rat', 'fish'];
+let b = a.reduce((a,v) => [a,v].join(':'));
+console.log(b);
+```
+
+- The following will output `['a1', 'a2', 'a3']`. It creates a new array, with modifications you add. Here it's adding `a` to the front of every number.
+```js
+let a = [1, 2, 3];
+let e = a.map(number => {
+    return ('a' + number)
+});
+console.log(e);
+```
+
+- The following code adds a mouseover event listener to a p element
+```js
+document.querySelector('p').addEventListener('mouseover', console.log);
+```
+
+- You can write JavaScript functions like: `const f = (x) => {}`, `function f(x) {}`, `const f = function(x) {}`.
+  - You can't write it like `function f(x) = {}`.
+
+- Valid JavaScript object: `{ n:1 }`.
+  - NOT `{ n=1 }`, `{ "n"=1}`, `{ "n"="1" }`.
+
+- The DOM textContent property sets the child text for the an element.
+
+- Valid JSON: `{"x":3}`. Must use double quotes
+
+- What does arrow syntax function declaration do?
+  - arrow function syntax: shorter code.
+```js
+let myFunction = (a, b) => a * b;
+
+hello = () => {
+	return "Hello World!";
+}
+
+hello = () => "Hello World!";
+
+hello = (val) => "Hello " + val;
+```
+
+
+- Example with Promises. It will output `burger fries taco shake noodles`. First, it defines the Promise function. Then, it logs out `burger`. Then, it calls the Promise function, which is attatched to a timer. So first, the `fries` is outputted. Then, the timer is up, so it logs `taco`, and it resolves true. Then, the Promise worked, so it logs out `shake`. Finally, when the Promise function is done, it logs out `noodles` and it's over. It doesn't output `salad` ever because the Promise function never returns an error.
+```js
+const p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log('taco');
+        resolve(true);
+    }, 10000);
+});
+
+console.log('burger');
+
+p
+    .then((result) => console.log('shake'))
+    .catch((e) => console.log('salad'))
+    .finally(() => console.log('noodles'))
+
+console.log('fries');
+```
+
+- Example with Async/Await. This will output `ADB`
+```js
+const a = async function() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('D');
+            resolve(true);
+        }, 10000);
+    });
+}
+
+const b = async function() {
+    try {
+        console.log('A');
+        await a();
+        console.log('B');
+    }
+    catch(e) {
+        console.log('C');
+    }
+}
+
+b();
+```
