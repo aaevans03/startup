@@ -257,8 +257,8 @@ CSS can help us change website's appearance to fit with different-sized screens
 ```css
 p {
     display: none      /* none = don't display */
-             block     /* stretches across the whole display */
-             inline    /* it's only as wide as the content */
+             block     /* stretches across the whole display. p or div element has block display by default */
+             inline    /* it's only as wide as the content. b or span element has inline display by default */
              flex      /* grid but fanicer */
              grid      /* a nice grid */
 }
@@ -551,7 +551,6 @@ I've got a lot to prepare for in this midterm review.
 
 "The test focuses on general knowledge of the primary topics. You will need to know the basic syntax and usage of the languages and protocols of interest. This includes, but is not limited to, topics such as HTTP, console commands, DNS, HTML, CSS, and JavaScript."
 
-
 ### Git
 - Use `git init` in the console to initialize a directory as a Git repository
 - Type `git status` to check the status of git in a directory
@@ -562,6 +561,54 @@ I've got a lot to prepare for in this midterm review.
   - `chmod`: change permissions of a file/directory
   - `+x`: adds execute permission for a file.
   - `deploy.sh`: the name of the file.
+- What is true when the `-la` parameter is specified for the `ls` console command?
+  - it shows all files, even hidden ones
+- Console commands
+
+| Command | Description
+| --- | ---
+| pwd | Get the full path of your working directory
+| nano/vi/vim/jed | Brings up a text editor and lets you edit files
+| wget | Lets you download files from the internet with HTTP/HTTPS/FTP
+| echo | Output the parameters of the command
+| cd | Change directory
+| mkdir | Make directory
+| rmdir | Remove directory
+| rm | Remove file(s)
+| mv | Move file(s)
+| cp | Copy files
+| ls | List files
+| curl | Command line client URL browser
+| grep | Regular expression search
+| find | Find files
+| top | View running processes with CPU and memory usage
+| df | View disk statistics
+| cat | Output the contents of a file
+| less | Interactively output the contents of a file
+| wc | Count the words in a file
+| ps | View the currently running processes
+| kill | Kill a currently running process
+| sudo | Execute a command as a super user (admin)
+| ssh | Create a secure shell on a remote computer
+| scp | Securely copy files to a remote computer
+| history | Show the history of commands
+| ping | Check if a website is up
+| tracert | Trace the connections to a website
+| dig | Show the DNS information for a domain
+| man | Look up a command in the manual
+
+### Web Server + HTTPS
+- `banana.fruit.bozo.click`
+  - subdomain: `banana` and `fruit`
+  - root domain: `bozo`
+  - top-level domain: `.click`
+- A certificate is needed for HTTPS
+- Can a DNS A record point to an IP address or another A record?
+  - DNS record: maps domain names to IP addresses/A records.
+- Port 443, 80, 22 is reserved for which protocol?
+  - 443: HTTPS port
+  - 80: HTTP port
+  - 22: SSH port (direct remote access to a device from anywhere)
 
 ### HTML
 - By default, the HTML span element has a default CSS display property value of: none?
@@ -689,6 +736,71 @@ document.querySelector('p').addEventListener('mouseover', console.log);
 - Valid JavaScript object: `{ n:1 }`.
   - NOT `{ n=1 }`, `{ "n"=1}`, `{ "n"="1" }`.
 
+- JS objects:
+```js
+const me = {
+    firstInitial: "A",
+    lastInitial: "E",
+    favoriteNumber: 3,
+    favoriteColor: "blue"
+};
+```
+
+- You can add new properties to JavaScript objects:
+```js
+const obj = new Object({ a: 3 });
+obj['b'] = 'fish';
+obj.c = [1, 2, 3];
+obj.hello = function () {
+    console.log('hello');
+};
+
+console.log(obj);
+// OUTPUT: {a: 3, b: 'fish', c: [1,2,3], hello: func}
+
+
+// OBJECT FUNCTIONS:
+const obj = {
+    a: 3,
+    b: 'fish',
+};
+
+console.log(Object.entries(obj));
+// OUTPUT: [['a', 3], ['b', 'fish']]
+console.log(Object.keys(obj));
+// OUTPUT: ['a', 'b']
+console.log(Object.values(obj));
+// OUTPUT: [3, 'fish']
+
+
+// CONSTRUCTOR:
+function Person(name) {
+    return {
+        name: name,
+    };
+}
+
+const p = new Person('Eich');
+console.log(p);
+// OUTPUT: {name: 'Eich'}
+
+
+// .this pointer
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+
+    log() {
+        console.log('My name is ' + this.name);
+    }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+
 - The DOM textContent property sets the child text for the an element.
 
 - Valid JSON: `{"x":3}`. Must use double quotes
@@ -750,4 +862,84 @@ const b = async function() {
 }
 
 b();
+```
+
+- getElementByID, addEventListener
+```js
+document.getElementById("thisIsAnID");    // get the element with the id "thisIsAnID"
+
+// change the color of "thisIsAnID"
+const myElement = document.getElementById("thisIsAnID");
+myElement.style.color = "red";
+
+// directly change to red
+document.getElementById("thisIsAnID").style.color = "red";
+
+
+// event listener
+document.addEventListener("click", myFunction);
+
+function myFunction() {
+    document.getElementById("test").innerHTML = "Hello World";
+}
+```
+
+- How would you use JavaScript to select an element with the id of “byu” and change the text color of that element to green?
+
+```js
+// change the color of "byu"
+const myElement = document.getElementById("byu");
+myElement.style.color = "green";
+
+// directly change to green
+document.getElementById("byu").style.color = "green";
+```
+
+- How to create an element
+```js
+// create <p> element, append it to document
+const newPar = document.createElement("p");
+newPar.innerText = "This is my new paragraph";
+document.body.appendChild(newPar);
+
+// create <p> element, append it to an element
+const newPar = document.createElement("p");
+newPar.innerHTML = "This is my new paragraph.";
+document.getElementById("myDivElement").appendChild(newPar);
+```
+
+- Valid JS syntax for, if/else, while, switch statements
+```js
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+i = 3;
+
+if (i === 4) {
+    console.log("The number is 4");
+} else {
+    console.log("The number isn't 4");
+}
+
+i = 0;
+
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+// switch statements. Basically like if/then, but fancier
+var text;
+switch (new Date().getDay()) {
+  case 6:
+    text = "Today is Saturday";
+    break;
+  case 0:
+    text = "Today is Sunday";
+    break;
+  default:
+    text = "Looking forward to the Weekend";
+}
+
 ```
