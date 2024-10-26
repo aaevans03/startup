@@ -943,3 +943,328 @@ switch (new Date().getDay()) {
 }
 
 ```
+
+<br>
+<br>
+<br>
+
+# 2024.10.22 React
+
+## Web Frameworks: 
+- Simplify common patterns
+- Provide common components
+- Improve performance
+- Increase device coverage
+    
+## It's like Bootstrap for apps. We're using a thing called React
+- It combines JavaScript and HTML => JSX. Doesn't change CSS
+
+## JSX: pretty cool! Babel translates it to real JavaScript.
+```jsx
+    const i = 3;
+    const list (
+        <ol class='big'>
+            <li>Item {i}</li>
+            <li>Item {3 + i}</li>
+        </ol>
+    );
+```
+
+## React and the DOM
+- The DOM is usually slow.
+- When you use React, a virtual copy of your DOM is built, and it's optimized. It lives in computer memory.
+  - It's always watching for a change.
+  - In your web app, whenever you do something, the virtual DOM detects it, and then changes are made accordingly to objects and children, then it changes the DOM
+
+- In the beginning, we made a separate page for every function, and each page had a copy of a header, footer, etc.
+  - Now, we can think about our app being made up of copomnents. Those things can be updated as needed.
+
+```html
+<div id="root">loading...</div>
+```
+```jsx
+import React from "https://esm.sh/react";
+import ReactDOM from "https://esm.sh/react-dom";
+
+const Hello = () => {
+    return <p>Hello world</p>;
+}
+
+ReactDOM.render(<Hello />, document.querySelector("#root"));
+```
+
+## How things have reactivity: properties and states
+
+### Properties
+
+- Deconstructing an object: `a = {food:"apples", number:7}` and then `{food} = a`
+
+```jsx
+             // using {} to deconstruct an object
+const Hello = ({ phrase }) => {   // define
+    return (
+        <div>
+            <p>Hello {phrase}</p> <!-- use -->
+        </div>
+    );
+}
+                          // provide
+ReactDOM.render(<Hello phrase="function" />, document.querySelector("#root"));
+
+```
+
+### State
+
+- You are changing an internal state. React detects it and updates things
+- Use the code `React.useState`
+
+```jsx
+// The code is on Codepen lol
+```
+
+
+## Hooks
+
+- useState: component state
+- useEffect
+
+
+
+# 2024.10.24 - React Router, Toolchain, porting Simon-CSS to React
+
+*note to self: do the reading before every class. I'm kind of suffering now.*
+
+Fundamental "building blocks" in React are **components**.
+
+Components and states monitor changes.
+
+Single page application
+
+Router: as you use your navigation, what path are you taking through your navigation? The router decides what components get switched in and out.
+- https://codepen.io/leesjensen/pen/poKLKaX
+
+### Toolchain
+- -> npm run build
+    - write the code, compress it, push up to cloud, then it's deployed
+    - Vite: a helpful tool. VSCode isn't the end of our pipeline any more. Vite pushes it into the cloud. We can add it to our `deployFiles.sh` file
+        - Babel: transpile, Bundle, Polyfill
+        - Minify JS: compress
+
+- -> npm run dev
+    - run a local server to temporarily host all the files and see what's going on.
+    - no compression or optimization.
+
+- spin up a working web app with this command (that has all the jsx and stuff)
+    - `npm create vite@lattest demovite -- -- template react`
+    - `cd demovite && npm install`
+    - `npm run dev`
+
+*note to self: find out how I can get npm to stay on my computer*
+
+### Simon React (PT1)
+
+- This is how your website doesn't need .html at the end of the URL
+
+1. Install and configure Vite (using NPM)
+2. Reorganize the code
+3. Convert to React Bootstrap
+4. Enable React (NPM)
+5. Create new app component
+6. Create view components
+7. Create the router
+8. Convert HTML to React components
+9. Replace deployment script
+
+## Changing files of our startup, converting things to JSX:
+
+- The folder for Simon React is a lot smaller.
+- CSS stays put. You just need to edit it to work with React. (e.g. we're not using a `<body>` element anymore, so change the CSS so it reads the `.body` class)
+- In JSX files, you need to export each function so that it can be used in other files.
+- `App()` function: includes your header and footer, so you don't need to keep copying it any more!
+- use `className` instead of `class` when writing HTML in JSX files
+- you also have to change links. but that's all you really need to change in your code!
+- paths/routes through your application. cool
+- `login.jsx`: individual login page. imported into the main `app.jsx` file!
+
+> [!NOTE]
+> USEFUL CSS CODE TO USE: `text-overflow: ellipsis;`
+
+- Once you change your startup for React, make sure you don't use the same `deployFiles.sh` script you did before. It will mess things up! So use a new one.
+- When we upload it to the cloud, it takes all our pretty code and compresses it into one file. Really cool!
+
+
+# 2024.10.26 - React assignments
+
+## Components
+
+You update things dynamically on your page using React states.
+
+Here's the assignment I did:
+
+```jsx
+import React from "https://cdn.skypack.dev/react";
+import ReactDOM from "https://cdn.skypack.dev/react-dom";
+
+// fun fact: state is localized to each individual component.
+// state is completely private to the component declaring it
+
+// Top level component that contains child components
+function App() {
+  return (
+    <div>
+      <h3>Function Style Component:</h3>
+      <Demo who="function" initialColor="blue" />
+    </div>
+  );
+}
+
+// Child component
+const Demo = ({ who, initialColor }) => {
+  // outlook: the state variable with the value you stored
+  // setOutlook: state setter function. It's defined later
+  const [outlook, setOutlook] = React.useState("beautiful");
+  // the initial value here is "beautiful".
+
+  const [color, setColor] = React.useState(initialColor);
+  const [textColor, setTextColor] = React.useState("white");
+
+  //const [color, setColor] = React.useState(initialColor);
+
+  function changeOutlook() {
+    setOutlook(outlook === "exciting" ? "beautiful" : "exciting");
+  }
+
+  function changeColor() {
+    setColor(color === "blue" ? "yellow" : "blue");
+  }
+
+  function changeTextColor() {
+    setTextColor(color === "blue" ? "black" : "white");
+  }
+
+  function handleMouseEnter() {
+    changeColor();
+    changeTextColor();
+  }
+
+  return (
+    <div
+      className="component"
+      onMouseEnter={handleMouseEnter}
+      style={{
+        background: color,
+        color: textColor
+      }}
+    >
+      <p>
+        Hello {outlook} {who}
+      </p>
+      <button onClick={changeOutlook}>change</button>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+```
+
+## Router
+
+This is how you make a one-page navigation: making everything accessible through React Router.
+
+You have `NavLink`s and `Route`s that will direct you to where you should go. Pretty neat!
+
+```jsx
+// Inject the router into the application root DOM element
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  // BrowserRouter component that controls what is rendered
+  // NavLink component captures user navigation requests
+  // Routes component defines what component is routed to
+  <BrowserRouter>
+    <div className='app'>
+      <nav>
+        <NavLink to='/'>Home</Link>
+        <NavLink to='/about'>About</Link>
+        <NavLink to='/users'>Users</Link>
+      </nav>
+
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />} exact />
+          <Route path='/about' element={<About />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </Routes>
+      </main>
+    </div>
+  </BrowserRouter>
+);
+```
+
+And the assignment:
+
+```jsx
+import React from "https://cdn.skypack.dev/react";
+import ReactDOM from "https://cdn.skypack.dev/react-dom";
+
+import {
+  BrowserRouter,
+  NavLink,
+  Routes,
+  Navigate,
+  Route
+} from "https://cdn.skypack.dev/react-router-dom";
+
+function Home() {
+  return <div className="home comp">Home</div>;
+}
+
+function About() {
+  return <div className="about comp">About</div>;
+}
+
+function Users() {
+  return <div className="users comp">Users</div>;
+}
+
+function Scores() {
+  return <div className="scores comp">Scores</div>;
+}
+
+function More() {
+  return <div className="more comp">More</div>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/scores">Scores</NavLink>
+          <NavLink to="/more">More</NavLink>
+        </nav>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} exact />
+            <Route path="/about" element={<About />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/scores" element={<Scores />} />
+            <Route path="/more" element={<More />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+
+        <footer>Footer</footer>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+```
