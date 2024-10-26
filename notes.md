@@ -1268,3 +1268,65 @@ function App() {
 ReactDOM.render(<App />, document.getElementById("root"));
 
 ```
+
+## Reactivity
+
+We've got two functions 
+
+```jsx
+import React from "https://cdn.skypack.dev/react";
+import ReactDOM from "https://cdn.skypack.dev/react-dom";
+
+const Survey = () => {
+  const [color, updateColor] = React.useState("");
+
+  // When the color changes update the state
+  const onChange = (e) => {
+    updateColor(e.target.value);
+  };
+
+  return (
+    <div>
+      <h1>Survey</h1>
+
+      {/* Pass the Survey color  as a parameter to the Question.
+          When the color changes the Question parameter will also be updated and rendered. */}
+      <Question answer={color} />
+
+      <p>
+        <span>Pick a color: #</span>
+        {/* Set the Survey color state as a the value of the color picker.
+            When the color changes, the value will also be updated and rendered. */}
+        <input
+          type="text"
+          onChange={(e) => onChange(e)}
+          value={color}
+          placeholder="type color here"
+        />
+      </p>
+    </div>
+  );
+};
+
+// The Question component
+const Question = ({ answer }) => {
+  return (
+    <div>
+      {/* Answer rerendered whenever the parameter changes */}
+      <p>
+        Your answer:{" "}
+        <span
+          style={{
+            padding: "7px",
+            backgroundColor: "#" + answer
+          }}
+        >
+          {"#" + answer}
+        </span>
+      </p>
+    </div>
+  );
+};
+
+ReactDOM.render(<Survey />, document.getElementById("root"));
+```
