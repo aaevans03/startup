@@ -1330,3 +1330,108 @@ const Question = ({ answer }) => {
 
 ReactDOM.render(<Survey />, document.getElementById("root"));
 ```
+
+
+# 2024.10.29
+
+How get a directory set up with Vite:
+
+1. change directory into the place you want
+2. `git clone [url]`
+3. change directory into the new file
+4. run `npm install` (this will install all the required files for Vite)
+5. once it's installed, do `npm run dev` and it will start the local server. Nice!
+6. type in `o` to open a browser window with the server, `q` to quit.
+
+You want to have every component be one page or less. It's better for JSX code readability.
+
+Ｒｏｕｔｅｓ: how individual app components are displayed on the page.
+
+Prof Clement says: learn Vim bindings, install the VSCode extension. Because not every machine will have a pleasant user interface.
+
+### Authentification/login system: put this at the top of your App() function
+
+```jsx
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+```
+
+A lot of copy and pasting code. Ye
+
+
+# 2024.10.31 spooky
+
+From this point on in this course, we're focusing on backend development
+
+**Put on Resume: "back-end and front-end developer". Lots of competition for front-end, but not for back-end**
+
+## NETWORK
+
+Take one part out, and all the other parts will work around it
+
+The layers here build up:
+
+- **Application layer:** HTTP, SSH, etc.
+- **TCP:** typing in an address is the same as looking at port 80 or 443.
+  - 16 bit port
+  - Application to application connectivity
+  - connect HTTPS to HTTPS, or DNS to DNS
+  - have this port connect to your backend server.
+  - reliable transmission, more reliable than IP.
+  - analogy: a phone call. "I'd like to connect to..." then it connects you. Pretty simple. Every time you send a message to the other end, it waits for acknowledgement and will keep sending until so.
+  - load balancing. if lots of people are using a website, it distributes equal access.
+- **Internet:** IP. Get it using DHCP protocol
+  - analogy: this is post office. you drop your letter into the mailbox with a destination, but it's uncertain whether you'll get to the destination.
+  - depending on your WiFi, this determines where your packet gets set from what location, in order to reach the destination.
+  - IP gets you host to host connectivity
+- **Physical media:** WiFi, cell, ethernet
+  - your machine has a chip that connects to a router, that connects to a physical internet thing
+  - my computer is connected with an IP
+- **DHCP:** gets an IP address. you make a request to it to get an IP address and router. 4 bytes
+  - internet provider has a set of IPs, you request it to give one to you
+  - IP addresses beginning with `10` are for local use only. Not routed out. You can't set up a web server on it.
+    - as opposed to IPv4, which is globally routed out.
+  - MAC layer: media access control. you get a MAC address. 6 bytes instead of 4 bytes, so a lot more.
+  - BYU owns a class B address: `128.187.x.x`
+  - DNS: translates human-readable website names into addresses.
+    - `byu.edu` -> `128.187.16.184`
+    - IPV4: standard but shorter than IPV6
+    - IPV6: length of addresses. super long
+  - `dig` console command: asks a bunch of questions to a website/server to get things like IP address, etc.
+  - `traceroute` console command:
+    - you can see how many "hops" through routers it takes to get to the requested web address. goes through a bunch of machines to get to destination.
+    - your request could go through fiberoptic cables, or satelites.
+
+### Fun facts
+- there are undersea fiber-optic cables that go through the ocean. it's pretty hard to fix them.
+
+
+## Fetch
+
+Fetch is how you communicate with backend services, and import APIs.
+
+Send request to backend server, get a response, convert it to `.json` response.
+
+Two ways to do it:
+1. JavaScript promises. (synchronous)
+2. await (asynchronous)
+
+Network tab in inspect element: tells you what things were requested, etc. So many things under the hood when you make a request to HTTP
+- so many things requested, so make the most important things appear first.
+- `php` pages were a lot slower. it's important to make websites faster, so that people are more willing to stay on your website.
+
+**Look up a list of APIs for some cool things you can do in your website!** Gives you tons of JSON files for you to use.
+
+
+## URL FORMAT:
+
+`https://byu.edu:443/cs/260/student?filter=accepted#summary`
+
+- **scheme**: 
+- **domain**: 
+- **port**: 
+- **path**: 
+- **parameter**: 
+- **anchor**: 
+
