@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Laundry App</title>
+
+        <!-- Tell the browser I'm going to control the sizing myself -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <!-- Include Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        
+        <!-- Include my own stylesheet -->
+        <link rel="stylesheet" href="main.css" />
+
+    </head>
+
+    
+    <!-- TODO: Add media thing where it gets rid of the header and footer
+               when the window is too short -->
+
+    <body>
+
+        <header class="container-fluid">
+            <nav class="navbar fixed-top navbar-dark">
+
+                <a class="navbar-brand" href="/index.html">
+                    <h1>Laundry App</h1>
+                </a>
+                
+                <menu class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="laundry-room.html">Laundry Room</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </menu>
+            </nav>
+        </header>
+
+        <main>
+
+            <div id="login">
+                <h2>Welcome</h2>
+
+                <br />
+
+
+                <h3>Login</h3>
+                <form id="login" method="get" action="laundry-room.html">
+                    <div id="inputs">
+                        <div><input type="email" class="form-control" placeholder="Email"/></div>
+                        <div><input type="password" class="form-control" placeholder="Enter Password"/></div>
+                    </div>
+                    <div><button class="btn btn-primary" type="submit">Login</button></div>
+                </form>
+
+                <br />
+
+                <h3>Create Account</h3>
+                <form id="create-acc" method="get" action="laundry-room.html">
+                        <div id="inputs">
+                        <div><input type="text" class="form-control" placeholder="Name"/></div>
+                        <div><input type="email" class="form-control" placeholder="Email"/></div>
+                        <div><input type="password" class="form-control" placeholder="Create Password"/></div>
+                        <div><input type="number" class="form-control" min="2" max="16" placeholder="Building Number (2-16)"/></div>
+                        <div><input type="number" class="form-control" min="1000" maxlength="4" placeholder="Room Number"/></div>   <!-- To implement: select from a list of rooms -->
+                    </div>
+
+                    <div><button class="btn btn-primary" type="submit">Create Account</button></div>
+                </form>
+
+                <!-- In future: automatically default to logging in, and have login screen appear instead if they click a button -->
+                
+
+                
+
+            </div>
+
+        </main>
+
+
+
+        <footer class="bg-dark text-white-50">
+            <div class="container-fluid">
+                Developed by <span class="developer-name">Alex Evans / 賴亞遜</span>
+                <span class="github-link">
+                    <a class="text-reset" href="https://github.com/aaevans03/startup">GitHub</a>
+                </span>
+
+            </div>
+        </footer>
+
+        <!-- Import Bootstrap JavaScript functions-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    </body>
+
+</html>
