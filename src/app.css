@@ -4,8 +4,8 @@
     font-family: Lexend, Helvetica, Arial, sans-serif;
   }
 
-
-  body {
+  
+  .body {
     display: flex;
     flex-direction: column;
     margin: 0;
