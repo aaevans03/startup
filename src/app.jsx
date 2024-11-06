@@ -22,8 +22,7 @@ export default function App() {
                         
                         <menu className="navbar-nav">
                             <li className="nav-item">
-                                <NavLink className="nav-link active" to="">
-                                    {/* Maybe get rid of this active link coloring? Or can I add a function to change it? */}
+                                <NavLink className="nav-link" to="">
                                     Home
                                 </NavLink>
                             </li>
