@@ -1055,7 +1055,7 @@ Router: as you use your navigation, what path are you taking through your naviga
     - no compression or optimization.
 
 - spin up a working web app with this command (that has all the jsx and stuff)
-    - `npm create vite@lattest demovite -- -- template react`
+    - `npm create vite@latest demovite -- -- template react`
     - `cd demovite && npm install`
     - `npm run dev`
 
@@ -1370,7 +1370,7 @@ From this point on in this course, we're focusing on backend development
 
 Take one part out, and all the other parts will work around it
 
-The layers here build up:
+The protocol layers for communication here build up:
 
 - **Application layer:** HTTP, SSH, etc.
 - **TCP:** typing in an address is the same as looking at port 80 or 443.
@@ -1434,4 +1434,75 @@ Network tab in inspect element: tells you what things were requested, etc. So ma
 - **path**: 
 - **parameter**: 
 - **anchor**: 
+
+# 2024.11.05
+
+We're thinking about backend stuff right now! What stuff is happening on the server?
+
+You can have Node running something on a server, and it gives you something.
+
+HTTP: a set of rules of how things on the web talk back and forth. When you type in a URL in a browser, a packet of info gets sent out in this HTTP format.
+
+The receiving end can interpret it, know what you want and send it back to your browser.
+
+## Example web server:
+
+This code creates a web server that runs through Node.js.
+
+Type in `localhost:8080` in your web browser to pull up this web server you made with this.
+
+```js
+const http = require('http');  // importing the http library with node and using it
+
+// this is to set up a web server that listens to requests, and when it gets one it runs this:
+const server = http.createServer(function (req, res) {
+  
+  // parameters: req is request, res is response
+
+  // function of different methods.
+
+  res.writeHead(200, { 'Content-Type': 'text/html' });                // header
+  res.write(`<h1>Hello Node.js! [${req.method}] ${req.url}</h1>`);    // send back html. stuff with the $ is JavaScript that needs to be evaluated. responds with URL
+  res.end();                                                          //
+
+});
+
+server.listen(8000, () => {
+  console.log(`Web service listening on port 8080`);
+});
+
+```
+
+You can debug this in VSCode with Node. Step through the code to learn! 
+
+## Express:
+
+Simple, yet powerful Node module. Install it like you would any other module.
+
+This is the same as above, but instead using Express instead of the HTTP module:
+
+```js
+const express = require('expresss');
+const app = express(); // create app, which is an express object
+
+// this get defines what to do with the function
+app.get('*', (req, res) => {                    // in the '*' spot, you can define what URL can run this function.
+  res.send('<h1>Hello Express! [${req.method}] ${req.originalUrl}</h1>');
+});
+
+app.listen(8080);
+```
+
+Express is a "middleware" package. Does stuff in between when the request goes in and the response is sent out.
+
+Commands:
+- `app.get`: if the URL matches what `app.get` asks for, then run a function
+- `app.use`: run this every time, no matter then URL
+- `next()`: call the next function in the file.
+
+## Cookies:
+
+Cookies: temporary storage. A way of storing information for the back end, which is stored on the front end (on your machine)
+  - example use: you don't have to log in every time you open the web page.
+  - A Node package you can use: cookie parser.
 
