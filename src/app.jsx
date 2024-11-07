@@ -71,7 +71,9 @@ export default function App() {
                             />}
                         exact
                     />
-                    <Route path='/laundry-room' element={<LaundryRoom />} />
+                    {authState === AuthState.Authenticated && (
+                        <Route path='/laundry-room' element={<LaundryRoom />} />
+                    )}
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

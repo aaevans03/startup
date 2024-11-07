@@ -7,7 +7,7 @@ export function Unauthenticated(props) {
     const [password, setPassword] = React.useState('');
     const [displayError, setDisplayError] = React.useState(null);
 
-
+    // TO-DO: add separate login and create account screen.
     
     async function loginUser() {
         localStorage.setItem('userName', userName);
