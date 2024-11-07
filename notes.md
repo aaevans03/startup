@@ -1497,7 +1497,7 @@ Express is a "middleware" package. Does stuff in between when the request goes i
 
 Commands:
 - `app.get`: if the URL matches what `app.get` asks for, then run a function
-- `app.use`: run this every time, no matter then URL
+- `app.use`: run this every time, no matter the URL
 - `next()`: call the next function in the file.
 
 ## Cookies:
@@ -1506,3 +1506,56 @@ Cookies: temporary storage. A way of storing information for the back end, which
   - example use: you don't have to log in every time you open the web page.
   - A Node package you can use: cookie parser.
 
+
+# 2024.11.07
+
+## review from last time:
+
+What is an endpoint: all the different API calls you can make. A bunch of little functions you can call through a URL. It's on your server.
+
+What goes into service: an HTTP GET request on port 3000. What happens in the middle: middleware. What comes out of a service: response.
+
+Express: a Node package for organizing your middleware.
+
+## Simon Service
+
+- What we're doing after React
+- Another new deployment script!
+
+There's an `index.js` file inside our server... from when we first installed the AMI. It's got Express code in it!
+- Our server has been always running this express code this whole time... doing nothing exciting except serving up our `public` files.
+- Now, our `index.js` file won't just do this anymore. It will get login, scores, the about page contents, etc.
+- We get to change which services are provided on port 3000.
+
+<br>
+
+- Currently: local storage on our computer has the login and scores data. Now, we are going to transition it away to the backend, in a database.
+- We don't have a database yet, so instead we'll have memory alive on the service. As long as your service is running, it will store data. Once you turn off or restart the service, however, it's all gone.
+
+<br>
+
+### Simon Service Code (`index.js`)
+
+Directly take this code and implement it into your own site! Don't need to re-write it.
+
+1. First, parses (analyzes/interprets) the request sent in using middleware
+2. Serve up the public files
+3. Create sub-router for API to use. `apiRouter`, it's an inner router, inside the regular one.
+4. Lots of endpoints for our API: logging scores, creating new user, logging in and out, etc.
+
+- Creating a new user: it checks service for if the user already exists. If it does, it gives a message back. If it doesn't, a new user is created with all the data and a unique ID is generated, then it sticks it into a JavaScript object and is stuck into the array with all the other users.
+- Logging in an existing user: index into our users array and find a user that matches it. Compare the username and password. Create new token.
+- Logging in a user: search through whole array, then if we find it, then delete the token. You're logged out.
+- Get scores: request the scores and send it back to the frontend.
+- Submit score: posting to the endpoint. The scores object is getting changed with an `updateScores` function, then it sends it back.
+- `updateScores`: adding a new score to the scores array object.
+
+NOTE: lots of these are temporary "hacks" that we'll only use until we have a database. There will also be encryption in the future.
+
+### In `scores.jsx`:
+
+use the `fetch` command to get the scores from the api.
+
+### `deployService.sh`
+
+New step: Step 4. ssh back into our server, and restart the service.

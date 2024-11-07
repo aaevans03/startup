@@ -60,7 +60,7 @@ export function LaundryRoom() {
                                 <p>The busiest time in the laundry room <span id="day-of-week"><b>last Wednesday</b></span> was around <span id="time-of-day"><b>9 PM</b></span>.</p>
                                 
                                 <div>
-                                    <img width="500px" style={{border: "1px solid"}} src="./public/sample_loads.svg" alt="Bar graph with laundry times" />
+                                    <img width="500px" style={{border: "1px solid"}} src="./sample_loads.svg" alt="Bar graph with laundry times" />
                                 </div>
                             </div>
                             <div className="modal-footer">

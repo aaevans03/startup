@@ -1,44 +1,42 @@
 import React from 'react';
+import { Authenticated } from './authenticated';
+import { Unauthenticated } from './unauthenticated';
+import { AuthState } from './authstate';
 
-export function Login() {
+// task: split up authentication components into authenticated.jsx and unauthenticated.jsx
+
+export function Login({ userName, authState, onAuthChange }) {
     return (
         <main>
-            <div id="login">
-                <h2>Welcome</h2>
 
-                <br />
+            {/* if authState is authenticated, then show the authenticated page */}
+
+            {authState === AuthState.Authenticated && (
+                // pass in the userName, and pass in the logout function that resets the userName and sets the authState to unauthenticated
+                <Authenticated
+                    userName={userName}
+                    onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)}
+                />
+            )}
 
 
-                <h3>Login</h3>
-                <form id="login" method="get" action="laundry-room">
-                    <div id="inputs">
-                        <div><input type="email" className="form-control" placeholder="Email"/></div>
-                        <div><input type="password" className="form-control" placeholder="Enter Password"/></div>
-                    </div>
-                    <div><button className="btn btn-primary" type="submit">Login</button></div>
-                </form>
 
-                <br />
 
-                <h3>Create Account</h3>
-                <form id="create-acc" method="get" action="laundry-room.html">
-                        <div id="inputs">
-                        <div><input type="text" className="form-control" placeholder="Name"/></div>
-                        <div><input type="email" className="form-control" placeholder="Email"/></div>
-                        <div><input type="password" className="form-control" placeholder="Create Password"/></div>
-                        <div><input type="number" className="form-control" min="2" max="16" placeholder="Building Number (2-16)"/></div>
-                        <div><input type="number" className="form-control" min="1000" maxlength="4" placeholder="Room Number"/></div>   { /* <!-- To implement: select from a list of rooms --> */ }
-                    </div>
 
-                    <div><button className="btn btn-primary" type="submit">Create Account</button></div>
-                </form>
 
-                { /* <!-- In future: automatically default to logging in, and have login screen appear instead if they click a button --> */ }
-                
+            {/* if authState is not authenticated, then show the login screen */}
+            
+            {authState === AuthState.Unauthenticated && (
+                // pass in the userName, pass in the login function that sets login userName and sets the authState to authenticated
+                <Unauthenticated
+                    userName={userName}
+                    onLogin={(loginUserName) => {
+                        onAuthChange(loginUserName, AuthState.Authenticated);
+                    }}
+                />
+            )}
 
                 
-
-            </div>
         </main>
     );
 }
