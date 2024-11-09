@@ -10,14 +10,14 @@ export function Authenticated(props) {
     const navigate = useNavigate();
 
     function logout() {
-        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
         props.onLogout();
     }
 
     return (
         <div>
 
-            <div>Welcome, <span className='playerName'>{props.userName}</span></div>
+            <div>Welcome, <span className='playerName'>{props.userEmail}</span></div>
 
             <button className="btn btn-primary" variant='primary' action="laundry-room">
                 Go to Laundry Room

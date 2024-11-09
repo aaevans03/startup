@@ -13,11 +13,11 @@ import { NotFound } from "./not-found/not-found";
 
 export default function App() {
 
-    // store userName, authState in here, so that child functions can access. If there's no userName in local storage, then userName is an empty string.
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    // store userEmail, authState in here, so that child functions can access. If there's no userEmail in local storage, then userEmail is an empty string.
+    const [userEmail, setUserEmail] = React.useState(localStorage.getItem('userEmail') || '');
 
-    // get the current auth state. If userName has a value then it's authenticated, otherwise it's unauthenticated.
-    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    // get the current auth state. If userEmail has a value then it's authenticated, otherwise it's unauthenticated.
+    const currentAuthState = userEmail ? AuthState.Authenticated : AuthState.Unauthenticated;
 
     // authState is what stores if the user is logged in or not.
     const [authState, setAuthState] = React.useState(currentAuthState);
@@ -62,12 +62,12 @@ export default function App() {
                         element={
                             <Login
                                 // pass these things through to the Login function
-                                userName={userName}
+                                userEmail={userEmail}
                                 authState={authState}
-                                // pass in a function that sets the authState and userName
-                                onAuthChange={(userName, authState) => {
+                                // pass in a function that sets the authState and userEmail
+                                onAuthChange={(userEmail, authState) => {
                                     setAuthState(authState);
-                                    setUserName(userName);
+                                    setUserEmail(userEmail);
                                 }}    
                             />}
                         exact
