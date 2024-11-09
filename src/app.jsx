@@ -6,6 +6,7 @@ import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import { Login } from "./login/login";
 import { AuthState } from "./login/authstate";
 import { LaundryRoom } from "./laundry-room/laundry-room";
+import { Unauthorized } from "./laundry-room/unauthorized";
 import { About } from "./about/about";
 import { NotFound } from "./not-found/not-found";
 
@@ -74,6 +75,11 @@ export default function App() {
                     {authState === AuthState.Authenticated && (
                         <Route path='/laundry-room' element={<LaundryRoom />} />
                     )}
+                    {authState !== AuthState.Authenticated && (
+                        <Route path='/laundry-room' element={<Unauthorized />} />
+                    )}
+
+                    
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
