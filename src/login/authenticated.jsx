@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import './authenticated.css';
@@ -9,13 +10,19 @@ export function Authenticated(props) {
 
     function logout() {
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userBuildingNumber');
+        localStorage.removeItem('userRoomNumber');
+
         props.onLogout();
     }
-
+    
     return (
         <div>
 
-            <h2>Welcome, <b><span className='playerName'>{props.userEmail}</span></b></h2>
+            <h2>Welcome, <b><span className='userName'>{props.userName}</span></b></h2>
+            
+            <p>{props.userEmail} {props.userBuildingNumber} {props.userRoomNumber}</p>
 
             <button className="btn btn-primary" variant='primary' onClick={() => navigate("laundry-room")}>
                 Go to Laundry Room

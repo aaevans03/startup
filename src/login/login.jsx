@@ -5,23 +5,22 @@ import { AuthState } from './authstate';
 
 // task: split up authentication components into authenticated.jsx and unauthenticated.jsx
 
-export function Login({ userEmail, authState, onAuthChange }) {
+export function Login({ userEmail, userName, userBuildingNumber, userRoomNumber, authState, onAuthChange }) {
     return (
         <main>
 
             {/* if authState is authenticated, then show the authenticated page */}
 
             {authState === AuthState.Authenticated && (
-                // pass in the userEmail, and pass in the logout function that resets the userEmail and sets the authState to unauthenticated
+                // pass in the user data, and pass in the logout function that resets the user data and sets the authState to unauthenticated
                 <Authenticated
                     userEmail={userEmail}
-                    onLogout={() => onAuthChange(userEmail, AuthState.Unauthenticated)}
+                    userName={userName}
+                    userBuildingNumber={userBuildingNumber}
+                    userRoomNumber={userRoomNumber}
+                    onLogout={() => onAuthChange(userEmail, userName, userBuildingNumber, userRoomNumber, AuthState.Unauthenticated)}
                 />
             )}
-
-
-
-
 
 
             {/* if authState is not authenticated, then show the login screen */}
@@ -30,8 +29,11 @@ export function Login({ userEmail, authState, onAuthChange }) {
                 // pass in the userEmail, pass in the login function that sets login userEmail and sets the authState to authenticated
                 <Unauthenticated
                     userEmail={userEmail}
-                    onLogin={(loginUserEmail) => {
-                        onAuthChange(loginUserEmail, AuthState.Authenticated);
+                    userName={userName}
+                    userBuildingNumber={userBuildingNumber}
+                    userRoomNumber={userRoomNumber}
+                    onLogin={(userEmail, userName, userBuildingNumber, userRoomNumber) => {
+                        onAuthChange(userEmail, userName, userBuildingNumber, userRoomNumber, AuthState.Authenticated);
                     }}
                 />
             )}

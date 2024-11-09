@@ -4,8 +4,10 @@ export function Unauthenticated(props) {
 
     
     const [userEmail, setUserEmail] = React.useState(props.userEmail);
-    const [userName, setUserName] = React.useState(props.userEmail);
+    const [userName, setUserName] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [userBuildingNumber, setUserBuildingNumber] = React.useState('');
+    const [userRoomNumber, setUserRoomNumber] = React.useState('');
 
     // figure out what this display error is
     // const [displayError, setDisplayError] = React.useState(null);
@@ -19,13 +21,16 @@ export function Unauthenticated(props) {
     
     async function loginUser() {
         localStorage.setItem('userEmail', userEmail);
-        props.onLogin(userEmail);
+        props.onLogin(userEmail, userName, userBuildingNumber, userRoomNumber);
     }
 
     async function createUser() {
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('userName', userName);
-        props.onLogin(userEmail);
+        localStorage.setItem('userBuildingNumber', userBuildingNumber);
+        localStorage.setItem('userRoomNumber', userRoomNumber);
+        
+        props.onLogin(userEmail, userName, userBuildingNumber, userRoomNumber);
     }
 
     function changeLoginDisplay() {
@@ -56,14 +61,52 @@ export function Unauthenticated(props) {
                         <h3>Create Account</h3>
                             <form id="create-acc" method="get" action="laundry-room">
                                     <div id="inputs">
-                                    <div><input type="text" className="form-control" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Name"/></div>
-                                    <div><input type="email" className="form-control" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Email"/></div>
-                                    <div><input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Create Password"/></div>
-                                    <div><input type="number" className="form-control" min="2" max="16" placeholder="Building Number (2-16)"/></div>
-                                    <div><input type="number" className="form-control" min="1000" maxlength="4" placeholder="Room Number"/></div>   { /* <!-- To implement: select from a list of rooms --> */ }
+                                    <div>
+                                        <input
+                                            type="email"
+                                            className="form-control"
+                                            value={userEmail}
+                                            onChange={(e) => setUserEmail(e.target.value)}
+                                            placeholder="Email"/>
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={userName}
+                                            onChange={(e) => setUserName(e.target.value)}
+                                            placeholder="Name"/>
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            min="2"
+                                            max="16"
+                                            value={userBuildingNumber}
+                                            onChange={(e) => setUserBuildingNumber(e.target.value)}
+                                            placeholder="Building Number (2-16)"/>
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            min="1000"
+                                            maxLength="4"
+                                            value={userRoomNumber}
+                                            onChange={(e) => setUserRoomNumber(e.target.value)}
+                                            placeholder="Room Number"/>
+                                    </div>   { /* <!-- To implement: select from a list of rooms --> */ }
+                                    <div>
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            placeholder="Create Password"/>
+                                    </div>
                                 </div>
 
-                                <div><button className="btn btn-primary" type="submit" onClick={() => createUser()} disabled={!userEmail || !password}>Create Account</button></div>
+                                <div><button className="btn btn-primary" type="submit" onClick={() => createUser()} disabled={!userName || !userEmail || !userBuildingNumber || !userRoomNumber || !password}>Create Account</button></div>
                             </form>
                     </>
                 )}

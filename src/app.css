@@ -87,6 +87,14 @@
     margin-top: 0.7em;
   }
 
+  .login-display {
+    color: gray;
+  }
+
+  .login-display:hover {
+    text-decoration: underline;
+  }
+
   .developer-name {
     font-style: italic;
   }

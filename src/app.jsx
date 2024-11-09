@@ -22,6 +22,12 @@ export default function App() {
     // authState is what stores if the user is logged in or not.
     const [authState, setAuthState] = React.useState(currentAuthState);
 
+
+    // Also, get the user's name, building number, and room number.
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || 'User');
+    const [userBuildingNumber, setUserBuildingNumber] = React.useState(localStorage.getItem('userBuildingNumber') || '');
+    const [userRoomNumber, setUserRoomNumber] = React.useState(localStorage.getItem('userRoomNumber') || '');
+
     return (
         <BrowserRouter>
             <div className="body">
@@ -63,17 +69,34 @@ export default function App() {
                             <Login
                                 // pass these things through to the Login function
                                 userEmail={userEmail}
+                                userName={userName}
+                                userBuildingNumber={userBuildingNumber}
+                                userRoomNumber={userRoomNumber}
                                 authState={authState}
-                                // pass in a function that sets the authState and userEmail
-                                onAuthChange={(userEmail, authState) => {
+
+                                // pass in a function that sets the authState and user data
+                                onAuthChange={(userEmail, userName, userBuildingNumber, userRoomNumber, authState) => {
                                     setAuthState(authState);
                                     setUserEmail(userEmail);
-                                }}    
+                                    setUserName(userName);
+                                    setUserBuildingNumber(userBuildingNumber);
+                                    setUserRoomNumber(userRoomNumber);
+                                }}
+
                             />}
                         exact
                     />
                     {authState === AuthState.Authenticated && (
-                        <Route path='/laundry-room' element={<LaundryRoom />} />
+                        <Route
+                            path='/laundry-room'
+                            element={
+                                <LaundryRoom
+                                    // pass these things to the LaundryRoom page
+                                    userName={userName}
+                                    userBuildingNumber={userBuildingNumber}
+                                    userRoomNumber={userRoomNumber}
+                                />}
+                        />
                     )}
                     {authState !== AuthState.Authenticated && (
                         <Route path='/laundry-room' element={<Unauthorized />} />

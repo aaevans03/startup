@@ -2,14 +2,14 @@ import React from 'react';
 import "./laundry-room.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export function LaundryRoom() {
+export function LaundryRoom(props) {
     return (
         <>
             <main>
 
                 <div id="header-text">
-                    <h2><u>Laundry Room - Building <span id="buildingNumber">4</span></u></h2>
-                    <h3>Welcome, <span id="firstName">First Name</span></h3>
+                    <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>
+                    <h3>Welcome, {props.userName}</h3>
                 </div>
                 
                 <div className="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
@@ -39,7 +39,7 @@ export function LaundryRoom() {
                     <div className="modal-dialog modal-dialog-centered view-stats">
                         <div className="modal-content">
                             <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="viewStatistics">Statistics for building <span id="buildingNumber">4</span></h1>
+                            <h1 className="modal-title fs-5" id="viewStatistics">Statistics for building {props.userBuildingNumber}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body">
