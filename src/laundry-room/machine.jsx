@@ -38,8 +38,9 @@ export function Machine({ id, curState, duration, curUser }) {
             
             <Timer
                 userDuration={10}
+                curDuration={duration}
                 setUsageState={setUsageState}
-                machineId = {id}
+                machineId={id}
             />
         </td>
     );

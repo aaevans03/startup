@@ -1,8 +1,8 @@
 import React from "react";
 
-export function Timer({ userDuration, setUsageState, machineId }) {
+export function Timer({ userDuration, curDuration, setUsageState, machineId }) {
 
-    const [timerDisplay, setTimerDisplay] = React.useState("0");
+    const [timerDisplay, setTimerDisplay] = React.useState("");
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
     const [duration, setDuration] = React.useState(userDuration);
     const [remainingTime, setRemainingTime] = React.useState(null);
@@ -36,6 +36,8 @@ export function Timer({ userDuration, setUsageState, machineId }) {
 
             // add a 0 to the front of seconds if it's single digits
             seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            curDuration = duration;
         
             setTimerDisplay(`${minutes}:${seconds}`);
 
@@ -66,6 +68,6 @@ export function Timer({ userDuration, setUsageState, machineId }) {
         setIsTimerRunning(true);
     }
 
-    return <span>{timerDisplay}</span>;
+    return <span onClick={startTimer}>t: {timerDisplay}</span>;
 
 }
