@@ -8,6 +8,7 @@ import { Interface } from './interface.jsx';
 export function LaundryRoom(props) {
 
     const [userSubmittedData, setUserSubmittedData] = React.useState("");
+    
 
     
 
@@ -41,7 +42,9 @@ export function LaundryRoom(props) {
                     </button>
                 </div>
 
-                <NewLoad />
+                <NewLoad 
+                    onSubmit={(data) => setUserSubmittedData(data)}
+                />
                 
                 
                 {/* Bootstrap modal for viewing statistics */}

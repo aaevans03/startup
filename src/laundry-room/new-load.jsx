@@ -1,22 +1,24 @@
 import React from "react";
 
-export function NewLoad() {
+export function NewLoad({ onSubmit }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
 
-    function SubmitLoad() {
-        
+    const submitLoad = (e) => {
 
+        e.preventDefault();
+        
         console.log("You chose machine " + userMachineNumber + " for " + userMachineDuration + " minutes");
         // if machine is in use, you can't start it.
         // if all machines are being used, sit in queue. or wait till later.
-
-        // close the window and activate the machine
-
         
+        // close the window and activate the machine
+        
+        onSubmit({userMachineNumber, userMachineDuration});
 
-
+        setUserMachineNumber("");
+        setUserMachineDuration("");
     }
 
     
@@ -32,7 +34,7 @@ export function NewLoad() {
                             </div>
                             <div className="modal-body">
 
-                                <form id="add-load" method="get">
+                                <form id="add-load" method="get" onSubmit={submitLoad}>
 
                                     <div id="input-time">
                                         <div>
@@ -55,7 +57,7 @@ export function NewLoad() {
 
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" disabled={!userMachineNumber || !userMachineDuration} onClick={() => SubmitLoad(e)}>Submit</button>
+                                        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" disabled={!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16}>Submit</button>
                                     </div>
                                 </form>
 
