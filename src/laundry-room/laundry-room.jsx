@@ -14,17 +14,17 @@ export function LaundryRoom(props) {
         machinesArray.push({
             id: (i-1),
             curState: "open",
-            duration: 0,
+            timeLeft: 0,
             curUser: ""
         });
     }
-    machinesArray[0] = {id: null, curState: null, duration: null, curUser: null};
+    machinesArray[0] = {id: null, curState: null, timeLeft: null, curUser: null};
 
     const [userSubmittedData, setUserSubmittedData] = React.useState("");
     const [machines, setMachines] = React.useState(machinesArray);
-    
 
-    
+
+    // Function to update a specific machine's state
 
     return (
         <>

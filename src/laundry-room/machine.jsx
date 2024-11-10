@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Timer } from "./timer";
 
-export function Machine({ id, curState, duration, curUser }) {
+export function Machine({ id, curState, timeLeft, curUser }) {
 
     const [usageState, setUsageState] = React.useState(curState);
     const [machineClassName, setMachineClassName] = React.useState("open");
@@ -38,7 +38,7 @@ export function Machine({ id, curState, duration, curUser }) {
             
             <Timer
                 userDuration={10}   // time in minutes
-                curDuration={duration}
+                curDuration={timeLeft}
                 setUsageState={setUsageState}
                 machineId={id}
             />
