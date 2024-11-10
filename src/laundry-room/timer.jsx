@@ -1,11 +1,10 @@
 import React from "react";
 
-export function Timer({ userDuration, curDuration, setUsageState, machineId }) {
+export function Timer({ userDuration, curDuration, setUsageState }) {
 
     const [timerDisplay, setTimerDisplay] = React.useState("");
     const [isTimerRunning, setIsTimerRunning] = React.useState(false);
     const [duration, setDuration] = React.useState(userDuration);
-    const [remainingTime, setRemainingTime] = React.useState(null);
 
     function ResetMachine() {
         setUsageState("open");
@@ -21,8 +20,8 @@ export function Timer({ userDuration, curDuration, setUsageState, machineId }) {
         let startTime = Date.now();
         let difference, minutes, seconds;
 
-        // set the machine as in use
-        setUsageState("in use");
+        
+        
 
         // the timer function: use setInterval to make the clock change every 1 second
         const timer = setInterval(() => {
@@ -66,6 +65,9 @@ export function Timer({ userDuration, curDuration, setUsageState, machineId }) {
 
     function startTimer() {
         setIsTimerRunning(true);
+
+        // set the machine as in use
+        setUsageState("in use");
     }
 
     return <span onClick={startTimer}>t: {timerDisplay}</span>;

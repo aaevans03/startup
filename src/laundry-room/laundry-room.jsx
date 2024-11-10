@@ -12,7 +12,7 @@ export function LaundryRoom(props) {
     const machinesArray = [];
     for (let i = 1; i <= 17; i++) {
         machinesArray.push({
-            id: i,
+            id: (i-1),
             curState: "open",
             duration: 0,
             curUser: ""

@@ -37,7 +37,7 @@ export function Machine({ id, curState, duration, curUser }) {
 
             
             <Timer
-                userDuration={10}
+                userDuration={10}   // time in minutes
                 curDuration={duration}
                 setUsageState={setUsageState}
                 machineId={id}
