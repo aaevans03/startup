@@ -2,6 +2,8 @@ import React from 'react';
 import "./laundry-room.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { Machine } from "./machine.jsx"
+
 export function LaundryRoom(props) {
     return (
         <>
@@ -11,9 +13,9 @@ export function LaundryRoom(props) {
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>
                     <h3>Welcome, {props.userName}</h3>
                 </div>
-                
+{/*                 
                 <div className="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check-circle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                     </svg>
                     <div>
@@ -21,7 +23,7 @@ export function LaundryRoom(props) {
                     </div>
                     <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-
+ */}
 
                 {/* Bootstrap button trigger modals */}
                 <div className="top-buttons">
@@ -35,7 +37,7 @@ export function LaundryRoom(props) {
                 
                 
                 {/* Bootstrap modal for viewing statistics */}
-                <div className="modal fade" id="view-statistics" tabindex="-1" aria-labelledby="viewStatistics" aria-hidden="true">
+                <div className="modal fade" id="view-statistics" tabIndex="-1" aria-labelledby="viewStatistics" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered view-stats">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -72,7 +74,7 @@ export function LaundryRoom(props) {
                 </div>
 
                 {/* <!-- Bootstrap modal for adding a new load --> */}
-                <div className="modal fade" id="new-load" tabindex="-1" aria-labelledby="newLoad" aria-hidden="true">
+                <div className="modal fade" id="new-load" tabIndex="-1" aria-labelledby="newLoad" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered new-load">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -103,7 +105,7 @@ export function LaundryRoom(props) {
                                     
 
                                     <div className="alert alert-warning d-flex align-items-center" role="alert">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
   <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
 </svg>
                                         <div>
@@ -120,6 +122,7 @@ export function LaundryRoom(props) {
                         </div>
                     </div>
                 </div>
+                
                 <div className="machines">
 
                     {/* <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information --> */}
@@ -127,7 +130,9 @@ export function LaundryRoom(props) {
                         <tbody>
                             <tr>
                                 <td className="numbering washer-numbering">1</td>
-                                <td className="in-use">in use <span className="machine-time">23:29</span></td>
+                                <Machine
+                                    machineId={1}
+                                />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">2</td>
@@ -139,15 +144,15 @@ export function LaundryRoom(props) {
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">4</td>
-                                <td className="open-machine">open<span className="machine-time"></span></td>
+                                <td className="open">open<span className="machine-time"></span></td>
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">5</td>
-                                <td className="open-machine">open<span className="machine-time"></span></td>
+                                <td className="open">open<span className="machine-time"></span></td>
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">6</td>
-                                <td className="open-machine">open<span className="machine-time"></span></td>
+                                <td className="open">open<span className="machine-time"></span></td>
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering currently-viewing">7</td>
@@ -174,9 +179,9 @@ export function LaundryRoom(props) {
                                     </tr>
                                     <tr>
                                         <td className="in-use">in use <span className="machine-time">1:13</span></td>
-                                        <td className="load-done">done <span className="machine-time">0:00</span></td>
+                                        <td className="done">done <span className="machine-time">0:00</span></td>
                                         <td className="out-of-order">out of order<span className="machine-time"></span></td>
-                                        <td className="open-machine">open<span className="machine-time"></span></td>
+                                        <td className="open">open<span className="machine-time"></span></td>
                                     </tr>
                                     <tr>
                                         <td className="numbering dryer-numbering">5</td>
@@ -185,8 +190,8 @@ export function LaundryRoom(props) {
                                         <td className="numbering dryer-numbering">8</td>
                                     </tr>
                                     <tr>
-                                        <td className="open-machine">open<span className="machine-time"></span></td>
-                                        <td className="open-machine">open<span className="machine-time"></span></td>
+                                        <td className="open">open<span className="machine-time"></span></td>
+                                        <td className="open">open<span className="machine-time"></span></td>
                                         <td className="in-use">in use <span className="machine-time">32:34</span></td>
                                         <td className="in-use">in use <span className="machine-time">21:42</span></td>
                                     </tr>
