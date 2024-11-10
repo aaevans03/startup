@@ -66,6 +66,6 @@ export function Timer({ userDuration, setUsageState, machineId }) {
         setIsTimerRunning(true);
     }
 
-    return <span onClick={startTimer}>{timerDisplay}</span>;
+    return <span>{timerDisplay}</span>;
 
 }

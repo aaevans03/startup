@@ -12,9 +12,6 @@ export function Unauthenticated(props) {
     // figure out what this display error is
     // const [displayError, setDisplayError] = React.useState(null);
 
-    
-
-    // TO-DO: add separate login and create account screen.
     // change it from either the login fields or create account fields
     const [loginDisplay, setLoginDisplay] = React.useState("or, create account →");
 
@@ -46,7 +43,7 @@ export function Unauthenticated(props) {
                 {loginDisplay === "or, create account →" && (
                     <>
                         <h3>Login</h3>
-                        <form id="login" method="get" action="laundry-room">
+                        <form id="login" method="get">
                             <div id="inputs">
                                 <div><input type="email" className="form-control" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Email"/></div>
                                 <div><input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password"/></div>
@@ -59,7 +56,7 @@ export function Unauthenticated(props) {
                 {loginDisplay === "or, login →" && (
                     <>
                         <h3>Create Account</h3>
-                            <form id="create-acc" method="get" action="laundry-room">
+                            <form id="create-acc" method="get">
                                     <div id="inputs">
                                     <div>
                                         <input
