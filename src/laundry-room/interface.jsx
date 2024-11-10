@@ -2,7 +2,7 @@ import React from "react";
 
 import { Machine } from "./machine.jsx"
 
-export function Interface() {
+export function Interface({ machines }) {
     return (
         <div className="machines">
 
@@ -10,51 +10,75 @@ export function Interface() {
                     <table className="washers" id="washers">
                         <tbody>
                             <tr>
-                                <td className="numbering washer-numbering">1</td>
+                                <td className="numbering washer-numbering">{machines[1].id}</td>
                                 <Machine
-                                    machineId={1}
+                                   id=      {machines[1].id}
+                                   curState={machines[1].curState}
+                                   duration={machines[1].duration}
+                                   user=    {machines[1].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">2</td>
                                 <Machine
-                                    machineId={2}
+                                   id=      {machines[2].id}
+                                   curState={machines[2].curState}
+                                   duration={machines[2].duration}
+                                   user=    {machines[2].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">3</td>
                                 <Machine
-                                    machineId={3}
+                                   id=      {machines[3].id}
+                                   curState={machines[3].curState}
+                                   duration={machines[3].duration}
+                                   user=    {machines[3].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">4</td>
                                 <Machine
-                                    machineId={4}
+                                   id=      {machines[4].id}
+                                   curState={machines[4].curState}
+                                   duration={machines[4].duration}
+                                   user=    {machines[4].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">5</td>
                                 <Machine
-                                    machineId={5}
+                                   id=      {machines[5].id}
+                                   curState={machines[5].curState}
+                                   duration={machines[5].duration}
+                                   user=    {machines[5].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">6</td>
                                 <Machine
-                                    machineId={6}
+                                   id=      {machines[6].id}
+                                   curState={machines[6].curState}
+                                   duration={machines[6].duration}
+                                   user=    {machines[6].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering currently-viewing">7</td>
                                 <Machine
-                                    machineId={7}
+                                   id=      {machines[7].id}
+                                   curState={machines[7].curState}
+                                   duration={machines[7].duration}
+                                   user=    {machines[7].curUser}
                                 />
                             </tr>
                             <tr>
                                 <td className="numbering washer-numbering">8</td>
                                 <Machine
-                                    machineId={8}
+                                   id=      {machines[8].id}
+                                   curState={machines[8].curState}
+                                   duration={machines[8].duration}
+                                   user=    {machines[8].curUser}
                                 />
                             </tr>
                         </tbody>
@@ -74,16 +98,28 @@ export function Interface() {
                                     </tr>
                                     <tr>
                                         <Machine
-                                            machineId={10}
+                                            id=      {machines[10].id}
+                                            curState={machines[10].curState}
+                                            duration={machines[10].duration}
+                                            user=    {machines[10].curUser}
                                         />
                                         <Machine
-                                            machineId={12}
+                                            id=      {machines[12].id}
+                                            curState={machines[12].curState}
+                                            duration={machines[12].duration}
+                                            user=    {machines[12].curUser}
                                         />
                                         <Machine
-                                            machineId={14}
+                                            id=      {machines[14].id}
+                                            curState={machines[14].curState}
+                                            duration={machines[14].duration}
+                                            user=    {machines[14].curUser}
                                         />
                                         <Machine
-                                            machineId={16}
+                                            id=      {machines[16].id}
+                                            curState={machines[16].curState}
+                                            duration={machines[16].duration}
+                                            user=    {machines[16].curUser}
                                         />
                                     </tr>
                                     <tr>
@@ -93,17 +129,29 @@ export function Interface() {
                                         <td className="numbering dryer-numbering">15</td>
                                     </tr>
                                     <tr>
-                                        <Machine
-                                            machineId={9}
+                                    <Machine
+                                            id=      {machines[9].id}
+                                            curState={machines[9].curState}
+                                            duration={machines[9].duration}
+                                            user=    {machines[9].curUser}
                                         />
                                         <Machine
-                                            machineId={11}
+                                            id=      {machines[11].id}
+                                            curState={machines[11].curState}
+                                            duration={machines[11].duration}
+                                            user=    {machines[11].curUser}
                                         />
                                         <Machine
-                                            machineId={13}
+                                            id=      {machines[13].id}
+                                            curState={machines[13].curState}
+                                            duration={machines[13].duration}
+                                            user=    {machines[13].curUser}
                                         />
                                         <Machine
-                                            machineId={15}
+                                            id=      {machines[15].id}
+                                            curState={machines[15].curState}
+                                            duration={machines[15].duration}
+                                            user=    {machines[15].curUser}
                                         />
                                     </tr>
                                 </tbody>

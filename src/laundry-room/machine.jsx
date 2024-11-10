@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Timer } from "./timer";
 
-export function Machine({ machineId }) {
+export function Machine({ id, curState, duration, curUser }) {
 
-    const [usageState, setUsageState] = React.useState("done");
+    const [usageState, setUsageState] = React.useState(curState);
     const [machineClassName, setMachineClassName] = React.useState("open");
 
     // later, pass in duration of load from laundry-room when user inputs a load
@@ -29,23 +29,17 @@ export function Machine({ machineId }) {
         ChangeMachineClassName();
     }, [usageState]);
 
-    // a machine has a few states: open, in use, done, out of order.
-
-    // if 
-
-    // child functions: set timer
-    // 
-
-
+    
     return (
         <td className={machineClassName}>
             {usageState}
             <br />
+
             
             <Timer
                 userDuration={10}
                 setUsageState={setUsageState}
-                machineId = {machineId}
+                machineId = {id}
             />
         </td>
     );

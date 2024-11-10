@@ -7,7 +7,20 @@ import { Interface } from './interface.jsx';
 
 export function LaundryRoom(props) {
 
+
+    const machinesArray = [];
+    for (let i = 1; i <= 17; i++) {
+        machinesArray.push({
+            id: i,
+            curState: "open",
+            duration: 0,
+            curUser: ""
+        });
+    }
+    machinesArray[0] = {id: null, curState: null, duration: null, curUser: null};
+
     const [userSubmittedData, setUserSubmittedData] = React.useState("");
+    const [machines, setMachines] = React.useState(machinesArray);
     
 
     
@@ -61,7 +74,7 @@ export function LaundryRoom(props) {
                                     <option>Sunday</option>
                                     <option>Monday</option>
                                     <option>Tuesday</option>
-                                    <option selected>Wednesday</option>
+                                    <option>Wednesday</option>
                                     <option>Thursday</option>
                                     <option>Friday</option>
                                     <option>Saturday</option>
@@ -86,7 +99,9 @@ export function LaundryRoom(props) {
 
                 {/* <!-- Bootstrap modal for adding a new load --> */}
                 
-                <Interface />
+                <Interface 
+                    machines={machines}
+                />
                 
             </main>
             
