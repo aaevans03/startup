@@ -1,6 +1,6 @@
 import React from "react";
 
-export function NewLoad({ submitLoad }) {
+export function NewLoad({ submitLoad, machinesArray }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
@@ -22,8 +22,20 @@ export function NewLoad({ submitLoad }) {
     // }
 
     const sendLoad = (e) => {
+
         e.preventDefault();
-        submitLoad(userMachineNumber, userMachineDuration);
+        console.log(machinesArray[userMachineNumber]);
+
+        if (machinesArray[userMachineNumber].curState != "open") {
+            alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
+            return;
+        }
+        
+        submitLoad(userMachineNumber, userMachineDuration * 60);
+        
+        setUserMachineNumber("");
+        setUserMachineDuration("");
+
     }
 
     

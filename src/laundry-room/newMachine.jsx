@@ -2,15 +2,13 @@ import React from "react";
 
 import { NewTimer } from "./newTimer";
 
-export function NewMachine({  }) {
+export function NewMachine({ curState, timerDisplay }) {
     
     return (
         <td className="open">
-
+            { curState }
             <br />
-            {<NewTimer
-                
-            />}
+            { timerDisplay }
         </td>
     );
 }

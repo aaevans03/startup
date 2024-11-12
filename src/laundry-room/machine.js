@@ -3,11 +3,11 @@ export class Machine {
 
     static registry = {};
     
-    constructor(id, curState, timeLeft, curUser) {
+    constructor(id) {
         this.id = id;
-        this.curState = curState;
-        this.timeLeft = timeLeft;
-        this.curUser = curUser;
+        this.curState = "open";
+        this.timeLeft = null;
+        this.curUser = "";
         this.isRunning = false;
         Machine.registry[id] = this;
     };

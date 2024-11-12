@@ -3,7 +3,7 @@ import React from "react";
 import { Machine } from "./machine.jsx"
 import { NewMachine } from "./newMachine.jsx"
 
-export function Interface({  }) {
+export function Interface({ curState, timerDisplay }) {
 
 
     // store all the data for the machines in here. we'll pass them up through functions.
@@ -20,7 +20,8 @@ export function Interface({  }) {
                     <tr>
                         <td className="numbering washer-numbering">1</td>
                         <NewMachine
-                            
+                            curState={curState}
+                            timerDisplay={timerDisplay}
                         />
                     </tr>
                     <tr>
