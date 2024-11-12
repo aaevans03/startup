@@ -1,9 +1,5 @@
+import { TimerFunction } from "./timerjs.js";
 export class Machine {
-
-    static Open = "open";
-    static InUse = "in use";
-    static Done = "done";
-    static OutOfOrder = "out of order";
 
     static registry = {};
     
@@ -12,29 +8,55 @@ export class Machine {
         this.curState = curState;
         this.timeLeft = timeLeft;
         this.curUser = curUser;
+        this.isRunning = false;
         Machine.registry[id] = this;
-    }
+    };
 
-    static GetById(id) {
+    GetById(id) {
         return Machine.registry[id];
     }
 
-    static NewLoad(min) {
+    async NewLoad(id, duration, curUser) {
         // call the Timer function in JS
 
-        timeLeft = Timer(min);
+        this.curState = "in use";
+        this.isRunning = true;
+        
+        await TimerFunction(5, ((a) => console.log(a)));
+
+        console.log(this);
+        console.log("done");
+        
+        this.curState = "done";
+        
+        
+        // reset the machine back to open after a certain amount of time
+        setTimeout(() => {
+            this.curState = "open";
+            // delete timer display
+            this.isRunning = false;
+        }, 120000);
+        
+        console.log(this);
+
     }
 
 };
 
 const Machine1 = new Machine(0, "open", 30, "me");
 
-console.log(Machine.GetById(0));
+// console.log(Machine1);
 
-Machine.GetById(0).curState = "in use";
+// Machine1.curState = "in use";
 
-console.log(Machine.GetById(0));
+// console.log(Machine1);
 
-Machine1.curState = "out of order";
+// Machine1.curState = "out of order";
+
+// console.log(Machine1);
+
+// Machine1.InUse;
 
 console.log(Machine1);
+
+Machine1.NewLoad(1, 5, "alex");

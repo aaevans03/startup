@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Timer } from "./timer";
+import { Timer } from './timer';
 
 export function Machine({ id, curState, timeLeft, curUser }) {
 

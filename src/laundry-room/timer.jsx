@@ -53,7 +53,7 @@ export function Timer({ userDuration, curDuration, setUsageState }) {
                 setUsageState("done");
 
                 // reset the machine back to open after a certain amount of time
-                setTimeout(ResetMachine, 120000)
+                setTimeout(ResetMachine, 120000);
             }
 
         }, 1000);
