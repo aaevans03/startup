@@ -1,11 +1,9 @@
 import React from "react";
 
-export function NewTimer({ id }) {
-
-    console.log(id);
+export function NewTimer({  }) {
 
     return (
-        <>{id.timeLeft}</>
+        <></>
     );
 
     

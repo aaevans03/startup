@@ -2,6 +2,8 @@ import React from 'react';
 import "./laundry-room.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { Machine } from './machine.js';
+
 import { NewLoad } from './new-load.jsx';
 import { Interface } from './interface.jsx';
 import { StatsViewer } from './view-stats.jsx';
@@ -9,6 +11,20 @@ import { StatsViewer } from './view-stats.jsx';
 export function LaundryRoom(props) {
 
 
+    React.useEffect(() => {
+
+        const machine1 = new Machine(1);
+        const machine2 = new Machine(2);
+        const machine3 = new Machine(3);
+        const machine4 = new Machine(4);
+
+        
+    });
+
+    // const machine2 = Machine.GetById(1);
+    // console.log(machine2);
+
+    /*
     const machinesArray = [];
     for (let i = 1; i <= 17; i++) {
         machinesArray.push({
@@ -19,10 +35,7 @@ export function LaundryRoom(props) {
         });
     }
     machinesArray[0] = {id: null, curState: null, timeLeft: null, curUser: null};
-
-    const [userSubmittedData, setUserSubmittedData] = React.useState("");
-    const [machines, setMachines] = React.useState(machinesArray);
-
+    */
 
     // Function to update a specific machine's state
 
@@ -56,20 +69,17 @@ export function LaundryRoom(props) {
                     </button>
                 </div>
 
+                {/* Bootstrap modal for viewing statistics */}
                 <StatsViewer />
 
+                {/* <!-- Bootstrap modal for adding a new load --> */}
                 <NewLoad 
-                    onSubmit={(data) => setUserSubmittedData(data)}
+                    submitLoad={(id, time) => Machine.GetById(id).NewLoad(time)}
+                    // submitLoad={(id, time) => console.log(id, time)}
                 />
                 
-                
-                {/* Bootstrap modal for viewing statistics */}
-                
-
-                {/* <!-- Bootstrap modal for adding a new load --> */}
-                
                 <Interface 
-                    machines={machines}
+                
                 />
                 
             </main>

@@ -12,17 +12,19 @@ export class Machine {
         Machine.registry[id] = this;
     };
 
-    GetById(id) {
+    static GetById(id) {
         return Machine.registry[id];
     }
 
-    async NewLoad(id, duration, curUser) {
+    async NewLoad(duration, curUser) {
         // call the Timer function in JS
+
+        console.log("Now starting a " + duration + " long load in machine " + this.id)
 
         this.curState = "in use";
         this.isRunning = true;
         
-        await TimerFunction(5, ((a) => console.log(a)));
+        await TimerFunction(duration, ((a) => console.log(a)));
 
         console.log(this);
         console.log("done");
@@ -43,7 +45,7 @@ export class Machine {
 
 };
 
-const Machine1 = new Machine(0, "open", 30, "me");
+// const Machine1 = new Machine(1, "open", 30, "me");
 
 // console.log(Machine1);
 
@@ -57,6 +59,11 @@ const Machine1 = new Machine(0, "open", 30, "me");
 
 // Machine1.InUse;
 
-console.log(Machine1);
+// console.log(Machine1);
 
-Machine1.NewLoad(1, 5, "alex");
+// Machine1.NewLoad(5, "alex");
+
+// const machine1 = new Machine(1, "open");
+// console.log(Machine.GetById(1));
+
+// Machine.GetById(1).NewLoad(5);

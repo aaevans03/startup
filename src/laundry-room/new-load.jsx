@@ -1,24 +1,29 @@
 import React from "react";
 
-export function NewLoad({ onSubmit }) {
+export function NewLoad({ submitLoad }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
 
-    const submitLoad = (e) => {
+    // const submitLoad = (e) => {
 
+    //     e.preventDefault();
+        
+    //     console.log("You chose machine " + userMachineNumber + " for " + userMachineDuration + " minutes");
+    //     // if machine is in use, you can't start it.
+    //     // if all machines are being used, sit in queue. or wait till later.
+        
+    //     // close the window and activate the machine
+        
+    //     onSubmit({userMachineNumber, userMachineDuration});
+
+    //     setUserMachineNumber("");
+    //     setUserMachineDuration("");
+    // }
+
+    const sendLoad = (e) => {
         e.preventDefault();
-        
-        console.log("You chose machine " + userMachineNumber + " for " + userMachineDuration + " minutes");
-        // if machine is in use, you can't start it.
-        // if all machines are being used, sit in queue. or wait till later.
-        
-        // close the window and activate the machine
-        
-        onSubmit({userMachineNumber, userMachineDuration});
-
-        setUserMachineNumber("");
-        setUserMachineDuration("");
+        submitLoad(userMachineNumber, userMachineDuration);
     }
 
     
@@ -34,7 +39,7 @@ export function NewLoad({ onSubmit }) {
                             </div>
                             <div className="modal-body">
 
-                                <form id="add-load" method="get" onSubmit={submitLoad}>
+                                <form id="add-load" method="get" onSubmit={sendLoad}>
 
                                     <div id="input-time">
                                         <div>
