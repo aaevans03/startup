@@ -11,15 +11,9 @@ import { StatsViewer } from './view-stats.jsx';
 export function LaundryRoom(props) {
 
     const machinesArray = [];
-
-    React.useEffect(() => {
-
-        for (let i = 0; i <= 16; i++) {
-            machinesArray.push(new Machine(i));
-        }
-
-        
-    });
+    for (let i = 0; i <= 16; i++) {
+        machinesArray.push(new Machine(i));
+    }
 
     // const machine2 = Machine.GetById(1);
     // console.log(machine2);
@@ -79,8 +73,8 @@ export function LaundryRoom(props) {
                     // submitLoad={(id, time) => console.log(id, time)}
                 />
                 
-                <Interface 
-                
+                <Interface
+                    machinesArray={machinesArray}
                 />
                 
             </main>

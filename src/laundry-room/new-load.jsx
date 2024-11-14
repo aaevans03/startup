@@ -21,6 +21,9 @@ export function NewLoad({ submitLoad, machinesArray }) {
     //     setUserMachineDuration("");
     // }
 
+
+    
+
     const sendLoad = (e) => {
 
         e.preventDefault();
@@ -31,7 +34,7 @@ export function NewLoad({ submitLoad, machinesArray }) {
             return;
         }
         
-        submitLoad(userMachineNumber, userMachineDuration * 60);
+        submitLoad(userMachineNumber, userMachineDuration);
         
         setUserMachineNumber("");
         setUserMachineDuration("");

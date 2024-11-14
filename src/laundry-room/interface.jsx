@@ -1,69 +1,65 @@
 import React from "react";
 
-import { Machine } from "./machine.jsx"
+import { Machine } from './machine.js';
+
+import { OldMachine } from "./machine.jsx"
 import { NewMachine } from "./newMachine.jsx"
 
-export function Interface({ curState, timerDisplay }) {
-
-
-    // store all the data for the machines in here. we'll pass them up through functions.
-    
-    // each machine should store an ID, currentState, timeLeft, and currentUser.
-    
+export function Interface({ machinesArray }) {
     
     return (
         <div className="machines">
 
             {/* <!-- The interface where you see at a glace which machines are being used, and later you can select them to view more information --> */}
+
             <table className="washers" id="washers">
                 <tbody>
                     <tr>
                         <td className="numbering washer-numbering">1</td>
                         <NewMachine
-                            curState={curState}
-                            timerDisplay={timerDisplay}
+                            machineObj={ Machine.GetById(1) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">2</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(2) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">3</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(3) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">4</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(4) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">5</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(5) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">6</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(6) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering currently-viewing">7</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(7) }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">8</td>
-                        <Machine
-                            
+                        <NewMachine
+                            machineObj={ Machine.GetById(8) }
                         />
                     </tr>
                 </tbody>
@@ -83,18 +79,19 @@ export function Interface({ curState, timerDisplay }) {
                                 <td className="numbering dryer-numbering">16</td>
                             </tr>
                             <tr>
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(10) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(12) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(14) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(16) }
                                 />
+                                
                             </tr>
                             <tr>
                                 <td className="numbering dryer-numbering">9</td>
@@ -103,18 +100,19 @@ export function Interface({ curState, timerDisplay }) {
                                 <td className="numbering dryer-numbering">15</td>
                             </tr>
                             <tr>
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(9) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(11) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(13) }
                                 />
-                                <Machine
-                                    
+                                <NewMachine
+                                    machineObj={ Machine.GetById(15) }
                                 />
+                                
                             </tr>
                         </tbody>
                     </table>

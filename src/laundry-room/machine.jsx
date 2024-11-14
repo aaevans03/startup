@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Timer } from './timer';
 
-export function Machine({ id, curState, timeLeft, curUser }) {
+export function OldMachine({ id, curState, timeLeft, curUser }) {
 
     const [usageState, setUsageState] = React.useState(curState);
     const [machineClassName, setMachineClassName] = React.useState("open");

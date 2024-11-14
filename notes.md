@@ -1559,3 +1559,121 @@ use the `fetch` command to get the scores from the api.
 ### `deployService.sh`
 
 New step: Step 4. ssh back into our server, and restart the service.
+
+<br>
+
+# 2024.11.12
+
+## PM2 - Deamon. Keeps your node services running
+
+- Was automatically installed when we installed the AMI.
+- PM2 is restarted in our deploy files script.
+- Serves up your static webpages.
+- Runs node so it doesn't stop.
+
+- Console commands when you ssh into your server:
+  - to see list of your servers `pm2 ls`
+  - to stop the service on your site: `pm2 stop simon` (replace `simon` with the service you want)
+  - to restart service: `pm2 restart simon`
+
+- `index.js` in your server: Express that listens on port 3000, serves up static webpages
+- To manually start service when it's stopped: Run `node index.js` when you've ssh'ed into your server. Then you can open it in your browser!
+  - The thing is, when you log out of the ssh session, it closes the service too. So, this is why we use PM2, so it keeps running even when you close your ssh session on your computer.
+
+
+## Simon Service
+
+- `vite.config.js` is important
+- `./service/index.js` is another `index.js` file! What does it do?
+  - Well, it's in the service directory. It handles your backend routing. It's where we have the Express stuff, with all the endpoints, etc.
+  - It's how the backend handles the requests to your services.
+- This week, we're serving up the static files, but also getting the services. You will for sure need to deal with user authentication.
+
+### This week vs. last week
+
+- Since the beginning of the semester up to last week, our backend hasn't done anything except for serve static webpages.
+- When you run `npm run dev` this week, how is the backend running? Because it isn't in our Virginia server.
+  - On Port 3000 in Virgina: it serves up static webpages, listens to services.
+  - Serves up files from port 5173/Vite debug service. Then, uses proxy backend requests via `vite.config.js` to use Port 3000 to get stuff from the databases.
+  - In short, when you run files on the backend, Vite knows to refer api requests to Port 3000. (see below `vite.config.js` code)
+
+```js
+// This is vite.config.js, which is used when you're debugging locally, so that it proxies requests to 3000. Yay!
+
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+
+  server: {
+    proxy: {
+      '/api': "http://localhost:3000",
+    }
+  }
+});
+```
+
+
+## Simon Service Login
+
+In our Routes, we have a Login Route that has specific parameters. It takes `userName`, `authState`, and `onAuthChange`.
+
+```jsx
+<Route
+  path='/'
+  element={
+    <Login
+      userName={userName}
+      authState={authState}
+      onAuthChange={(userName, authState) => {
+        setAuthState(authState);
+        setUserName(userName);
+      }}
+    />
+  }
+  exact
+/>
+```
+
+I pretty much understand this all.
+
+- `async` functions: used to when we need to wait for a function to complete. We don't want to stop and wait.
+
+But, **Simon Service** has a different file for `unauthenticated.jsx`, because it uses the login service to log in.
+
+```jsx
+async function loginUser() {
+  loginOrCreate(`/api/auth/login`);
+}
+
+async function createUser() {
+  loginOrCreate(`/api/auth/create`);
+}
+
+async function loginOrCreate(endpoint) {
+  const response = await fetch(endpoint, {    // fetch from backend
+    method: 'post',
+    body: JSON.stringify({ email: userName, password: password }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  if (response?.status === 200) {
+    localStorage.setItem('userName', userName);
+    props.onLogin(userName);
+  } else {
+    const body = await response.json();
+    setDisplayError(`⚠ Error: ${body.msg}`);
+  }
+}
+```
+
+## Cross Site Request Forgery
+
+A website requests info from another website.
+- Phishing example: `welsfargo.com` sends a request to `wellsfargo.com` to verify if your login info is correct, so they can steal your info.
+- What browser can do: Same Origin Policy. Only send requests going to the same domain that you're on.
+- You can stop others from coming into your website.
+- If a 3rd party service doesn't allow cross-site requests, then you can't access their service from your site.
+  - so, for this class, find free services that let you in!
+- You can change the setting for your website using Caddy Cors/Caching settings.
+  - you change `header Access-Control-Allow-Origin *`

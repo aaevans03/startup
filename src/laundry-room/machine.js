@@ -23,8 +23,15 @@ export class Machine {
 
         this.curState = "in use";
         this.isRunning = true;
+
+        console.log("the state of this machine is " + this.curState);
+        console.log(this);
         
-        await TimerFunction(duration, ((a) => console.log(a)));
+        await TimerFunction(duration, ((a) => {
+            console.log(a);
+            this.timeLeft = a
+            // console.log(this.timeLeft);
+        }));
 
         console.log(this);
         console.log("done");
