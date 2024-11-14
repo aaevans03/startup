@@ -17,10 +17,12 @@ export function NewMachine({ machineObj, setAsCurrentlyViewing }) {
     setInterval(() => {
         if (machineObj.curState == "in use" || "done") {
             
-            // console.log("we in use now");
             setMachineTimer(machineObj.timeLeft);
             setMachineUsageState(machineObj.curState);
-            // console.log(machineObj.timeLeft);
+
+        }
+        else {
+            setMachineUsageState("open");
         }
     }, 1000);
 

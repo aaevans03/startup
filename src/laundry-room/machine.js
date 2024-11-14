@@ -24,6 +24,7 @@ export class Machine {
 
         console.log("Now starting a " + duration + " long load in machine " + this.id)
 
+        this.timeLeft = duration + ":00";
         this.curState = "in use";
         this.curUser = curUser;
         this.curUserRoom = curUserRoom;
@@ -48,6 +49,7 @@ export class Machine {
             this.curState = "open";
             this.curUser = "none";
             this.curUserRoom = "N/A";
+            this.timeLeft = null;
             // delete timer display
             this.isRunning = false;
         }, 120000);
