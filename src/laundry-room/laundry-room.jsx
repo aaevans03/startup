@@ -18,6 +18,50 @@ export function LaundryRoom(props) {
     
     Machine.GetById(7).curState = "out of order"
 
+    // ADD RANDOM USERS!!! WHEE!!!
+    // start loads in random machines at random times
+
+    setInterval(() => {
+
+        let chance = Math.random();
+
+        let randomMachine = Math.floor(Math.random() * 16) + 1;
+
+        let randomTime = (Math.floor(Math.random() * 21) + 20) * 60;
+
+        let randomName = "Maddox";
+
+        if (chance > 0.99) {
+            randomName = "賴亞遜";
+        }
+        else if (chance > 0.9) {
+            randomName = "John";
+        }
+        else if (chance > 0.8) {
+            randomName = "Caleb";
+        }
+        else if (chance > 0.7) {
+            randomName = "Phillip";
+        }
+        else if (chance > 0.6) {
+            randomName = "Quinn";
+        }
+        else if (chance > 0.5) {
+            randomName = "Christian";
+        }
+
+        if (chance > 0.5 && Machine.GetById(randomMachine).curState === "open") {    
+            Machine.GetById(randomMachine).NewLoad(randomTime, randomName, 3102)
+        }
+
+        else {
+            console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
+        }
+
+    }, 20000)
+
+
+
 
     
 
