@@ -1,9 +1,13 @@
 import React from "react";
 
+import { Machine } from "./machine";
+
 export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitLoad }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
+
+    const [errorMessage, setErrorMessage] = React.useState("hi");
 
     // const submitLoad = (e) => {
 
@@ -29,7 +33,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
         e.preventDefault();
         console.log(machinesArray[userMachineNumber]);
 
-        if (machinesArray[userMachineNumber].curState != "open") {
+        if (Machine.GetById(userMachineNumber).curState != "open") {
             alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
             return;
         }
@@ -77,7 +81,12 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
 
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" disabled={!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16}>Submit</button>
+                                        <button type="submit" className="btn btn-primary" data-bs-dismiss="modal"
+                                            disabled=
+                                                {!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16 || Machine.GetById(userMachineNumber).curState != "open"}
+                                        >
+                                            Submit
+                                        </button>
                                     </div>
                                 </form>
 
