@@ -20,59 +20,57 @@ export function Interface({ userRoomNumber }) {
                         <td className="numbering washer-numbering">1</td>
                         <NewMachine
                             machineObj={ Machine.GetById(1) }
-                            setAsCurrentlyViewing={
-                                () => {
-                                    setCurrentlyViewing(1);
-                                }
-                            }
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(1)}
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">2</td>
                         <NewMachine
                             machineObj={ Machine.GetById(2) }
-                            setAsCurrentlyViewing={
-                                () => {
-                                    setCurrentlyViewing(2);
-                                }
-                            }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(2)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">3</td>
                         <NewMachine
                             machineObj={ Machine.GetById(3) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(3)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">4</td>
                         <NewMachine
                             machineObj={ Machine.GetById(4) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(4)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">5</td>
                         <NewMachine
                             machineObj={ Machine.GetById(5) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(5)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">6</td>
                         <NewMachine
                             machineObj={ Machine.GetById(6) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(6)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering currently-viewing">7</td>
                         <NewMachine
                             machineObj={ Machine.GetById(7) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(7)}
+                            />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">8</td>
                         <NewMachine
                             machineObj={ Machine.GetById(8) }
-                        />
+                            setAsCurrentlyViewing={() => setCurrentlyViewing(8)}
+                            />
                     </tr>
                 </tbody>
             </table>
@@ -93,16 +91,20 @@ export function Interface({ userRoomNumber }) {
                             <tr>
                                 <NewMachine
                                     machineObj={ Machine.GetById(10) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(10)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(12) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(12)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(14) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(14)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(16) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(16)}
+                                    />
                                 
                             </tr>
                             <tr>
@@ -114,15 +116,19 @@ export function Interface({ userRoomNumber }) {
                             <tr>
                                 <NewMachine
                                     machineObj={ Machine.GetById(9) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(9)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(11) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(11)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(13) }
-                                />
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(13)}
+                                    />
                                 <NewMachine
                                     machineObj={ Machine.GetById(15) }
+                                    setAsCurrentlyViewing={() => setCurrentlyViewing(15)}
                                 />
                                 
                             </tr>

@@ -23,7 +23,7 @@ export async function TimerFunction(duration, timerDisplay) {
 
             
         
-            timerDisplay(`${minutes}:${seconds}`);
+            timerDisplay(`${minutes}:${seconds}`, (minutes * 60) + seconds);
 
             // later: save timer information on the backend, so it doesn't get lost.
 

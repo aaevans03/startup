@@ -10,6 +10,8 @@ export class Machine {
         this.curUser = "none";
         this.curUserRoom = "N/A";
         this.isRunning = false;
+        this.secondsLeft = 0;
+        this.setTime = 0;
         Machine.registry[id] = this;
     };
 
@@ -24,7 +26,9 @@ export class Machine {
 
         console.log("Now starting a " + duration + " long load in machine " + this.id)
 
-        this.timeLeft = duration + ":00";
+        this.setTime = duration;
+        this.secondsLeft = duration;
+        this.timeLeft = (duration / 60) + ":00";
         this.curState = "in use";
         this.curUser = curUser;
         this.curUserRoom = curUserRoom;
@@ -32,10 +36,16 @@ export class Machine {
         console.log("the state of this machine is " + this.curState);
         console.log(this);
         
-        await TimerFunction(duration, ((a) => {
-            console.log(a);
-            this.timeLeft = a
+        await TimerFunction(duration, ((timerDisplay, secondsLeft) => {
+
+            // console.log(timerDisplay);
+
+            this.timeLeft = timerDisplay;
+            this.secondsLeft = secondsLeft;
+
             // console.log(this.timeLeft);
+            // console.log(this.secondsLeft);
+            
         }));
 
         // console.log(this);
@@ -50,6 +60,8 @@ export class Machine {
             this.curUser = "none";
             this.curUserRoom = "N/A";
             this.timeLeft = null;
+            this.secondsLeft = 0;
+            this.setTime = 0;
             // delete timer display
             this.isRunning = false;
         }, 120000);

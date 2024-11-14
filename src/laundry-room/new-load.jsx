@@ -34,7 +34,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
             return;
         }
         
-        submitLoad(userMachineNumber, userMachineDuration, loggedInUser, loggedInUserRoom);
+        submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
         
         setUserMachineNumber("");
         setUserMachineDuration("");
