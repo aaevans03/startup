@@ -1,6 +1,6 @@
 import React from "react";
 
-export function NewLoad({ submitLoad, machinesArray }) {
+export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitLoad }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
@@ -34,7 +34,7 @@ export function NewLoad({ submitLoad, machinesArray }) {
             return;
         }
         
-        submitLoad(userMachineNumber, userMachineDuration);
+        submitLoad(userMachineNumber, userMachineDuration, loggedInUser, loggedInUserRoom);
         
         setUserMachineNumber("");
         setUserMachineDuration("");

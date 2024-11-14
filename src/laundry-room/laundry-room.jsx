@@ -69,13 +69,13 @@ export function LaundryRoom(props) {
                 {/* <!-- Bootstrap modal for adding a new load --> */}
                 <NewLoad 
                     machinesArray={machinesArray}
-                    submitLoad={(id, time) => Machine.GetById(id).NewLoad(time)}
+                    loggedInUser={props.userName}
+                    loggedInUserRoom={props.userRoomNumber}
+                    submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom)}
                     // submitLoad={(id, time) => console.log(id, time)}
                 />
                 
-                <Interface
-                    machinesArray={machinesArray}
-                />
+                <Interface/>
                 
             </main>
             

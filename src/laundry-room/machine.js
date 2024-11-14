@@ -7,7 +7,8 @@ export class Machine {
         this.id = id;
         this.curState = "open";
         this.timeLeft = null;
-        this.curUser = "";
+        this.curUser = "none";
+        this.curUserRoom = "N/A";
         this.isRunning = false;
         Machine.registry[id] = this;
     };
@@ -16,13 +17,16 @@ export class Machine {
         return Machine.registry[id];
     }
 
-    async NewLoad(duration, curUser) {
+    async NewLoad(duration, curUser, curUserRoom) {
         // call the Timer function in JS
+
+        this.isRunning = true;
 
         console.log("Now starting a " + duration + " long load in machine " + this.id)
 
         this.curState = "in use";
-        this.isRunning = true;
+        this.curUser = curUser;
+        this.curUserRoom = curUserRoom;
 
         console.log("the state of this machine is " + this.curState);
         console.log(this);
@@ -33,8 +37,8 @@ export class Machine {
             // console.log(this.timeLeft);
         }));
 
-        console.log(this);
-        console.log("done");
+        // console.log(this);
+        // console.log("done");
         
         this.curState = "done";
         
@@ -42,11 +46,13 @@ export class Machine {
         // reset the machine back to open after a certain amount of time
         setTimeout(() => {
             this.curState = "open";
+            this.curUser = "none";
+            this.curUserRoom = "N/A";
             // delete timer display
             this.isRunning = false;
         }, 120000);
         
-        console.log(this);
+        // console.log(this);
 
     }
 

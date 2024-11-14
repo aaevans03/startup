@@ -2,10 +2,12 @@ import React from "react";
 
 import { Machine } from './machine.js';
 
-import { OldMachine } from "./machine.jsx"
 import { NewMachine } from "./newMachine.jsx"
+import { MachineViewer } from "./machine-viewer.jsx";
 
-export function Interface({ machinesArray }) {
+export function Interface({ userRoomNumber }) {
+
+    const [currentlyViewing, setCurrentlyViewing] = React.useState(1);
     
     return (
         <div className="machines">
@@ -18,12 +20,22 @@ export function Interface({ machinesArray }) {
                         <td className="numbering washer-numbering">1</td>
                         <NewMachine
                             machineObj={ Machine.GetById(1) }
+                            setAsCurrentlyViewing={
+                                () => {
+                                    setCurrentlyViewing(1);
+                                }
+                            }
                         />
                     </tr>
                     <tr>
                         <td className="numbering washer-numbering">2</td>
                         <NewMachine
                             machineObj={ Machine.GetById(2) }
+                            setAsCurrentlyViewing={
+                                () => {
+                                    setCurrentlyViewing(2);
+                                }
+                            }
                         />
                     </tr>
                     <tr>
@@ -120,17 +132,11 @@ export function Interface({ machinesArray }) {
             
             
                 {/* <!-- The machine you have currently selected --> */}
-                <div className="current-machine">
-                    <h3>Currently Viewing: <span id="current-machine-number">Machine 7</span></h3>
-                    <p><span>Current User: </span> <span id="current-user">Alex Evans</span>, <span id="current-user-room">Room 1234</span>
-                    </p>
-                    <h3>Time left: <span id="timeLeft">33:21</span></h3>
-                    <div className="progress" role="progressbar" aria-label="Timer progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{height: "20px"}}>
-                        <div className="progress-bar" style={{width: "25%"}}></div>
-                    </div>
-                    <p>Time done: <span id="timeDone">3:02pm</span></p>
-                    
-                </div>
+                
+                <MachineViewer
+                    currentlyViewing={currentlyViewing}
+                    userRoomNumber={userRoomNumber}
+                />
 
             </div>
 

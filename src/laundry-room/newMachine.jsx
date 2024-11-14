@@ -2,7 +2,7 @@ import React from "react";
 
 import { Machine } from './machine';
 
-export function NewMachine({ machineObj }) {
+export function NewMachine({ machineObj, setAsCurrentlyViewing }) {
 
     const [machineTimer, setMachineTimer] = React.useState("");
     const [machineUsageState, setMachineUsageState] = React.useState(machineObj.curState);
@@ -10,7 +10,9 @@ export function NewMachine({ machineObj }) {
 
     // console.log(machineObj.curState);
 
-
+    function viewMe() {
+        setAsCurrentlyViewing();
+    }
 
     setInterval(() => {
         if (machineObj.curState == "in use" || "done") {
@@ -43,7 +45,7 @@ export function NewMachine({ machineObj }) {
 
     
     return (
-        <td className={machineClassName}>
+        <td className={machineClassName} onClick={viewMe}>
             { machineObj.curState }
             <br />
             { machineObj.timeLeft }
