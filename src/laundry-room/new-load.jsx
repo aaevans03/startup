@@ -35,14 +35,17 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
 
         if (Machine.GetById(userMachineNumber).curState != "open") {
             alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
-            return;
+        }
+        else {
+
+            submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
+            
+            setUserMachineNumber("");
+            setUserMachineDuration("");
+
         }
         
-        submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
         
-        setUserMachineNumber("");
-        setUserMachineDuration("");
-
     }
 
     
@@ -83,7 +86,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
                                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <button type="submit" className="btn btn-primary" data-bs-dismiss="modal"
                                             disabled=
-                                                {!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16 || Machine.GetById(userMachineNumber).curState != "open"}
+                                                {!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16 || Machine.GetById(userMachineNumber).curState !== "open" || Machine.GetById(userMachineNumber).curState === "out of order"}
                                         >
                                             Submit
                                         </button>

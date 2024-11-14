@@ -10,28 +10,16 @@ import { StatsViewer } from './view-stats.jsx';
 
 export function LaundryRoom(props) {
 
+    // stuff that runs on page load
     const machinesArray = [];
     for (let i = 0; i <= 16; i++) {
         machinesArray.push(new Machine(i));
     }
+    
+    Machine.GetById(7).curState = "out of order"
 
-    // const machine2 = Machine.GetById(1);
-    // console.log(machine2);
 
-    /*
-    const machinesArray = [];
-    for (let i = 1; i <= 17; i++) {
-        machinesArray.push({
-            id: (i-1),
-            curState: "open",
-            timeLeft: 0,
-            curUser: ""
-        });
-    }
-    machinesArray[0] = {id: null, curState: null, timeLeft: null, curUser: null};
-    */
-
-    // Function to update a specific machine's state
+    
 
     return (
         <>

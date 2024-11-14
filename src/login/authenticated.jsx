@@ -20,9 +20,9 @@ export function Authenticated(props) {
     return (
         <div>
 
-            <h2>Welcome, <b><span className='userName'>{props.userName}</span></b></h2>
+            <h2>Welcome, <b>{props.userName}</b></h2>
             
-            <p>{props.userEmail} {props.userBuildingNumber} {props.userRoomNumber}</p>
+            {/* <p>{props.userEmail} {props.userBuildingNumber} {props.userRoomNumber}</p> */}
 
             <button className="btn btn-primary" variant='primary' onClick={() => navigate("laundry-room")}>
                 Go to Laundry Room
