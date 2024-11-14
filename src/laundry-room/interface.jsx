@@ -7,7 +7,7 @@ import { MachineViewer } from "./machine-viewer.jsx";
 
 export function Interface({ userRoomNumber }) {
 
-    const [currentlyViewing, setCurrentlyViewing] = React.useState(1);
+    const [currentlyViewing, setCurrentlyViewing] = React.useState(0);
     
     return (
         <div className="machines">
