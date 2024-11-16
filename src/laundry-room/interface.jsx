@@ -59,7 +59,7 @@ export function Interface({ userRoomNumber }) {
                             />
                     </tr>
                     <tr>
-                        <td className="numbering washer-numbering currently-viewing">7</td>
+                        <td className="numbering washer-numbering">7</td>
                         <NewMachine
                             machineObj={ Machine.GetById(7) }
                             setAsCurrentlyViewing={() => setCurrentlyViewing(7)}

@@ -55,7 +55,7 @@ export function LaundryRoom(props) {
         }
 
         else {
-            console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
+            // console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
         }
 
     }, 20000)
@@ -71,7 +71,7 @@ export function LaundryRoom(props) {
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>
-                    <h3>Welcome, {props.userName}</h3>
+                    <h3 id="username">Welcome, {props.userName}</h3>
                 </div>
 {/*                 
                 <div className="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">

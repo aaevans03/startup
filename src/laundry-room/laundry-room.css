@@ -109,10 +109,6 @@ td {
     background-color: #434343;
 }
 
-.currently-viewing {
-    font-weight: bolder;
-}
-
 .dryers-and-timer {
     align-content: baseline;
     display: flex;
@@ -126,7 +122,7 @@ td {
     align-self: center;
     align-items: center;
     height: 300px;
-    width: 450px;
+    width: 440px;
     border: 4px solid black;
     border-radius: 20px;
     background-color: #cfe2f3;
@@ -147,10 +143,18 @@ td {
 @media (max-height: 890px) {
     td {
         height: 55px;
+        width: 90px;
         font-size: 17px;
     }
     .current-machine {
-        height: auto;
+        height: 240px;
+        width: 350px;
+    }
+}
+
+@media (max-height: 670px) {
+    #username {
+        display: none;
     }
 }
 
@@ -158,6 +162,9 @@ td {
 
     .machine-time {
         display: none;
+    }
+    .washers {
+        margin-right: 1em;
     }
     td {
         width: 80px;
@@ -167,4 +174,53 @@ td {
         width: 320px;
     }
 
+}
+
+@media (max-width: 500px) {
+
+    .washer-numbering {
+        width: 0.7em;
+        font-size: 13px;
+    }
+    .washers {
+        margin-right: 0.5em;
+    }
+    td {
+        width: 70px;
+        font-size: 16px;
+    }
+    .dryer-numbering {
+        font-size: 13px;
+        height: 1em;
+        padding: 0.9px;
+    }
+    .current-machine {
+        width: 240px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .washer-numbering {
+        width: 0.7em;
+        font-size: 13px;
+    }
+    .washers {
+        margin-right: 0.5em;
+    }
+    td {
+        width: 60px;
+        font-size: 15px;
+    }
+    .dryer-numbering {
+        font-size: 13px;
+        height: 1em;
+        padding: 0.9px;
+    }
+    .current-machine {
+        width: 240px;
+    }
+    .top-buttons .btn {
+        font-size: 12px;
+    }
 }

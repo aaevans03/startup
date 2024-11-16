@@ -1677,3 +1677,46 @@ A website requests info from another website.
   - so, for this class, find free services that let you in!
 - You can change the setting for your website using Caddy Cors/Caching settings.
   - you change `header Access-Control-Allow-Origin *`
+
+
+# 2024.11.14
+
+You have a backend, index.js, but you need to use Fetch to call it.
+
+## Today: data services
+
+### One single extra piece for us: MongoDB
+
+- When our browser talks to the js, it requests some data... it comes from MongoDB.
+- Many data services, each have different specialties.
+  - "non-sequel"
+  - MongoDB's specialty is JSON objects. Now we don't have to change our data to store it in another form!
+
+### MongoDB - collection of schema-free JSON
+
+- store things in a collection inside the database
+- it's another node module!
+  - `npm install mongodb`
+- there's a process of using it. connect to it through JavaScript code.
+- Make a MongoDB account.
+  - Two authentification levels: account for MongoDB, and another for getting into the server you create on there.
+- Don't hardcode your authentication code for MongoDB in your code! Instead, store your credentials in a file called `dbConfig.json`. And add to your `.gitignore`!
+- Now, you can pass the database any JSON object!
+- Request objects from the database. We tell it to find what we want. Object-based queries
+  - Can also query data
+- When you put something into the database, a unique ID is created.
+
+
+## Authentication services
+
+- when we're trying to authenticate, it will get the data from the database, and we'll get a token/cookie with a unique identifier.
+  - If the token is valid, you'll be logged in. If not, it's not.
+  - You can have different access rights based on the token you have.
+- our database should not store passwords in plain text!
+  - storing passwords - hash algorithms
+  - one-way functions: you can't "unhash" the passwords.
+  - rainbow table: running all possible passwords you think it is, then running it through hashing. so it's harder. they don't know the hash algorithm.
+  - still hackable if people use bad passwords.
+  - you can also "salt" the password: add another layer to it.
+
+Authentication code: yes.

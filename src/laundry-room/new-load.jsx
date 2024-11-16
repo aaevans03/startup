@@ -31,7 +31,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
     const sendLoad = (e) => {
 
         e.preventDefault();
-        console.log(machinesArray[userMachineNumber]);
+        // console.log(machinesArray[userMachineNumber]);
 
         if (Machine.GetById(userMachineNumber).curState !== "open") {
             alert("Machine " + userMachineNumber + " is already in use. Please pick another one");

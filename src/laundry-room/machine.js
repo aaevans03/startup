@@ -24,7 +24,7 @@ export class Machine {
 
         this.isRunning = true;
 
-        console.log("Now starting a " + duration + " long load in machine " + this.id)
+        // console.log("Now starting a " + duration + " long load in machine " + this.id)
 
         this.setTime = duration;
         this.secondsLeft = duration;
@@ -33,8 +33,8 @@ export class Machine {
         this.curUser = curUser;
         this.curUserRoom = curUserRoom;
 
-        console.log("the state of this machine is " + this.curState);
-        console.log(this);
+        // console.log("the state of this machine is " + this.curState);
+        // console.log(this);
         
         await TimerFunction(duration, ((timerDisplay, secondsLeft) => {
 
@@ -52,6 +52,8 @@ export class Machine {
         // console.log("done");
         
         this.curState = "done";
+
+        this.timeLeft = "0:00";
         
         
         // reset the machine back to open after a certain amount of time
@@ -64,10 +66,18 @@ export class Machine {
             this.setTime = 0;
             // delete timer display
             this.isRunning = false;
-        }, 120000);
+        }, 300000);
         
         // console.log(this);
 
+    }
+
+    AddStats() {
+        
+        // add stats to localStorage or database in the future. Store how much machines have been used over the past 7 days
+
+        return;
+        
     }
 
 };

@@ -111,9 +111,16 @@
   /* Once I add a separate login and create account page with JavaScript, change this because afterwards, stuff can fit on the screen for longer. */
   @media (max-height: 720px) {
     header {
-      display: none;
+      flex: 0 55px;
+    }
+    nav {
+      font-size: 10px;
+    }
+    nav h1 {
+      font-size: 23px;
     }
     footer {
+      flex: 0 25px;
       font-size: 14px;
     }
   }
