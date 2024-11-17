@@ -8,7 +8,7 @@ Have you ever lived in an apartment or dormitory building where everyone has to 
 
 ### Design
 
-![Design of my startup web application](startup_sketch.svg)
+![Design of my startup web application](./public/startup_sketch.svg)
 
 ### Key Features
 - User accounts system, where users input their building number, and room number
@@ -64,3 +64,18 @@ For this deliverable, I completely changed the look of the website using CSS. My
 - **Responsive to window resizing** - My application will change element and font sizes to match the user's screen size, in order to ensure maximum usability.
 - **Application elements** - I improved the login screen. On the laundry room page, I added elements such as a pop-up window when you want to look at statistics or input a new load, as well as colors and a simple way to look at the laundry room machines. Finally, on the about page, I formatted the next nicely.
 - **Application images** - Integrated the GIF nicely besides some text. Also, implemented the timer as a progress bar.
+
+## React Deliverable
+
+For this deliverable, I coded the app with JavaScript and React so it all works locally for a single user.
+
+- **Converted and bundled** - Application converted to use React, and bundled using Vite
+- **Components**
+  - **Individual Laundry Machines** - Used JavaScript to write code for each laundry machine storing information about who is using it
+    - Wrote a timer script to keep track of how much time is left in machines (currently only client-side, in the future will be using **websocket**)
+    - Color of machines dynamically change depending on if machines are being used or not
+  - **Dynamic Machine Viewer** - Used React to dynamically change the machine viewer, so that when you click on a machine you can see who is using it and how much time is left
+  - **Add Laundry Loads** - Added ability to add your own new loads, user interaction currently simulated by automated loads of other people being started (in the future will use **websockets**)
+  - **Statistics Viewer** - Will be implemented in the future and use a **databse**
+- **Routes** - Used a React Router to route the user through login, laundry room, and about components
+- **Hooks** - Uses `useState()` to update machine information displayed on the screen
