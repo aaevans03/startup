@@ -19,7 +19,7 @@ export class Machine {
         return Machine.registry[id];
     }
 
-    async NewLoad(duration, curUser, curUserRoom) {
+    async NewLoad(duration, curUser, curUserRoom, loggedInUser) {
         // call the Timer function in JS
 
         this.isRunning = true;
@@ -54,6 +54,13 @@ export class Machine {
         this.curState = "done";
 
         this.timeLeft = "0:00";
+
+        // send an alert
+        if (curUser === loggedInUser) {
+            alert(`Notice: Your load in Machine ${this.id} is finished.`)
+
+            // change later to show custom Bootstrap notification?
+        }
         
         
         // reset the machine back to open after a certain amount of time
@@ -66,9 +73,13 @@ export class Machine {
             this.setTime = 0;
             // delete timer display
             this.isRunning = false;
+
+            
+
         }, 300000);
         
         // console.log(this);
+
 
     }
 

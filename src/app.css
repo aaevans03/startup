@@ -109,7 +109,7 @@
 
 
   /* Once I add a separate login and create account page with JavaScript, change this because afterwards, stuff can fit on the screen for longer. */
-  @media (max-height: 720px) {
+  @media (max-height: 740px) {
     header {
       flex: 0 55px;
     }
