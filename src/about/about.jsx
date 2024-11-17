@@ -10,8 +10,8 @@ export function About() {
 
     React.useEffect(() => {
         setImageUrl("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExODdudjlzZWN3dTFidmE5am5laHZibDcydXRwbHRzdnRkcmlpc2R6MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bCvO8biVh8WyI/giphy.webp");
-        setQuote("Ni de mama hen pang");
-        setQuoteAuthor("every Chinese speaker ever");
+        setQuote("Laundry today or naked tomorrow");
+        setQuoteAuthor("sign in our laundry room");
     })
     
 
