@@ -1720,3 +1720,28 @@ You have a backend, index.js, but you need to use Fetch to call it.
   - you can also "salt" the password: add another layer to it.
 
 Authentication code: yes.
+
+# 2024.11.19
+
+## Review: upgrading Simon React to Simon Service
+
+- add a service directory in server, write an `index.js` file, and write the backend
+  - 裡面 has all the endpoints, and it uses Express
+- `vite.config.js` is used to run your server locally, and then makes sure your backend endpoint requests use the right port
+
+
+## Today: more database/login
+
+- If you implement the database right, then you don't need to touch your frontend at all.
+
+### What is the difference between Simon Service and Simon Login?
+
+- No changes to the frontend. In fact, not much changes at all, except for things in your service directory, where your backend code is stored.
+- NEW: `database.js`, `dbConfig.json` with login info for the database (and if you needed any API keys, they would be here as well)
+- Use cookies to store if we're currently logged in or not.
+  - You can only have an authorized token to access other pages if you've logged in.
+- `bcrypt`: compares user entered password with the hashed password in the database.
+
+When you run your frontend locally with `npm run dev`, you need to manually run the backend `index.js`. This is how you debug your backend, you run `index.js` in VS Code.
+- Add breakpoints in code -> when you do something on your frontend, it opens VS Code and pauses it on your backend.
+  - e.g. going to log in on your website interface, then it opens VS Code and lets you walk through the process of authentication. Debugging! Neat!
