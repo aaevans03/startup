@@ -1745,3 +1745,45 @@ Authentication code: yes.
 When you run your frontend locally with `npm run dev`, you need to manually run the backend `index.js`. This is how you debug your backend, you run `index.js` in VS Code.
 - Add breakpoints in code -> when you do something on your frontend, it opens VS Code and pauses it on your backend.
   - e.g. going to log in on your website interface, then it opens VS Code and lets you walk through the process of authentication. Debugging! Neat!
+
+
+# 2024.11.21: Websockets
+
+Websockets are simple but funky.
+
+## Websockets
+
+We've done all the things in the big picture diagram. Yay! Now, we're adding peer-to-peer communication. The server can talk straight to the web browser without it asking.
+
+- HTTP: client and server communication.
+  - DRAWBACK: Your client has to ask the server all the time for new stuff.
+- Websockets: ping or pong the other side. Rides on top of HTTP.
+  - Underneath is still client-server communication happening.
+  - Code implementation is not symmetric, even though the server and client pretend to be peers/equal.
+  - until connection closes, anyone can initiate connection, either server or client.
+  - example: Live Server Extension in VS Code, whenever you update a file, it's automatically reloaded in the browser. It's a websocket!
+  - You can keep it alive as long as you want.
+
+## Node module: `ws` or Websocket
+- You have to manually add websockets into the client.
+- `wss.on`: event listener, afterwards is the function that gets called when even happens.
+  - e.g. `wss.on('connection', (ws) => { })` when connection happens, this function then executes.
+- in the JavaScript code, you have 2 listeners: a connection listener (if you're connected on a websocket), and a message listener (listens for messages as they come through)
+
+## Browser
+- Browser already has websocket capability/API built in. 
+  - since you're using Websocket protocol instead of HTTP, your URL in the code will have `ws://` in the front, instead of `http://`
+
+## Practice: starting a websocket from VS Code
+- When you start a websocket server from VS Code, it hangs a listener and waits for the other end.
+- You then need to manually start the other side of the websocket from the web browser.
+  - then, you use `socket.send("")` to trigger a message event, etc.
+- Play with websockets! If you understand the small amounts of code, you have a basic understanding of websockets!
+  - Remember: server and client pretend to be peers, once the two ends of the pipe are set up, then you can send things back and forth easily.
+
+## Chat example:
+- In basic websocket usage, all pipes are connected to the server, so all the websocket signals are being sent to everyone.
+  - Chat example: all chat messages are being sent to everyone.
+  - Websocket chat example on GitHub
+  - list of connections stored, then when you send a message, it forwards to everyone except yourself
+  - `'connection', 'close', 'message', 'on', 'pong'` listeners
