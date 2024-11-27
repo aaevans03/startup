@@ -1,24 +1,43 @@
 import React from 'react';
 import "./about.css"
 
+import apiKey from "./apiKey.json";
+
 export function About() {
 
     // get ready for the calls to an external web service for the image and quote
-    const [imageUrl, setImageUrl] = React.useState("");
+    const [imageUrl, setImageUrl] = React.useState("gif_placeholder.png");
     const [quote, setQuote] = React.useState("loading...");
     const [quoteAuthor, setQuoteAuthor] = React.useState("unknown");
 
+    let i;
+
     React.useEffect(() => {
-        setImageUrl("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExODdudjlzZWN3dTFidmE5am5laHZibDcydXRwbHRzdnRkcmlpc2R6MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bCvO8biVh8WyI/giphy.webp");
-        setQuote("Laundry today or naked tomorrow");
-        setQuoteAuthor("sign in our laundry room");
-    })
+        
+        for (i = 0; i < 1; i++) {
+
+            fetch(`https://tenor.googleapis.com/v2/search?q=laundry&key=${apiKey.key}&limit=1&random=true&contentfilter=medium&media_filter=gif&ar_range=standard`)
+                .then((response) => response.json())
+                .then((data) => {
+    
+                    const gifUrl = data.results[0].media_formats.gif.url;
+    
+                    setImageUrl(gifUrl);
+                })
+                .catch();
+    
+    
+    
+            setQuote("Laundry today or naked tomorrow");
+            setQuoteAuthor("sign in our laundry room");
+        }
+    }, [])
     
 
     return (
         <main>
             <div className="about-page">
-                <div className="about card mb-3">
+                <div className="about card">
                     <h2>About</h2>
 
                     <p>
@@ -29,23 +48,21 @@ export function About() {
 
                 <br />
 
-                <div className="card mb-3">
-                    <div className="row g-0">
-                    <div className="gif">
-                        {/* <!-- In the future, a link to an external web service will be put here that grabs a random laundry gif from GIPHY --> */}
-                        <img height="100%" src={imageUrl} alt="Random GIF" />
-                    </div>
-                    <div className="col-md-8">
+                <div className="card">
+                    <div className="inspiration">
+                        <img className="gif" height="100%" src={imageUrl} alt="Random GIF" />
                         <div className="card-body">
-                            <h3 className="card-title">Inspiration zone</h3>
-                            <p className="card-text"><small className="text-body-secondary">Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!</small></p>
+                            <h2 className="card-title">Inspiration zone</h2>
+                            <p className="card-text text-body-secondary">
+                                Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
+                            </p>
                             <p className="card-text">
                                 <div className="quote-text">"{quote}"</div>
-                                <small className="text-body-secondary">
-                                <div className="quote">~ {quoteAuthor}</div></small>
+                                <p className="text-body-secondary">
+                                    <div className="quote">~ {quoteAuthor}</div>
+                                </p>
                             </p>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
