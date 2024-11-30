@@ -47,7 +47,7 @@ apiRouter.post('/auth/login', async (req, res) => {
             return;
         }
         else {
-            res.status(401).send({ msg: 'Unauthorized'})
+            res.status(401).send({ msg: 'Username or password does not match'})
             return;
         }
     }
