@@ -14,6 +14,7 @@ export function About() {
 
     React.useEffect(() => {
 
+        // fetch GIF from Tenor
         fetch(`https://tenor.googleapis.com/v2/search?q=laundry&key=${apiKey.key}&limit=1&random=true&contentfilter=medium&media_filter=gif&ar_range=standard`)
             .then((response) => response.json())
             .then((data) => {
@@ -23,14 +24,13 @@ export function About() {
                 setImageUrl(gifUrl);
             })
             .catch();
-
-        const randomNum = Math.floor(Math.random() * 15) + 1;
-
+        
+        // fetch quote from API
         fetch('/api/quotes')
             .then((response) => response.json())
             .then((quotes) => {
-                setQuote(quotes[randomNum].quote);
-                setQuoteAuthor(quotes[randomNum].author);
+                setQuote(quotes.quote);
+                setQuoteAuthor(quotes.author);
             })
             .catch();
             

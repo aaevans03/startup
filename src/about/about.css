@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 
 .about-page {
-    place-items: center;
+    justify-items: center;
+    text-align: -webkit-center;
 }
 
 .about {
@@ -35,14 +36,15 @@
 
 .quote-text {
     font-family: 'EB Garamond', 'Times New Roman', serif;
-    font-weight: bolder;
+    font-weight: bold;
     font-style: italic;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.2em;
 }
 
 .text-body-secondary {
     font-size: 14px;
+    margin-top: 0.5em;
 }
 
 @media (max-width: 850px) {

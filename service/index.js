@@ -15,10 +15,12 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// Laundry quotes service
-const data = require('./quotes.json');
+// Laundry quotes service: fetch from a .json file
+const quoteJson = require('./quotes.json');
 apiRouter.get('/quotes', (req, res) => {
-    res.json(data);
+    const randomNum = Math.floor(Math.random() * 15) + 1;
+    const randomQuote = quoteJson[randomNum];
+    res.json(randomQuote);
 });
 
 
