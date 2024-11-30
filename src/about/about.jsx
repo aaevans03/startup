@@ -8,29 +8,32 @@ export function About() {
     // get ready for the calls to an external web service for the image and quote
     const [imageUrl, setImageUrl] = React.useState("gif_placeholder.png");
     const [quote, setQuote] = React.useState("loading...");
-    const [quoteAuthor, setQuoteAuthor] = React.useState("unknown");
+    const [quoteAuthor, setQuoteAuthor] = React.useState("loading...");
 
     let i;
 
     React.useEffect(() => {
-        
-        for (i = 0; i < 1; i++) {
 
-            fetch(`https://tenor.googleapis.com/v2/search?q=laundry&key=${apiKey.key}&limit=1&random=true&contentfilter=medium&media_filter=gif&ar_range=standard`)
-                .then((response) => response.json())
-                .then((data) => {
-    
-                    const gifUrl = data.results[0].media_formats.gif.url;
-    
-                    setImageUrl(gifUrl);
-                })
-                .catch();
-    
-    
-    
-            setQuote("Laundry today or naked tomorrow");
-            setQuoteAuthor("sign in our laundry room");
-        }
+        fetch(`https://tenor.googleapis.com/v2/search?q=laundry&key=${apiKey.key}&limit=1&random=true&contentfilter=medium&media_filter=gif&ar_range=standard`)
+            .then((response) => response.json())
+            .then((data) => {
+
+                const gifUrl = data.results[0].media_formats.gif.url;
+
+                setImageUrl(gifUrl);
+            })
+            .catch();
+
+        const randomNum = Math.floor(Math.random() * 15) + 1;
+
+        fetch('/api/quotes')
+            .then((response) => response.json())
+            .then((quotes) => {
+                setQuote(quotes[randomNum].quote);
+                setQuoteAuthor(quotes[randomNum].author);
+            })
+            .catch();
+            
     }, [])
     
 
@@ -57,7 +60,7 @@ export function About() {
                                 Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
                             </p>
                             <p className="card-text">
-                                <div className="quote-text">"{quote}"</div>
+                                <div className="quote-text">“{quote}”</div>
                                 <p className="text-body-secondary">
                                     <div className="quote">~ {quoteAuthor}</div>
                                 </p>

@@ -1,4 +1,5 @@
 const express = require('express');
+// const uuid = require('uuid');
 const app = express();
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
@@ -9,6 +10,17 @@ app.use(express.json());
 
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
+
+// Router for service endpoints
+var apiRouter = express.Router();
+app.use(`/api`, apiRouter);
+
+// Laundry quotes service
+const data = require('./quotes.json');
+apiRouter.get('/quotes', (req, res) => {
+    res.json(data);
+});
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
