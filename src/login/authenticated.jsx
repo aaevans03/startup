@@ -9,12 +9,19 @@ export function Authenticated(props) {
     const navigate = useNavigate();
 
     function logout() {
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('userBuildingNumber');
-        localStorage.removeItem('userRoomNumber');
-
-        props.onLogout();
+        fetch(`/api/auth/logout`, {
+            method: 'delete',
+        })
+            .catch(() => {
+                // Logout failed. Assuming offline
+            })
+            .finally(() => {
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userBuildingNumber');
+                localStorage.removeItem('userRoomNumber');
+                props.onLogout();
+            });
     }
     
     return (

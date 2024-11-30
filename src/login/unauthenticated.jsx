@@ -8,31 +8,64 @@ export function Unauthenticated(props) {
     const [password, setPassword] = React.useState('');
     const [userBuildingNumber, setUserBuildingNumber] = React.useState('');
     const [userRoomNumber, setUserRoomNumber] = React.useState('');
-
-    // figure out what this display error is
-    // const [displayError, setDisplayError] = React.useState(null);
+    const [displayError, setDisplayError] = React.useState(null);
 
     // change it from either the login fields or create account fields
     const [loginDisplay, setLoginDisplay] = React.useState("or, create account →");
-
     
     async function loginUser() {
-        localStorage.setItem('userEmail', userEmail);
-        props.onLogin(userEmail, userName, userBuildingNumber, userRoomNumber);
+        
+        const response = await fetch(`/api/auth/login`, {
+            method: 'post',
+            body: JSON.stringify({ email: userEmail, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            const userData = await response.json();
+            
+            localStorage.setItem('userName', userData.name);
+            localStorage.setItem('userBuildingNumber', userData.buildingNumber);
+            localStorage.setItem('userRoomNumber', userData.roomNumber);
+            props.onLogin(userEmail, userData.name, userData.buildingNumber, userData.roomNumber);
+        } else {
+            const body = await response.json();
+            setDisplayError(`⚠ Error: ${body.msg}`);
+        }
     }
 
     async function createUser() {
-        localStorage.setItem('userEmail', userEmail);
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('userBuildingNumber', userBuildingNumber);
-        localStorage.setItem('userRoomNumber', userRoomNumber);
-        
-        props.onLogin(userEmail, userName, userBuildingNumber, userRoomNumber);
+
+        const response = await fetch(`/api/auth/create`, {
+            method: 'post',
+            body: JSON.stringify({ email: userEmail, password: password, name: userName, buildingNumber: userBuildingNumber, roomNumber: userRoomNumber }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            localStorage.setItem('userName', userName);
+            localStorage.setItem('userEmail', userEmail);
+            localStorage.setItem('userName', userName);
+            localStorage.setItem('userBuildingNumber', userBuildingNumber);
+            localStorage.setItem('userRoomNumber', userRoomNumber);
+
+            props.onLogin(userEmail, userName, userBuildingNumber, userRoomNumber);
+        }
+        else {
+            const body = await response.json();
+            setDisplayError(`⚠ Error: ${body.msg}`);
+        }
     }
 
     function changeLoginDisplay() {
         setLoginDisplay(loginDisplay === "or, create account →" ? "or, login →" : "or, create account →");
     }
+
+    React.useEffect(() => {
+        setDisplayError(null);
+    }, [userEmail, userName, loginDisplay, password]);
 
     return (
         <>
@@ -43,20 +76,21 @@ export function Unauthenticated(props) {
                 {loginDisplay === "or, create account →" && (
                     <>
                         <h3>Login</h3>
-                        <form id="login" method="get">
+                        <div id="login">
                             <div id="inputs">
                                 <div><input type="email" className="form-control" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Email"/></div>
                                 <div><input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password"/></div>
                             </div>
+                            <div id="display-error">{displayError}</div>
                             <div><button className="btn btn-primary" type="submit" onClick={() => loginUser()} disabled={!userEmail || !password}>Login</button></div>
-                        </form>
+                        </div>
                     </>
                 )}
 
                 {loginDisplay === "or, login →" && (
                     <>
                         <h3>Create Account</h3>
-                            <form id="create-acc" method="get">
+                            <div id="create-acc">
                                     <div id="inputs">
                                     <div>
                                         <input
@@ -102,17 +136,15 @@ export function Unauthenticated(props) {
                                             placeholder="Create Password"/>
                                     </div>
                                 </div>
+                                <div id="display-error">{displayError}</div>
 
                                 <div><button className="btn btn-primary" type="submit" onClick={() => createUser()} disabled={!userName || !userEmail || !userBuildingNumber || !userRoomNumber || !password}>Create Account</button></div>
-                            </form>
+                            </div>
                     </>
                 )}
 
                 <br />
                 <p className="login-display" onClick={changeLoginDisplay}>{loginDisplay}</p>
-
-                { /* <!-- In future: automatically default to logging in, and have login screen appear instead if they click a button --> */ }
-                
 
             </div>
         </>

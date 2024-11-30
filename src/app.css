@@ -76,6 +76,20 @@
     margin-top: 0.7em;
   }
 
+  .form-control {
+    width: 230px;
+    display: inline-flex;
+  }
+
+  #display-error {
+    padding-bottom: 0.3em;
+    margin: 0.5em;
+    border-bottom: 2px solid;
+    color: rgb(236, 52, 52);
+    width: fit-content;
+    display: inline-flex;
+  }
+
   footer {
     flex: 0 35px;
     /* background-color: darkgray; */
@@ -85,6 +99,10 @@
 
   main #login button {
     margin-top: 0.7em;
+  }
+  
+  #login {
+    width: 500px;
   }
 
   .login-display {
