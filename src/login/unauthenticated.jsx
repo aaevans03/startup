@@ -138,7 +138,7 @@ export function Unauthenticated(props) {
                                 </div>
                                 <div id="display-error">{displayError}</div>
 
-                                <div><button className="btn btn-primary" type="submit" onClick={() => createUser()} disabled={!userName || !userEmail || !userBuildingNumber || !userRoomNumber || !password}>Create Account</button></div>
+                                <div><button className="btn btn-primary" type="submit" onClick={() => createUser()} disabled={!userName || !userEmail || !userBuildingNumber || !userRoomNumber || !password || userBuildingNumber > 16 || userBuildingNumber < 2 || userRoomNumber < 1000}>Create Account</button></div>
                             </div>
                     </>
                 )}

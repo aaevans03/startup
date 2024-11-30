@@ -23,7 +23,8 @@ apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.email];
     if (user) {
         res.status(409).send({ msg: 'Existing user' });
-    } else {
+    }
+    else {
         const user = { email: req.body.email, password: req.body.password, name: req.body.name, buildingNumber: req.body.buildingNumber, roomNumber: req.body.roomNumber, token: uuid.v4() };
         users[user.email] = user;
     
