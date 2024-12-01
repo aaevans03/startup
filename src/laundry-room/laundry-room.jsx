@@ -18,6 +18,21 @@ export function LaundryRoom(props) {
     
     Machine.GetById(7).curState = "out of order"
 
+    React.useEffect(() => {
+
+        // fetch machine states from API
+        console.log("fetching the data");
+        fetch('/api/machines/getloads')
+            .then((response) => response.json())
+            .then((machineFetchedData) => {
+                console.log("hi", machineFetchedData);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+            
+    }, []);
+
     // ADD RANDOM USERS!!! WHEE!!!
     // start loads in random machines at random times
 /*

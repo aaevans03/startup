@@ -2,18 +2,24 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 
-const machine = require('./machineService.js');
+const Machine = require('./machineService.js');
 
 // The users are saved in memory, and disappear whenever the service is restarted.
 let users = {};
+let machineUsageData = {};
 
+// Storing machine states in the backend
 const machinesArray = [];
+for (let i = 0; i <= 16; i++) {
+    machinesArray.push(new Machine(i));
+}
 
-// for (let i = 0; i <= 16; i++) {
-//     machinesArray.push(new Machine(i));
-// }
-
-// to add: store machine objects in backend, for when someone uses them.
+/* BACKEND MACHINE SERVICE ENDPOINTS
+    - GET: Machine states from the backend, and update the main page
+    - POST: When there's a new load, upload the current user and their info, the time of submission, and how long the machine was set for.
+    
+    - timer runs in the backend, which stores the current user, time, and set duration of the machines.
+*/
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -30,6 +36,12 @@ app.use(`/api`, apiRouter);
 
 const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
 users[user.email] = user;
+
+// Send machine states from backend to the front
+apiRouter.get('/machines/getloads', (_req, res) => {
+    const output = JSON.stringify(machinesArray);
+    res.json(output);
+});
 
 
 // CreateAuth a new user
