@@ -20,7 +20,7 @@ export function LaundryRoom(props) {
 
     // ADD RANDOM USERS!!! WHEE!!!
     // start loads in random machines at random times
-
+/*
     setInterval(() => {
 
         let chance = Math.random();
@@ -58,7 +58,7 @@ export function LaundryRoom(props) {
             // console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
         }
 
-    }, 20000)
+    }, 20000); */
 
 
 
