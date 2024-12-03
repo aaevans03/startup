@@ -118,5 +118,8 @@ app.listen(port, () => {
 });
 
 Machine.GetById(1).NewLoad(60, "Bob");
+Machine.GetById(5).NewLoad(434, "Bob");
+Machine.GetById(10).NewLoad(292, "Bob");
+Machine.GetById(15).NewLoad(934, "Bob");
 
-console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);
+// console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);

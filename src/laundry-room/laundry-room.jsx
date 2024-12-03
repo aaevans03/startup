@@ -26,12 +26,12 @@ export function LaundryRoom(props) {
 
     function fetchBackendLaundryData() {
         // fetch machine states from API
+        console.log("———————————————————————"); 
         console.log("fetching the data");
 
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
-                console.log("———————————————————————"); 
                 console.log("data fetched"); 
                 // console.log(machineFetchedData);
 
@@ -39,17 +39,17 @@ export function LaundryRoom(props) {
                 let parsedData = JSON.parse(machineFetchedData);
 
                 // for each machine, get the time left and calculate the timer display for the frontend.
-                for (let i = 0; i < 1; i++) {
+                for (let i = 0; i < 15; i++) {
 
                     // calculated using the Date the load started, and how long the load should be in milliseconds.
                         // Subtract the load started date from the date now, you see how much time has passed.
                         // Then, subtract that time from what the load time should be, and you get your time left to import into your frontend. 
                     
-                    console.log(parsedData[i].id);
-                    console.log(parsedData[i].curUser);
-                    console.log(parsedData[i].setTime);
-                    console.log(parsedData[i].startDate);
-                    console.log(parsedData[i].isDisabled);
+                    // console.log(parsedData[i].id);
+                    // console.log(parsedData[i].curUser);
+                    // console.log(parsedData[i].setTime);
+                    // console.log(parsedData[i].startDate);
+                    // console.log(parsedData[i].isDisabled);
 
                     let id = parsedData[i].id;
                     let curUser = parsedData[i].curUser;
@@ -59,10 +59,10 @@ export function LaundryRoom(props) {
                     
                     
                     let calculatedTimeLeft = (setTime / 1000) - (Math.floor((Date.now() - startDate) / 1000));
-                    
+
                     if (calculatedTimeLeft > 0 && !isDisabled) {
                         console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
-                        console.log("Timer has", calculatedTimeLeft, "seconds left");
+                        // console.log("Timer has", calculatedTimeLeft, "seconds left");
                         
                         if (Machine.GetById(id).curState === "open") {
                             Machine.GetById(id).Reset();
