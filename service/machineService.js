@@ -37,15 +37,15 @@ class Machine {
         this.curUser = curUser;
 
         await TimerFunction(duration);
-
+        
         // console.log("done");
+        this.setTime = 0;
         
         // reset the machine back to open after a certain amount of time
         setTimeout(() => {
             this.curUser = "none";
-            this.setTime = 0;
             this.startDate = null;
-        }, 300000);
+        }, 1000);
     };
 
 };
@@ -61,7 +61,7 @@ async function TimerFunction(duration) {
         // the timer function: update timer every 1 second
         const timer = setInterval(() => {
 
-            // get the difference of the total duration and the time left
+            // get the difference of the total duration and the time left in seconds
             difference = duration - Math.floor((Date.now() - startDate) / 1000);
             
             console.log(difference, "seconds");

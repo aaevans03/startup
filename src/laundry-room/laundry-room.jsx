@@ -20,33 +20,58 @@ export function LaundryRoom(props) {
 
     React.useEffect(() => {
 
-        fetchLaundryData();
+        fetchBackendLaundryData();
 
     }, []);
 
-    function fetchLaundryData() {
+    function fetchBackendLaundryData() {
         // fetch machine states from API
         console.log("fetching the data");
 
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
+                console.log("———————————————————————"); 
                 console.log("data fetched"); 
                 // console.log(machineFetchedData);
 
+                // import the machineFetchedData (JSON file) into the frontend machinesArray
                 let parsedData = JSON.parse(machineFetchedData);
 
-                for (let i = 0; i <= 16; i++) {
-                    console.log(parsedData[i]);
-                }
-
-
-                // import the machineFetchedData (JSON file) into the frontend machinesArray
-                
                 // for each machine, get the time left and calculate the timer display for the frontend.
+                for (let i = 0; i < 1; i++) {
+
                     // calculated using the Date the load started, and how long the load should be in milliseconds.
                         // Subtract the load started date from the date now, you see how much time has passed.
                         // Then, subtract that time from what the load time should be, and you get your time left to import into your frontend. 
+                    
+                    console.log(parsedData[i].id);
+                    console.log(parsedData[i].curUser);
+                    console.log(parsedData[i].setTime);
+                    console.log(parsedData[i].startDate);
+
+                    let id = parsedData[i].id;
+                    let curUser = parsedData[i].curUser;
+                    let setTime = parsedData[i].setTime;        // milliseconds!
+                    let startDate = parsedData[i].startDate;    // milliseconds!
+                    
+                    
+                    let calculatedTimeLeft = (setTime / 1000) - (Math.floor((Date.now() - startDate) / 1000));
+                    
+                    if (calculatedTimeLeft > 0) {
+                        console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
+                        console.log("Timer has", calculatedTimeLeft, "seconds left");
+                        
+                        if (Machine.GetById(id).curState === "open") {
+                            Machine.GetById(id).Reset();
+                            Machine.GetById(id).NewLoad(calculatedTimeLeft - 1, curUser, 4, props.userName);
+                        }
+                    }
+
+                }
+
+
+                
 
                 // PART OF THIS: fetch the user data for each machine
 
@@ -106,7 +131,7 @@ export function LaundryRoom(props) {
     return (
         <>
             <main>
-                <button onClick={fetchLaundryData}>Get new laundry data from backend</button>
+                <button onClick={fetchBackendLaundryData}>Get new laundry data from backend</button>
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>

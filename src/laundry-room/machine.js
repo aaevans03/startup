@@ -26,6 +26,7 @@ export class Machine {
 
         // console.log("Now starting a " + duration + " long load in machine " + this.id)
 
+        // duration is in seconds
         this.setTime = duration;
         this.secondsLeft = duration;
         this.timeLeft = (duration / 60) + ":00";
@@ -76,7 +77,7 @@ export class Machine {
 
             
 
-        }, 300000);
+        }, 1000);
         
         // console.log(this);
 
@@ -89,6 +90,17 @@ export class Machine {
 
         return;
         
+    }
+
+    Reset() {
+        this.curState = "open";
+        this.curUser = "none";
+        this.curUserRoom = "N/A";
+        this.timeLeft = null;
+        this.secondsLeft = 0;
+        this.setTime = 0;
+        // delete timer display
+        this.isRunning = false;
     }
 
 };

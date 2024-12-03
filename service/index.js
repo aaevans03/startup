@@ -117,6 +117,6 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-Machine.GetById(1).NewLoad(10, "Alex");
+Machine.GetById(1).NewLoad(60, "Bob");
 
 console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);
