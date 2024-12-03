@@ -49,22 +49,24 @@ export function LaundryRoom(props) {
                     console.log(parsedData[i].curUser);
                     console.log(parsedData[i].setTime);
                     console.log(parsedData[i].startDate);
+                    console.log(parsedData[i].isDisabled);
 
                     let id = parsedData[i].id;
                     let curUser = parsedData[i].curUser;
                     let setTime = parsedData[i].setTime;        // milliseconds!
                     let startDate = parsedData[i].startDate;    // milliseconds!
+                    let isDisabled = parsedData[i].isDisabled;    // milliseconds!
                     
                     
                     let calculatedTimeLeft = (setTime / 1000) - (Math.floor((Date.now() - startDate) / 1000));
                     
-                    if (calculatedTimeLeft > 0) {
+                    if (calculatedTimeLeft > 0 && !isDisabled) {
                         console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
                         console.log("Timer has", calculatedTimeLeft, "seconds left");
                         
                         if (Machine.GetById(id).curState === "open") {
                             Machine.GetById(id).Reset();
-                            Machine.GetById(id).NewLoad(calculatedTimeLeft - 1, curUser, 4, props.userName);
+                            Machine.GetById(id).NewLoad(calculatedTimeLeft, curUser, 4, props.userName, setTime / 1000);
                         }
                     }
 

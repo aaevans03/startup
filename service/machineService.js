@@ -15,6 +15,9 @@ class Machine {
         // Date object of when a load was started
         this.startDate = null;
 
+        // if machine is disabled or not
+        this.isDisabled = false;
+
         // machine registry
         Machine.registry[id] = this;
     };

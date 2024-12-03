@@ -37,7 +37,7 @@ app.use(`/api`, apiRouter);
 const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
 users[user.email] = user;
 
-// Send machine states from backend to the front
+// Send machine states from backend to the front in a JSON file
 apiRouter.get('/machines/getloads', (_req, res) => {
     const output = JSON.stringify(machinesArray);
     res.json(output);

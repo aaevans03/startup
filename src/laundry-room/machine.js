@@ -12,6 +12,7 @@ export class Machine {
         this.isRunning = false;
         this.secondsLeft = 0;
         this.setTime = 0;
+        this.originalDuration = 0;
         Machine.registry[id] = this;
     };
 
@@ -19,7 +20,7 @@ export class Machine {
         return Machine.registry[id];
     }
 
-    async NewLoad(duration, curUser, curUserRoom, loggedInUser) {
+    async NewLoad(duration, curUser, curUserRoom, loggedInUser, originalDuration) {
         // call the Timer function in JS
 
         this.isRunning = true;
@@ -28,8 +29,23 @@ export class Machine {
 
         // duration is in seconds
         this.setTime = duration;
+        
+        this.originalDuration = originalDuration;
+
+        console.log("The original duration is", this.originalDuration);
+
         this.secondsLeft = duration;
-        this.timeLeft = (duration / 60) + ":00";
+
+        // GET TIME FOR THE TIMER DISPLAY
+        let minutes = Math.floor(duration / 60);
+        let seconds = duration % 60;
+
+        // add a 0 to the front of seconds if it's single digits
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        this.timeLeft = `${minutes}:${seconds}`;
+
+        
         this.curState = "in use";
         this.curUser = curUser;
         this.curUserRoom = curUserRoom;
@@ -71,6 +87,7 @@ export class Machine {
             this.curUserRoom = "N/A";
             this.timeLeft = null;
             this.secondsLeft = 0;
+            this.originalDuration = 0;
             this.setTime = 0;
             // delete timer display
             this.isRunning = false;

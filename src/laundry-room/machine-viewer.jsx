@@ -44,7 +44,7 @@ export function MachineViewer({ currentlyViewing }) {
                     </h3>
 
                     <div className="progress" role="progressbar" aria-label="Timer progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                        <div className="progress-bar" style={{width: `${ Machine.GetById(currentlyViewing).timeLeft === null ? 0 : (Machine.GetById(currentlyViewing).secondsLeft / Machine.GetById(currentlyViewing).setTime)* 100 }%`}}></div>
+                        <div className="progress-bar" style={{width: `${ Machine.GetById(currentlyViewing).timeLeft === null ? 0 : (Machine.GetById(currentlyViewing).secondsLeft / Machine.GetById(currentlyViewing).originalDuration)* 100 }%`}}></div>
                     </div>
 
                     {/* To implement later: what time the load gets done */}
