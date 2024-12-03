@@ -22,10 +22,21 @@ export function LaundryRoom(props) {
 
         // fetch machine states from API
         console.log("fetching the data");
+
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
                 console.log("hi", machineFetchedData);
+
+                // import the machineFetchedData (JSON file) into the frontend machinesArray
+                
+                // for each machine, get the time left and calculate the timer display for the frontend.
+                    // calculated using the Date the load started, and how long the load should be in milliseconds.
+                        // Subtract the load started date from the date now, you see how much time has passed.
+                        // Then, subtract that time from what the load time should be, and you get your time left to import into your frontend. 
+
+                // PART OF THIS: fetch the user data for each machine
+
             })
             .catch((e) => {
                 console.log(e);

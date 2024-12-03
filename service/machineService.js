@@ -1,18 +1,21 @@
-const timer = require('./timerService.js');
-
 class Machine {
 
     static registry = {};
     
     constructor(id) {
+        // id of the machine in question
         this.id = id;
-        this.curState = "open";
-        this.timeLeft = null;
+
+        // current user of the machine
         this.curUser = "none";
-        this.curUserRoom = "N/A";
-        this.isRunning = false;
-        this.secondsLeft = 0;
+
+        // this is how much time was set in by the user (milliseconds)
         this.setTime = 0;
+
+        // Date object of when a load was started
+        this.startTime = null;
+
+        // machine registry
         Machine.registry[id] = this;
     };
 
@@ -20,101 +23,67 @@ class Machine {
         return Machine.registry[id];
     }
 
-    async NewLoad(duration, curUser, curUserRoom, loggedInUser) {
+    async NewLoad(duration, curUser) {
         // call the Timer function in JS
 
-        this.isRunning = true;
+        // calculate number of milliseconds for duration
+            // the duration should be in seconds. multiply it by 1000 for ms
+        this.setTime = duration * 1000;
 
-        // console.log("Now starting a " + duration + " long load in machine " + this.id)
+        let d = new Date(Date.now());
 
-        this.setTime = duration;
-        this.secondsLeft = duration;
-        this.timeLeft = (duration / 60) + ":00";
-        this.curState = "in use";
+        this.startTime = d.getTime();
+
         this.curUser = curUser;
-        this.curUserRoom = curUserRoom;
 
-        // console.log("the state of this machine is " + this.curState);
-        // console.log(this);
-        
-        await TimerFunction(duration, ((timerDisplay, secondsLeft) => {
+        await TimerFunction(duration);
 
-            // console.log(timerDisplay);
-
-            this.timeLeft = timerDisplay;
-            this.secondsLeft = secondsLeft;
-
-            // console.log(this.timeLeft);
-            // console.log(this.secondsLeft);
-            
-        }));
-
-        // console.log(this);
         // console.log("done");
-        
-        this.curState = "done";
-
-        this.timeLeft = "0:00";
-
-        // send an alert
-        if (curUser === loggedInUser) {
-            alert(`Notice: Your load in Machine ${this.id} is finished.`)
-
-            // change later to show custom Bootstrap notification?
-        }
-        
         
         // reset the machine back to open after a certain amount of time
         setTimeout(() => {
-            this.curState = "open";
             this.curUser = "none";
-            this.curUserRoom = "N/A";
-            this.timeLeft = null;
-            this.secondsLeft = 0;
             this.setTime = 0;
-            // delete timer display
-            this.isRunning = false;
-
-            
+            this.startTime = null;
 
         }, 300000);
-        
-        // console.log(this);
-
-
-    }
-
-    AddStats() {
-        
-        // add stats to localStorage or database in the future. Store how much machines have been used over the past 7 days
-
-        return;
-        
-    }
+    };
 
 };
 
-// const Machine1 = new Machine(1, "open", 30, "me");
+async function TimerFunction(duration) {
 
-// console.log(Machine1);
+    const TimerPromise = new Promise((resolve, reject) => {
 
-// Machine1.curState = "in use";
+        // initialize new variables
+        let startTime = Date.now();
+        let difference;
 
-// console.log(Machine1);
+        // the timer function: update timer every 1 second
+        const timer = setInterval(() => {
 
-// Machine1.curState = "out of order";
+            // get the difference of the total duration and the time left
+            difference = duration - Math.floor((Date.now() - startTime) / 1000);
+            
+            console.log(difference, "seconds");
 
-// console.log(Machine1);
+            // when the timer is done
+            if (difference <= 0) {
 
-// Machine1.InUse;
+                clearInterval(timer);
 
-// console.log(Machine1);
+                console.log("timer done");
 
-// Machine1.NewLoad(5, "alex");
+                resolve();
+                
+            }
 
-// const machine1 = new Machine(1, "open");
-// console.log(Machine.GetById(1));
+        }, 1000);
 
-// Machine.GetById(1).NewLoad(5);
+    });
+
+    return TimerPromise;
+    
+};
 
 module.exports = Machine;

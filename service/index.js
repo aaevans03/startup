@@ -43,6 +43,12 @@ apiRouter.get('/machines/getloads', (_req, res) => {
     res.json(output);
 });
 
+// New endpoint: Fetch user data for use in machine viewing
+
+// 
+
+// New endpoint: Submit a new load
+
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
