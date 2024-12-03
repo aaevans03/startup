@@ -16,17 +16,30 @@ export function LaundryRoom(props) {
         machinesArray.push(new Machine(i));
     }
     
-    Machine.GetById(7).curState = "out of order"
+    // Machine.GetById(7).curState = "out of order"
 
     React.useEffect(() => {
 
+        fetchLaundryData();
+
+    }, []);
+
+    function fetchLaundryData() {
         // fetch machine states from API
         console.log("fetching the data");
 
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
-                console.log("hi", machineFetchedData);
+                console.log("data fetched"); 
+                // console.log(machineFetchedData);
+
+                let parsedData = JSON.parse(machineFetchedData);
+
+                for (let i = 0; i <= 16; i++) {
+                    console.log(parsedData[i]);
+                }
+
 
                 // import the machineFetchedData (JSON file) into the frontend machinesArray
                 
@@ -41,8 +54,7 @@ export function LaundryRoom(props) {
             .catch((e) => {
                 console.log(e);
             });
-            
-    }, []);
+    }
 
     // ADD RANDOM USERS!!! WHEE!!!
     // start loads in random machines at random times
@@ -94,6 +106,7 @@ export function LaundryRoom(props) {
     return (
         <>
             <main>
+                <button onClick={fetchLaundryData}>Get new laundry data from backend</button>
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>

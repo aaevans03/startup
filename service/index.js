@@ -10,7 +10,7 @@ let machineUsageData = {};
 
 // Storing machine states in the backend
 const machinesArray = [];
-for (let i = 0; i <= 16; i++) {
+for (let i = 1; i <= 16; i++) {
     machinesArray.push(new Machine(i));
 }
 
@@ -116,3 +116,7 @@ apiRouter.get('/quotes', (req, res) => {
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+Machine.GetById(1).NewLoad(10, "Alex");
+
+console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);

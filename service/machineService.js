@@ -13,7 +13,7 @@ class Machine {
         this.setTime = 0;
 
         // Date object of when a load was started
-        this.startTime = null;
+        this.startDate = null;
 
         // machine registry
         Machine.registry[id] = this;
@@ -32,7 +32,7 @@ class Machine {
 
         let d = new Date(Date.now());
 
-        this.startTime = d.getTime();
+        this.startDate = d.getTime();
 
         this.curUser = curUser;
 
@@ -44,8 +44,7 @@ class Machine {
         setTimeout(() => {
             this.curUser = "none";
             this.setTime = 0;
-            this.startTime = null;
-
+            this.startDate = null;
         }, 300000);
     };
 
@@ -56,14 +55,14 @@ async function TimerFunction(duration) {
     const TimerPromise = new Promise((resolve, reject) => {
 
         // initialize new variables
-        let startTime = Date.now();
+        let startDate = Date.now();
         let difference;
 
         // the timer function: update timer every 1 second
         const timer = setInterval(() => {
 
             // get the difference of the total duration and the time left
-            difference = duration - Math.floor((Date.now() - startTime) / 1000);
+            difference = duration - Math.floor((Date.now() - startDate) / 1000);
             
             console.log(difference, "seconds");
 
