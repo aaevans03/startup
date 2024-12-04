@@ -1787,3 +1787,84 @@ We've done all the things in the big picture diagram. Yay! Now, we're adding pee
   - Websocket chat example on GitHub
   - list of connections stored, then when you send a message, it forwards to everyone except yourself
   - `'connection', 'close', 'message', 'on', 'pong'` listeners
+
+
+# 2024.12.03: Simon Websocket
+
+## Review: Websockets
+
+- Using websockets is an upgrade to HTTP that allows you to use peer-to-peer communication across the web. Lets clients talk to each other through the server
+- Code for server and browser/client is different.
+  - Server: When the other end of the pipe wants to connect, then add a message event listener. You need to hang your listeners as a function.
+  - Browser: You don't need to import a node module, because it's built into the browser. Another event listener, but it's simpler.
+
+## Simon Websocket
+
+### Intro
+
+- You need another entry in `vite.config.js` for websockets and port forwarding.
+- One change in `index.js`: we added `peerProxy.js`. Calling it at the bottom of our file.
+  - We will be getting both HTTP and Websocket traffic coming to our port. So, we must have this at the end of our `index.js`:
+
+```js
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+// Add a peerProxy.js, otherwise Websockets won't work!
+peerProxy(httpService);
+```
+
+### Players component in Simon Websocket
+
+
+```js
+const [events, setEvent] = React.useState([]);
+
+// this is called whenever DOM is changed
+React.useEffect(() => {
+  
+  GameNotifier.addHandler(handleGameEvent);
+
+  // this will get called first when DOM is changed again later. Woo
+  return () => {
+    GameNotifier.removeHandler(handleGameEvent);
+  };
+
+});   // no dependencies. If you put handleGameEvent inside useEffect, it will create an infinite loop.
+// if there's no dependencies, all of the state variables are the dependencies.
+
+// never update your dependences inside useEffect!
+
+// update the events array
+function handleGameEvent(event) {
+  setEvent([...events, event]);
+}
+
+```
+
+### Client versus Server Websockets
+
+`gameNotifier.js`: sits in the client.
+`peerProxy.js`: sits in the server.
+
+#### `peerProxy.js`
+
+We don't want the connection to always be upgraded to websocket. Use this code:
+
+```js
+// Creating a websocket object
+const wss = new WebSocketServer({ noServer: true });
+
+// Then, handle the protocol upgrade from HTTP to WebSocket
+```
+All the pinging and ponging happens on the server side, and not the client side. Pinging always sets up pong events
+
+#### `gameNotifier.js`
+
+Client side websocket.
+
+## Testing frameworks:
+- Device testing: BrowserStack
+- UI testing: Playwright, can be imported with node
+- Endpoint testing: Jest, can be imported with node

@@ -169,7 +169,7 @@ export function LaundryRoom(props) {
                     machinesArray={machinesArray}
                     loggedInUser={props.userName}
                     loggedInUserRoom={props.userRoomNumber}
-                    submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName)}
+                    submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time)}
                     // submitLoad={(id, time) => console.log(id, time)}
                 />
                 
