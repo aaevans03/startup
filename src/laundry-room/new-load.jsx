@@ -28,7 +28,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
 
     
 
-    const sendLoad = (e) => {
+    const sendLoad = async (e) => {
 
         e.preventDefault();
         // console.log(machinesArray[userMachineNumber]);
@@ -36,16 +36,36 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
         if (Machine.GetById(userMachineNumber).curState !== "open") {
             alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
         }
+
         else {
 
-            submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
+            // post laundry data to the backend
+
+            let userMachineDurationSeconds = userMachineDuration * 60;
             
+            const response = await fetch('/api/machines/submitload', {
+                method: 'post',
+                body: JSON.stringify({ id: userMachineNumber, duration: userMachineDurationSeconds, curUser: loggedInUser }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+            if (response?.status === 200) {
+
+                submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
+                
+            }
+            else {
+                console.log("You failed lol");
+            }
+            
+
+            // Reset fields in this modal
             setUserMachineNumber("");
             setUserMachineDuration("");
 
         }
-        
-        
+           
     }
 
     

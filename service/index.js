@@ -43,11 +43,39 @@ apiRouter.get('/machines/getloads', (_req, res) => {
     res.json(output);
 });
 
+// New endpoint: Submit a new load
+apiRouter.post('/machines/submitload', (req, res) => {
+
+    // gets loads in seconds
+    let id = req.body.id;
+    let duration = req.body.duration;
+    let curUser = req.body.curUser;
+    
+    console.log("id of this new load is", id);
+    console.log("duration of this new load is", duration);
+    console.log("user of this new load is", curUser);
+    
+    Machine.GetById(id).NewLoad(duration, curUser);
+
+    console.log(Machine.GetById(16).setTime);
+    // submit a new load
+
+    // if machine is already in use, then send an error.
+
+    // if 
+
+
+    // send response back to client: 
+
+
+});
+
 // New endpoint: Fetch user data for use in machine viewing
 
 // 
 
-// New endpoint: Submit a new load
+
+
 
 
 // CreateAuth a new user
@@ -117,9 +145,9 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-Machine.GetById(1).NewLoad(60, "Bob");
-Machine.GetById(5).NewLoad(434, "Bob");
-Machine.GetById(10).NewLoad(292, "Bob");
-Machine.GetById(15).NewLoad(934, "Bob");
+// Machine.GetById(1).NewLoad(60, "Bob");
+// Machine.GetById(5).NewLoad(434, "Bob");
+// Machine.GetById(10).NewLoad(292, "Bob");
+// Machine.GetById(15).NewLoad(934, "Bob");
 
 // console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);

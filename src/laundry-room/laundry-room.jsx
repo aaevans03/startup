@@ -39,7 +39,7 @@ export function LaundryRoom(props) {
                 let parsedData = JSON.parse(machineFetchedData);
 
                 // for each machine, get the time left and calculate the timer display for the frontend.
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 16; i++) {
 
                     // calculated using the Date the load started, and how long the load should be in milliseconds.
                         // Subtract the load started date from the date now, you see how much time has passed.
