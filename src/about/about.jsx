@@ -57,7 +57,7 @@ export function About() {
                         <div className="card-body">
                             <h2 className="card-title">Inspiration zone</h2>
                             <p className="card-text text-body-secondary">
-                                Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
+                                Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!<br />(GIF service powered by Tenor)
                             </p>
                             <div className="card-text">
                                 <div className="quote-text">“{quote}”</div>
