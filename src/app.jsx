@@ -76,11 +76,11 @@ export default function App() {
 
                                 // pass in a function that sets the authState and user data
                                 onAuthChange={(userEmail, userName, userBuildingNumber, userRoomNumber, authState) => {
-                                    setAuthState(authState);
                                     setUserEmail(userEmail);
                                     setUserName(userName);
                                     setUserBuildingNumber(userBuildingNumber);
                                     setUserRoomNumber(userRoomNumber);
+                                    setAuthState(authState);
                                 }}
 
                             />}
@@ -92,6 +92,7 @@ export default function App() {
                             element={
                                 <LaundryRoom
                                     // pass these things to the LaundryRoom page
+                                    userEmail={userEmail}
                                     userName={userName}
                                     userBuildingNumber={userBuildingNumber}
                                     userRoomNumber={userRoomNumber}

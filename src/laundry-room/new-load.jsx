@@ -4,7 +4,7 @@ import { Button } from "bootstrap";
 
 import { Machine } from "./machine";
 
-export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitLoad }) {
+export function NewLoad({ loggedInUser, loggedInEmail, loggedInUserRoom, submitLoad }) {
 
     const [userMachineNumber, setUserMachineNumber] = React.useState("");
     const [userMachineDuration, setUserMachineDuration] = React.useState("");
@@ -20,7 +20,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
         
         const response = await fetch('/api/machines/submitload', {
             method: 'post',
-            body: JSON.stringify({ id: userMachineNumber, duration: userMachineDurationSeconds, curUser: loggedInUser }),
+            body: JSON.stringify({ id: userMachineNumber, duration: userMachineDurationSeconds, curUser: loggedInUser, email: loggedInEmail, room: loggedInUserRoom }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -39,6 +39,8 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
             setUserMachineDuration("");   
             setSuccessMessage("Load successfully submitted!");
         }
+        
+        // otherwise, send error
         else {
             const body = await response.json();
 

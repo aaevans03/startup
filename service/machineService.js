@@ -8,6 +8,8 @@ class Machine {
 
         // current user of the machine
         this.curUser = "none";
+        this.curUserEmail = "none";
+        this.curUserRoom = 0;
 
         // this is how much time was set in by the user (milliseconds)
         this.setTime = 0;
@@ -26,7 +28,7 @@ class Machine {
         return Machine.registry[id];
     }
 
-    async NewLoad(duration, curUser) {
+    async NewLoad(duration, curUser, curUserEmail, curUserRoom) {
         // call the Timer function in JS
 
         // calculate number of milliseconds for duration
@@ -38,6 +40,8 @@ class Machine {
         this.startDate = d.getTime();
 
         this.curUser = curUser;
+        this.curUserEmail = curUserEmail;
+        this.curUserRoom = curUserRoom;
 
         await TimerFunction(duration);
         
@@ -47,6 +51,8 @@ class Machine {
         // reset the machine back to open after a certain amount of time
         setTimeout(() => {
             this.curUser = "none";
+            this.curUserEmail = "none";
+            this.curUserRoom = 0;
             this.startDate = null;
         }, 1000);
     };

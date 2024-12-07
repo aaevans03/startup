@@ -26,14 +26,10 @@ export function LaundryRoom(props) {
 
     function fetchBackendLaundryData() {
         // fetch machine states from API
-        // console.log("———————————————————————"); 
-        // console.log("fetching the data");
 
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
-                // console.log("data fetched"); 
-                // console.log(machineFetchedData);
 
                 // import the machineFetchedData (JSON file) into the frontend machinesArray
                 let parsedData = JSON.parse(machineFetchedData);
@@ -43,22 +39,17 @@ export function LaundryRoom(props) {
 
                     // calculated using the Date the load started, and how long the load should be in milliseconds.
                         // Subtract the load started date from the date now, you see how much time has passed.
-                        // Then, subtract that time from what the load time should be, and you get your time left to import into your frontend. 
-                    
-                    // console.log(parsedData[i].id);
-                    // console.log(parsedData[i].curUser);
-                    // console.log(parsedData[i].setTime);
-                    // console.log(parsedData[i].startDate);
-                    // console.log(parsedData[i].isDisabled);
+                        // Then, subtract that time from what the load time should be, and you get your time left to import into your frontend.
 
                     let id = parsedData[i].id;
-                    let curUser = parsedData[i].curUser;
+                    let curUser = parsedData[i].curUser;        // this is the user name
+                    let curUserRoom = parsedData[i].curUserRoom;// this is the user's room
                     let setTime = parsedData[i].setTime;        // milliseconds!
                     let startDate = parsedData[i].startDate;    // milliseconds!
 
                     // calculate the time that should be left on the timer
                     let calculatedTimeLeft = (setTime / 1000) - (Math.floor((Date.now() - startDate) / 1000));
-
+                    
                     // if the timer is still running, then set a timer
                     if (calculatedTimeLeft > 0) {
                         // console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
@@ -66,7 +57,7 @@ export function LaundryRoom(props) {
                         
                         if (Machine.GetById(id).curState === "open") {
                             Machine.GetById(id).Reset();
-                            Machine.GetById(id).NewLoad(calculatedTimeLeft, curUser, 4, props.userName, setTime / 1000);
+                            Machine.GetById(id).NewLoad(calculatedTimeLeft, curUser, curUserRoom, props.userName, setTime / 1000);
                         }
                     }
 
@@ -160,9 +151,9 @@ export function LaundryRoom(props) {
                 <StatsViewer />
 
                 {/* <!-- Bootstrap modal for adding a new load --> */}
-                <NewLoad 
-                    machinesArray={machinesArray}
+                <NewLoad
                     loggedInUser={props.userName}
+                    loggedInEmail={props.userEmail}
                     loggedInUserRoom={props.userRoomNumber}
                     submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time)}
                 />

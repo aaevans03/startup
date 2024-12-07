@@ -14,12 +14,6 @@ for (let i = 1; i <= 16; i++) {
     machinesArray.push(new Machine(i));
 }
 
-/* BACKEND MACHINE SERVICE ENDPOINTS
-    - GET: Machine states from the backend, and update the main page
-    - POST: When there's a new load, upload the current user and their info, the time of submission, and how long the machine was set for.
-    
-    - timer runs in the backend, which stores the current user, time, and set duration of the machines.
-*/
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -34,8 +28,18 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// default user
 const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
 users[user.email] = user;
+
+/*
+    BACKEND MACHINE SERVICE ENDPOINTS
+
+    - GET: Machine states from the backend, and update the main page
+    - POST: When there's a new load, upload the current user and their info, the time of submission, and how long the machine was set for.
+    
+    - timer runs in the backend, which stores the current user, time, and set duration of the machines.
+*/
 
 // Send machine states from backend to the front in a JSON file
 apiRouter.get('/machines/getloads', (_req, res) => {
@@ -50,6 +54,8 @@ apiRouter.post('/machines/submitload', (req, res) => {
     let id = req.body.id;
     let duration = req.body.duration;
     let curUser = req.body.curUser;
+    let curUserEmail = req.body.email;
+    let curUserRoom = req.body.room;
 
     const machine = Machine.GetById(id);
 
@@ -62,37 +68,15 @@ apiRouter.post('/machines/submitload', (req, res) => {
     else if (machine.startDate !== null) {
         res.status(409).send({ msg: 'Machine already in use. Please choose another one' });
     }
-
+    
+    // else, start a new load
     else {
-        
-        // console.log("id of this new load is", id);
-        // console.log("duration of this new load is", duration);
-        // console.log("user of this new load is", curUser);
-        
-        // start a new load
-        Machine.GetById(id).NewLoad(duration, curUser);
-        
-        // console.log(Machine.GetById(16).setTime);
+        Machine.GetById(id).NewLoad(duration, curUser, curUserEmail, curUserRoom);
         
         // send response back to client: 
         res.send({ msg: 'success' });
     }
-    // submit a new load
-
-    // if machine is already in use, then send an error.
-
-    // if 
-
-
-
-
 });
-
-// New endpoint: Fetch user data for use in machine viewing
-
-
-
-
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -116,6 +100,7 @@ apiRouter.post('/auth/login', async (req, res) => {
             user.token = uuid.v4();
             res.send({
                 name: user.name,
+                userEmail: user.email,
                 buildingNumber: user.buildingNumber,
                 roomNumber: user.roomNumber,
                 token: user.token
@@ -161,9 +146,9 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-// Machine.GetById(1).NewLoad(60, "Bob");
-// Machine.GetById(5).NewLoad(434, "Bob");
-// Machine.GetById(10).NewLoad(292, "Bob");
-// Machine.GetById(15).NewLoad(934, "Bob");
+// Machine.GetById(1).NewLoad(60, "Bob", "https.net", 5000);
+// Machine.GetById(2).NewLoad(60, "Bill", "https.net", 3000);
+// Machine.GetById(3).NewLoad(60, "Boe", "https.net", 2000);
+
 
 // console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);
