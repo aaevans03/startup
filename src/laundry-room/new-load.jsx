@@ -33,11 +33,11 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
         e.preventDefault();
         // console.log(machinesArray[userMachineNumber]);
 
-        if (Machine.GetById(userMachineNumber).curState !== "open") {
-            alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
-        }
+        // if (Machine.GetById(userMachineNumber).curState !== "open") {
+        //     alert("Machine " + userMachineNumber + " is already in use. Please pick another one");
+        // }
 
-        else {
+        // else {
 
             // post laundry data to the backend
 
@@ -52,11 +52,16 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
             });
             if (response?.status === 200) {
 
+                const body = await response.json();
+                console.log(body.msg);
+
                 submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
                 
             }
             else {
-                console.log("You failed lol");
+                const body = await response.json();
+                console.log("this is an error message");
+                console.log(body.msg);
             }
             
 
@@ -64,7 +69,7 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
             setUserMachineNumber("");
             setUserMachineDuration("");
 
-        }
+        // }
            
     }
 
@@ -72,12 +77,12 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
 
 
     return (
-        <div className="modal fade" id="new-load" aria-labelledby="newLoad" aria-hidden="true">
+        <div className="modal fade" id="new-load">
                     <div className="modal-dialog modal-dialog-centered new-load">
                         <div className="modal-content">
                             <div className="modal-header">
                             <h1 className="modal-title fs-5" id="newLoad">Enter in a new laundry load</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div className="modal-body">
 
@@ -105,8 +110,8 @@ export function NewLoad({ machinesArray, loggedInUser, loggedInUserRoom, submitL
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <button type="submit" className="btn btn-primary" data-bs-dismiss="modal"
-                                            disabled=
-                                                {!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16 || Machine.GetById(userMachineNumber).curState !== "open" || Machine.GetById(userMachineNumber).curState === "out of order"}
+                                            // disabled=
+                                            //     {!userMachineNumber || !userMachineDuration || userMachineDuration > 60 || userMachineDuration < 20 || userMachineNumber < 1 || userMachineNumber > 16 || Machine.GetById(userMachineNumber).curState !== "open" || Machine.GetById(userMachineNumber).curState === "out of order"}
                                         >
                                             Submit
                                         </button>

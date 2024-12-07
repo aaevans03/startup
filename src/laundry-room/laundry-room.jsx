@@ -133,7 +133,7 @@ export function LaundryRoom(props) {
     return (
         <>
             <main>
-                <button onClick={fetchBackendLaundryData}>Get new laundry data from backend</button>
+                {/* <button onClick={fetchBackendLaundryData}>Get new laundry data from backend</button> */}
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>

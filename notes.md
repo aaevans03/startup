@@ -1868,3 +1868,22 @@ Client side websocket.
 - Device testing: BrowserStack
 - UI testing: Playwright, can be imported with node
 - Endpoint testing: Jest, can be imported with node
+
+
+# 2024.12.05 Cybersecurity
+
+## overview
+
+There are so many data breaches and stuff. Even for big companies!
+
+## Common Attacks
+
+- Injection
+- Cross-site scripting
+- Denial of service
+- Credential stuffing
+- Social engineering: most yikes. Be careful!
+
+In general, line of death: anything on the page could be fake. The only thing you can trust is the domain name. You can easily tell it's fake
+
+OWASP 10 - Open Worldwide Application Security Project. List of top 10 security risks

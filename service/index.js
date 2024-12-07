@@ -50,14 +50,29 @@ apiRouter.post('/machines/submitload', (req, res) => {
     let id = req.body.id;
     let duration = req.body.duration;
     let curUser = req.body.curUser;
-    
-    console.log("id of this new load is", id);
-    console.log("duration of this new load is", duration);
-    console.log("user of this new load is", curUser);
-    
-    Machine.GetById(id).NewLoad(duration, curUser);
 
-    console.log(Machine.GetById(16).setTime);
+    const machine = Machine.GetById(id);
+
+    if (machine.isDisabled !== false) {
+        res.status(409).send({ msg: 'Machine is currently out of order' });
+    }
+    else if (machine.startDate !== null) {
+        res.status(409).send({ msg: 'Machine already in use' });
+    }
+
+    else {
+        
+        console.log("id of this new load is", id);
+        console.log("duration of this new load is", duration);
+        console.log("user of this new load is", curUser);
+        
+        Machine.GetById(id).NewLoad(duration, curUser);
+        
+        console.log(Machine.GetById(16).setTime);
+        
+        // send response back to client: 
+        res.send({ msg: 'success' });
+    }
     // submit a new load
 
     // if machine is already in use, then send an error.
@@ -65,7 +80,6 @@ apiRouter.post('/machines/submitload', (req, res) => {
     // if 
 
 
-    // send response back to client: 
 
 
 });
