@@ -140,6 +140,16 @@ td {
     margin-bottom: 1em;
 }
 
+#laundry-error {
+    color: rgb(236, 52, 52);
+    margin-bottom: 1em;
+}
+
+#laundry-success {
+    color: rgb(64, 165, 30);
+    margin-bottom: 1em;
+}
+
 @media (max-height: 890px) {
     td {
         height: 55px;

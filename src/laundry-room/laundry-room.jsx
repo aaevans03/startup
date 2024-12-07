@@ -10,14 +10,14 @@ import { StatsViewer } from './view-stats.jsx';
 
 export function LaundryRoom(props) {
 
+    const [isLoading, setIsLoading] = React.useState(true);
+
     // stuff that runs on page load
     const machinesArray = [];
     for (let i = 0; i <= 16; i++) {
         machinesArray.push(new Machine(i));
     }
     
-    // Machine.GetById(7).curState = "out of order"
-
     React.useEffect(() => {
 
         fetchBackendLaundryData();
@@ -26,13 +26,13 @@ export function LaundryRoom(props) {
 
     function fetchBackendLaundryData() {
         // fetch machine states from API
-        console.log("———————————————————————"); 
-        console.log("fetching the data");
+        // console.log("———————————————————————"); 
+        // console.log("fetching the data");
 
         fetch('/api/machines/getloads')
             .then((response) => response.json())
             .then((machineFetchedData) => {
-                console.log("data fetched"); 
+                // console.log("data fetched"); 
                 // console.log(machineFetchedData);
 
                 // import the machineFetchedData (JSON file) into the frontend machinesArray
@@ -55,13 +55,13 @@ export function LaundryRoom(props) {
                     let curUser = parsedData[i].curUser;
                     let setTime = parsedData[i].setTime;        // milliseconds!
                     let startDate = parsedData[i].startDate;    // milliseconds!
-                    let isDisabled = parsedData[i].isDisabled;    // milliseconds!
-                    
-                    
+
+                    // calculate the time that should be left on the timer
                     let calculatedTimeLeft = (setTime / 1000) - (Math.floor((Date.now() - startDate) / 1000));
 
-                    if (calculatedTimeLeft > 0 && !isDisabled) {
-                        console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
+                    // if the timer is still running, then set a timer
+                    if (calculatedTimeLeft > 0) {
+                        // console.log("Timer is still running, the difference between the start date and now is", calculatedTimeLeft, "seconds");
                         // console.log("Timer has", calculatedTimeLeft, "seconds left");
                         
                         if (Machine.GetById(id).curState === "open") {
@@ -71,11 +71,6 @@ export function LaundryRoom(props) {
                     }
 
                 }
-
-
-                
-
-                // PART OF THIS: fetch the user data for each machine
 
             })
             .catch((e) => {
@@ -170,7 +165,6 @@ export function LaundryRoom(props) {
                     loggedInUser={props.userName}
                     loggedInUserRoom={props.userRoomNumber}
                     submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time)}
-                    // submitLoad={(id, time) => console.log(id, time)}
                 />
                 
                 <Interface/>

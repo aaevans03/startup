@@ -53,22 +53,26 @@ apiRouter.post('/machines/submitload', (req, res) => {
 
     const machine = Machine.GetById(id);
 
+    // if machine is disabled, send an error
     if (machine.isDisabled !== false) {
         res.status(409).send({ msg: 'Machine is currently out of order' });
     }
+
+    // if machine is already in use, send an error
     else if (machine.startDate !== null) {
-        res.status(409).send({ msg: 'Machine already in use' });
+        res.status(409).send({ msg: 'Machine already in use. Please choose another one' });
     }
 
     else {
         
-        console.log("id of this new load is", id);
-        console.log("duration of this new load is", duration);
-        console.log("user of this new load is", curUser);
+        // console.log("id of this new load is", id);
+        // console.log("duration of this new load is", duration);
+        // console.log("user of this new load is", curUser);
         
+        // start a new load
         Machine.GetById(id).NewLoad(duration, curUser);
         
-        console.log(Machine.GetById(16).setTime);
+        // console.log(Machine.GetById(16).setTime);
         
         // send response back to client: 
         res.send({ msg: 'success' });
@@ -85,8 +89,6 @@ apiRouter.post('/machines/submitload', (req, res) => {
 });
 
 // New endpoint: Fetch user data for use in machine viewing
-
-// 
 
 
 

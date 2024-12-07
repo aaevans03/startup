@@ -32,7 +32,7 @@ export class Machine {
         
         this.originalDuration = originalDuration;
 
-        console.log("The original duration is", this.originalDuration);
+        // console.log("The original duration is", this.originalDuration);
 
         this.secondsLeft = duration;
 
