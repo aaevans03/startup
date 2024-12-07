@@ -59,12 +59,12 @@ export function About() {
                             <p className="card-text text-body-secondary">
                                 Feeling unmotivated to do your laundry? Come back here to find a random laundry GIF and quote that will make your day!
                             </p>
-                            <p className="card-text">
+                            <div className="card-text">
                                 <div className="quote-text">“{quote}”</div>
-                                <p className="text-body-secondary">
+                                <div className="text-body-secondary">
                                     <div className="quote">~ {quoteAuthor}</div>
-                                </p>
-                            </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
