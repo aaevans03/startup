@@ -32,7 +32,7 @@ export async function TimerFunction(duration, timerDisplay) {
 
                 clearInterval(timer);
 
-                console.log("timer done");
+                // console.log("timer done");
 
                 resolve();
                 

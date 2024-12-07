@@ -4,6 +4,9 @@ const app = express();
 
 const Machine = require('./machineService.js');
 
+// The service port. In production the front-end code is statically hosted by the service on the same port.
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
+
 // The users are saved in memory, and disappear whenever the service is restarted.
 let users = {};
 let machineUsageData = {};
@@ -13,10 +16,6 @@ const machinesArray = [];
 for (let i = 1; i <= 16; i++) {
     machinesArray.push(new Machine(i));
 }
-
-
-// The service port. In production the front-end code is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -29,8 +28,10 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // default user
-const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
-users[user.email] = user;
+function defaultUser() {
+    const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
+    users[user.email] = user;
+}
 
 /*
     BACKEND MACHINE SERVICE ENDPOINTS
@@ -124,13 +125,8 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
-
-/*
 // Return the application's default page if the path is unknown
-app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
-});
-*/
+app.use(express.static('public'));
 
 
 // Laundry quotes service: fetch from a .json file

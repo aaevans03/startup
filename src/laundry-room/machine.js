@@ -74,7 +74,7 @@ export class Machine {
 
         // send an alert
         if (curUser === loggedInUser) {
-            alert(`Notice: Your load in Machine ${this.id} is finished.`)
+            // alert(`Notice: Your load in Machine ${this.id} is finished.`)
 
             // change later to show custom Bootstrap notification?
         }

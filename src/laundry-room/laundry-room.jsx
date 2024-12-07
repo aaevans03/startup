@@ -71,7 +71,6 @@ export function LaundryRoom(props) {
 
     // ADD RANDOM USERS!!! WHEE!!!
     // start loads in random machines at random times
-/*
     setInterval(() => {
 
         let chance = Math.random();
@@ -101,7 +100,16 @@ export function LaundryRoom(props) {
             randomName = "Christian";
         }
 
-        if (chance > 0.5 && Machine.GetById(randomMachine).curState === "open") {    
+        if (chance > 0.5 && Machine.GetById(randomMachine).curState === "open") {
+
+            // send to backend  
+            fetch('/api/machines/submitload', {
+                method: 'post',
+                body: JSON.stringify({ id: randomMachine, duration: randomTime, curUser: randomName, email: null, room: 3102 }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
             Machine.GetById(randomMachine).NewLoad(randomTime, randomName, 3102)
         }
 
@@ -109,7 +117,7 @@ export function LaundryRoom(props) {
             // console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
         }
 
-    }, 20000); */
+    }, 50000);
 
 
 

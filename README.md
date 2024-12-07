@@ -79,3 +79,21 @@ For this deliverable, I coded the app with JavaScript and React so it all works 
   - **Statistics Viewer** - Will be implemented in the future and use a **databse**
 - **Routes** - Used a React Router to route the user through login, laundry room, and about components
 - **Hooks** - Uses `useState()` to update machine information displayed on the screen
+
+## Service Deliverable
+
+For this deliverable, I added frontend calls to a third party service, and coded my own backend service endpoints which the front calls.
+
+Laundry machine usage data is stored on the frontend and backend, with ways to update both.
+
+- **HTTP Service** - Created an HTTP service using Node.js and Express
+- **Static Middleware** - Frontend code is served up using Express middleware
+- **3rd Party Endpoints** - On the about page, a call to a GIF endpoint is called, which serves up a random laundry GIF.
+- **Backend Service Endpoints**
+  - Implemented a login system that stores user login data
+  - Implemented a service that posts new laundry machine loads submitted by the user
+  - Implemented a service that gets laundry machine usage data from the backend
+- **Frontend Service Calls** - Backend service endpoints are called from the frontend using a `fetch` function:
+  - When a new laundry load is submitted
+  - When the laundry page is loaded
+  - When the about page is loaded, to serve up random quote
