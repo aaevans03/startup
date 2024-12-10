@@ -1,6 +1,11 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
+
+const authCookieName = 'token';
 
 const Machine = require('./machineService.js');
 
@@ -8,6 +13,7 @@ const Machine = require('./machineService.js');
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // The users are saved in memory, and disappear whenever the service is restarted.
+// *** moving this functionality to database.js ***
 let users = {};
 let machineUsageData = {};
 
@@ -20,11 +26,17 @@ for (let i = 1; i <= 16; i++) {
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
+
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
 
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
+
 // Router for service endpoints
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // default user
