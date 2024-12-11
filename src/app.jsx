@@ -29,95 +29,98 @@ export default function App() {
     const [userRoomNumber, setUserRoomNumber] = React.useState(localStorage.getItem('userRoomNumber') || '');
 
     return (
-        <BrowserRouter>
-            <div className="body">
-                <header className="container-fluid">
-                    <nav className="navbar fixed-top navbar-dark">
+        <>
+            <BrowserRouter>
+                <div className="body">
+                    <header className="container-fluid">
+                        <nav className="navbar fixed-top navbar-dark">
 
-                        <NavLink className="navbar-brand" to="">
-                            <h1>Laundry App</h1>
-                        </NavLink>
-                        
-                        <menu className="navbar-nav">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="">
-                                    Login
-                                </NavLink>
-                            </li>
-                            {/* if you are authenticated, then allow you to see the laundry room page */}
-                            {authState === AuthState.Authenticated && (
+                            <NavLink className="navbar-brand" to="">
+                                <h1>Laundry App</h1>
+                            </NavLink>
+                            
+                            <menu className="navbar-nav">
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to="laundry-room">
-                                        Laundry Room
+                                    <NavLink className="nav-link" to="">
+                                        Login
                                     </NavLink>
                                 </li>
-                            )}
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="about">
-                                    About
-                                </NavLink>
-                            </li>
-                        
-                        </menu>
-                    </nav>
-                </header>
+                                {/* if you are authenticated, then allow you to see the laundry room page */}
+                                {authState === AuthState.Authenticated && (
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="laundry-room">
+                                            Laundry Room
+                                        </NavLink>
+                                    </li>
+                                )}
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="about">
+                                        About
+                                    </NavLink>
+                                </li>
+                            
+                            </menu>
+                        </nav>
+                    </header>
 
-                <Routes>
-                    <Route
-                        path='/'
-                        element={
-                            <Login
-                                // pass these things through to the Login function
-                                userEmail={userEmail}
-                                userName={userName}
-                                userBuildingNumber={userBuildingNumber}
-                                userRoomNumber={userRoomNumber}
-                                authState={authState}
-
-                                // pass in a function that sets the authState and user data
-                                onAuthChange={(userEmail, userName, userBuildingNumber, userRoomNumber, authState) => {
-                                    setUserEmail(userEmail);
-                                    setUserName(userName);
-                                    setUserBuildingNumber(userBuildingNumber);
-                                    setUserRoomNumber(userRoomNumber);
-                                    setAuthState(authState);
-                                }}
-
-                            />}
-                        exact
-                    />
-                    {authState === AuthState.Authenticated && (
+                    <Routes>
                         <Route
-                            path='/laundry-room'
+                            path='/'
                             element={
-                                <LaundryRoom
-                                    // pass these things to the LaundryRoom page
+                                <Login
+                                    // pass these things through to the Login function
                                     userEmail={userEmail}
                                     userName={userName}
                                     userBuildingNumber={userBuildingNumber}
                                     userRoomNumber={userRoomNumber}
+                                    authState={authState}
+
+                                    // pass in a function that sets the authState and user data
+                                    onAuthChange={(userEmail, userName, userBuildingNumber, userRoomNumber, authState) => {
+                                        setUserEmail(userEmail);
+                                        setUserName(userName);
+                                        setUserBuildingNumber(userBuildingNumber);
+                                        setUserRoomNumber(userRoomNumber);
+                                        setAuthState(authState);
+                                    }}
+
                                 />}
+                            exact
                         />
-                    )}
-                    {authState !== AuthState.Authenticated && (
-                        <Route path='/laundry-room' element={<Unauthorized />} />
-                    )}
+                        {authState === AuthState.Authenticated && (
+                            <Route
+                                path='/laundry-room'
+                                element={
+                                    <LaundryRoom
+                                        // pass these things to the LaundryRoom page
+                                        userEmail={userEmail}
+                                        userName={userName}
+                                        userBuildingNumber={userBuildingNumber}
+                                        userRoomNumber={userRoomNumber}
+                                    />}
+                            />
+                        )}
+                        {authState !== AuthState.Authenticated && (
+                            <Route path='/laundry-room' element={<Unauthorized />} />
+                        )}
 
-                    
-                    <Route path='/about' element={<About />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                        
+                        <Route path='/about' element={<About />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
 
-                <footer className="bg-dark text-white-50">
-                    <div className="container-fluid">
-                        Developed by <span className="developer-name">Alex Evans / 賴亞遜</span>
-                        <span className="github-link">
-                            <a className="text-reset" href="https://github.com/aaevans03/startup">GitHub</a>
-                        </span>
+                    <footer className="bg-dark text-white-50">
+                        <div className="container-fluid">
+                            Developed by <span className="developer-name">Alex Evans / 賴亞遜</span>
+                            <span className="github-link">
+                                <a className="text-reset" href="https://github.com/aaevans03/startup">GitHub</a>
+                            </span>
 
-                    </div>
-                </footer>
-            </div>
-        </BrowserRouter>
+                        </div>
+                    </footer>
+                </div>
+            </BrowserRouter>
+            <script src='websocket.js'/>
+        </>
     );
 }

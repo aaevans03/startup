@@ -7,6 +7,7 @@ import { Machine } from './machine.js';
 import { NewLoad } from './new-load.jsx';
 import { Interface } from './interface.jsx';
 import { StatsViewer } from './view-stats.jsx';
+import { changeMsg, sendMsg } from './websocket.js';
 
 export function LaundryRoom(props) {
 
@@ -132,7 +133,8 @@ export function LaundryRoom(props) {
         <>
             <main>
                 {/* <button onClick={fetchBackendLaundryData}>Get new laundry data from backend</button> */}
-                <p>Websocket status: </p>
+                <button onClick={sendMsg}>Status</button>
+                <p>Websocket status: <span id="websocket-status"></span></p>
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>
@@ -176,8 +178,6 @@ export function LaundryRoom(props) {
                 <Interface/>
                 
             </main>
-            
-
         </>
     );
 }
