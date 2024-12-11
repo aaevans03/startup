@@ -54,7 +54,7 @@ class Machine {
             this.curUserEmail = "none";
             this.curUserRoom = 0;
             this.startDate = null;
-        }, 1000);
+        }, 5000);
     };
 
 };

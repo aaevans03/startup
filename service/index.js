@@ -13,9 +13,6 @@ const Machine = require('./machineService.js');
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // The users are saved in memory, and disappear whenever the service is restarted.
-// *** moving this functionality to database.js ***
-let users = {};
-let machineUsageData = {};
 
 // Storing machine states in the backend
 const machinesArray = [];
@@ -100,6 +97,14 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
+// Laundry quotes service: fetch from a .json file
+const quoteJson = require('./quotes.json');
+apiRouter.get('/quotes', (req, res) => {
+    const randomNum = Math.floor(Math.random() * 15) + 1;
+    const randomQuote = quoteJson[randomNum];
+    res.json(randomQuote);
+});
+
 // secureApiRouter verifies credentials for endpoints that need authorization
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
@@ -163,17 +168,15 @@ secureApiRouter.post('/machines/submitload', (req, res) => {
     }
 });
 
+// Default error handler
+app.use(function (err, req, res, next) {
+    res.status(500).send({ type: err.name, message: err.message });
+  });
+
 // Return the application's default page if the path is unknown
-app.use(express.static('public'));
-
-
-// Laundry quotes service: fetch from a .json file
-const quoteJson = require('./quotes.json');
-apiRouter.get('/quotes', (req, res) => {
-    const randomNum = Math.floor(Math.random() * 15) + 1;
-    const randomQuote = quoteJson[randomNum];
-    res.json(randomQuote);
-});
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+  });
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
@@ -183,7 +186,6 @@ function setAuthCookie(res, authToken) {
         sameSite: 'strict',
     });
 }
-
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
