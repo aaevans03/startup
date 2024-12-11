@@ -106,3 +106,12 @@ For this deliverable, I linked up my login system to a database, to store user i
 - **Existing user authentication** - When a user attempts to login, their information is compared with what is on the database, and if it matches they are logged in
 - **Stores and retrieves credentials in MongoDB**
 - **Restricts application functionality based upon authentication** - Getting laundry machine usage and submitting new loads are only possible if logged in
+
+## WebSocket Deliverable
+
+For this deliverable, I added a websocket to the backend and frontend, so that whenever a user submits a load, the timer for that load is automatically started on other users' screens.
+
+- **Backend listens for WebSocket connection** - Implemented
+- **Frontend makes WebSocket connection** - Implemented
+- **Data sent over WebSocket connection** - Whenever a new load is submitted, the data for the load is instantly sent over
+- **WebSocket data displayed in application interface** - Loads screen is updated in real time.

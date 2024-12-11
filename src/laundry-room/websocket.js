@@ -34,14 +34,14 @@ export function sendNewLoad(id, duration, curUser, curUserRoom, originalDuration
 socket.onmessage = async (event) => {
     const rawData = await event.data.text();
     const parsedData = JSON.parse(rawData);
-    console.log(parsedData);
+    // console.log(parsedData);
 
     let id = parsedData.id;
     let duration = parsedData.duration;
-    let curUser = parsedData.curUser;        // this is the user name
-    let curUserRoom = parsedData.curUserRoom;// this is the user's room
-    let setTime = parsedData.setTime;        // milliseconds!
-    let originalDuration = parsedData.originalDuration;    // milliseconds!
+    let curUser = parsedData.curUser;                   // this is the user name
+    let curUserRoom = parsedData.curUserRoom;           // this is the user's room
+    let setTime = parsedData.setTime;                   // milliseconds!
+    let originalDuration = parsedData.originalDuration; // milliseconds!
 
     Machine.GetById(id).NewLoad(duration, curUser, curUserRoom, "unknown", originalDuration);
 };
