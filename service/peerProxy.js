@@ -15,17 +15,20 @@ function peerProxy(httpServer) {
     // Keep track of all the connections so we can forward messages
     let connections = [];
 
+    // When the websocket server is active, do all of the following things
     wss.on('connection', (ws) => {
+
+        // get the connection of the current client and add it to the connections array
         const connection = { id: uuid.v4(), alive: true, ws: ws };
         connections.push(connection);
         
-        // Forward messages to everyone except the sender
+        // When message is recieved, forward messages to everyone except the sender
         ws.on('message', function message(data) {
-            console.log("websocket connected");
+            console.log("websocket message recieved", JSON.parse(data));
             
             connections.forEach((c) => {
                 if (c.id !== connection.id) {
-                c.ws.send(data);
+                    c.ws.send(data);
                 }
             });
         });
@@ -43,16 +46,19 @@ function peerProxy(httpServer) {
         ws.on('pong', () => {
             connection.alive = true;
         });
+
     });
 
-    // Keep active connections alive
+    // Keep active connections alive by updating them every 10 seconds
     setInterval(() => {
         connections.forEach((c) => {
-            // Kill any connection that didn't respond to the ping last time
+
+            // kill any connection that didn't respond to the ping last time
             if (!c.alive) {
                 c.ws.terminate();
             }
             
+            // otherwise, ping it
             else {
                 c.alive = false;
                 c.ws.ping();

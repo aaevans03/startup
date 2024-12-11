@@ -2,6 +2,8 @@
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
+console.log("starting xd");
+
 let socketStatus = false;
 
 // Display that we have opened the websocket
@@ -20,6 +22,17 @@ socket.onclose = (event) => {
 
 export function sendMsg() {
     socket.send("hi");
+}
+
+export function sendNewLoad(duration, curUser, curUserRoom, loggedInUser, originalDuration) {
+    const newLoadData = {
+        duration: duration,
+        curUser: curUser,
+        curUserRoom: curUserRoom,
+        loggedInUser: loggedInUser,
+        originalDuration: originalDuration
+    }
+    socket.send(JSON.stringify(newLoadData));
 }
 
 

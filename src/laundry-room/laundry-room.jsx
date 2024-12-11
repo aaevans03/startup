@@ -7,7 +7,7 @@ import { Machine } from './machine.js';
 import { NewLoad } from './new-load.jsx';
 import { Interface } from './interface.jsx';
 import { StatsViewer } from './view-stats.jsx';
-import { changeMsg, sendMsg } from './websocket.js';
+import { changeMsg, sendMsg, sendNewLoad } from './websocket.js';
 
 export function LaundryRoom(props) {
 
@@ -20,7 +20,7 @@ export function LaundryRoom(props) {
     }
     
     React.useEffect(() => {
-
+    
         fetchBackendLaundryData();
 
     }, []);
@@ -172,8 +172,13 @@ export function LaundryRoom(props) {
                     loggedInUser={props.userName}
                     loggedInEmail={props.userEmail}
                     loggedInUserRoom={props.userRoomNumber}
-                    submitLoad={(id, time, curUser, curUserRoom) => Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time)}
-                />
+                    submitLoad={(id, time, curUser, curUserRoom) => {
+                        Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time);
+                        // here: do a websocket thing
+                        sendNewLoad(time, curUser, curUserRoom, props.userName, time)
+
+                    }
+                }/>
                 
                 <Interface/>
                 

@@ -20,7 +20,7 @@ export function StatsViewer({ loggedInUserBuilding }) {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body" style={{width:"700px"}}>
-                        <label for="day-of-week">Select day of week to view:&nbsp;</label>
+                        <label htmlFor="day-of-week">Select day of week to view:&nbsp;</label>
                         <select className="form-select" id="day-of-week" name="sel-day-of-week" value={dayOfWeek} onChange={handleDayChange}>
                             <option>Sunday</option>
                             <option>Monday</option>
