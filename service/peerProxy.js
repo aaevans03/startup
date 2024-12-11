@@ -24,7 +24,7 @@ function peerProxy(httpServer) {
         
         // When message is recieved, forward messages to everyone except the sender
         ws.on('message', function message(data) {
-            console.log("websocket message recieved", JSON.parse(data));
+            // console.log("websocket message recieved", JSON.parse(data));
             
             connections.forEach((c) => {
                 if (c.id !== connection.id) {

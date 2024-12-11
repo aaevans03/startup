@@ -11,18 +11,11 @@ let socketStatus = false;
 socket.onopen = (event) => {
     socketStatus = true;
     console.log("websocket has been opened");
-    changeMsg("yes");
 }
 
 socket.onclose = (event) => {
     socketStatus = false;
     console.log("websocket has been closed");
-    changeMsg("no");
-
-}
-
-export function sendMsg() {
-    socket.send("hi");
 }
 
 // send a new load's data to the backend
@@ -52,20 +45,3 @@ socket.onmessage = async (event) => {
 
     Machine.GetById(id).NewLoad(duration, curUser, curUserRoom, "unknown", originalDuration);
 };
-
-
-
-export function changeMsg(msg) {
-
-    const msgLocation = document.getElementById("websocket-status");
-    if (!msg) {
-        msgLocation.innerHTML = socketStatus;
-    }
-    
-    msgLocation.innerHTML = (msg);
-
-    // msgLocation.innerHTML = "yes";
-
-}
-
-

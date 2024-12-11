@@ -7,11 +7,12 @@ import { Machine } from './machine.js';
 import { NewLoad } from './new-load.jsx';
 import { Interface } from './interface.jsx';
 import { StatsViewer } from './view-stats.jsx';
-import { changeMsg, sendMsg, sendNewLoad } from './websocket.js';
+import { sendNewLoad } from './websocket.js';
 
 export function LaundryRoom(props) {
 
     const [isLoading, setIsLoading] = React.useState(true);
+    const [randomLoads, setRandomLoads] = React.useState(true);
 
     // stuff that runs on page load
     const machinesArray = [];
@@ -72,9 +73,8 @@ export function LaundryRoom(props) {
 
     // ADD RANDOM USERS!!! WHEE!!!
     // start loads in random machines at random times
-    let bool = false;
 
-    if (bool){
+    if (randomLoads) {
         setInterval(() => {
 
             let chance = Math.random();
@@ -114,14 +114,15 @@ export function LaundryRoom(props) {
                         'Content-type': 'application/json; charset=UTF-8',
                     },
                 });
-                Machine.GetById(randomMachine).NewLoad(randomTime, randomName, 3102)
+                Machine.GetById(randomMachine).NewLoad(randomTime, randomName, 3102, props.userName, randomTime)
+                sendNewLoad(randomMachine, randomTime, randomName, 3102, randomTime);
             }
     
             else {
                 // console.log(randomName + " tried to start machine " + randomMachine + " but failed. He had a chance of " + chance);
             }
     
-        }, 50000);
+        }, 60000);
     }
 
 
@@ -133,8 +134,6 @@ export function LaundryRoom(props) {
         <>
             <main>
                 {/* <button onClick={fetchBackendLaundryData}>Get new laundry data from backend</button> */}
-                <button onClick={sendMsg}>Status</button>
-                <p>Websocket status: <span id="websocket-status"></span></p>
 
                 <div id="header-text">
                     <h2><u>Laundry Room - Building {props.userBuildingNumber}</u></h2>
