@@ -30,7 +30,7 @@ export function NewLoad({ loggedInUser, loggedInEmail, loggedInUserRoom, submitL
         if (response?.status === 200) {
 
             const body = await response.json();
-            console.log(body.msg);
+            // console.log(body.msg);
 
             submitLoad(userMachineNumber, userMachineDuration * 60, loggedInUser, loggedInUserRoom);
             
