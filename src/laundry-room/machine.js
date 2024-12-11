@@ -94,10 +94,9 @@ export class Machine {
 
             
 
-        }, 1000);
+        }, 300000);
         
         // console.log(this);
-
 
     }
 

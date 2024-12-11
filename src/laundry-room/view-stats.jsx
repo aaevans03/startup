@@ -12,7 +12,7 @@ export function StatsViewer({ loggedInUserBuilding }) {
     }
 
     return (
-        <div className="modal fade" id="view-statistics" aria-labelledby="viewStatistics" aria-hidden="true">
+        <div className="modal fade" id="view-statistics">
             <div className="modal-dialog modal-dialog-centered view-stats">
                 <div className="modal-content">
                     <div className="modal-header">

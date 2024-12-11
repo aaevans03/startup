@@ -97,3 +97,12 @@ Laundry machine usage data is stored on the frontend and backend, with ways to u
   - When a new laundry load is submitted
   - When the laundry page is loaded
   - When the about page is loaded, to serve up random quote
+
+## Login Deliverable
+
+For this deliverable, I linked up my login system to a database, to store user information such as emails and passwords.
+
+- **New user registration** - When a new user is created, their information is sent to a MongoDB database
+- **Existing user authentication** - When a user attempts to login, their information is compared with what is on the database, and if it matches they are logged in
+- **Stores and retrieves credentials in MongoDB**
+- **Restricts application functionality based upon authentication** - Getting laundry machine usage and submitting new loads are only possible if logged in

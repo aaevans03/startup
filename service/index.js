@@ -193,7 +193,7 @@ app.listen(port, () => {
 
 // Machine.GetById(1).NewLoad(60, "Bob", "https.net", 5000);
 // Machine.GetById(2).NewLoad(60, "Bill", "https.net", 3000);
-// Machine.GetById(3).NewLoad(60, "Boe", "https.net", 2000);
+// Machine.GetById(3).NewLoad(60, "Boe", "https.net", 100);
 
 
 // console.log(Machine.GetById(1).curUser, Machine.GetById(1).setTime, Machine.GetById(1).startTime);

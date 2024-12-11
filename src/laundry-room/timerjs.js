@@ -38,7 +38,7 @@ export async function TimerFunction(duration, timerDisplay) {
                 
             }
 
-        }, 5000);
+        }, 1000);
 
     });
 
