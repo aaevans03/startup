@@ -104,7 +104,7 @@ apiRouter.delete('/auth/logout', (req, res) => {
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
-// any requests through the secure API router must past through this first, which requires verification
+// Any requests through the secure API router must past through this first, which requires verification
 secureApiRouter.use(async (req, res, next) => {
     const authToken = req.cookies[authCookieName];
     const user = await DB.getUserByToken(authToken);
@@ -133,7 +133,7 @@ secureApiRouter.get('/machines/getloads', (_req, res) => {
 });
 
 // New endpoint: Submit a new load
-apiRouter.post('/machines/submitload', (req, res) => {
+secureApiRouter.post('/machines/submitload', (req, res) => {
 
     // gets loads in seconds
     let id = req.body.id;
