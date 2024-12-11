@@ -39,52 +39,6 @@ app.set('trust proxy', true);
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-/*
-    BACKEND MACHINE SERVICE ENDPOINTS
-
-    - GET: Machine states from the backend, and update the main page
-    - POST: When there's a new load, upload the current user and their info, the time of submission, and how long the machine was set for.
-    
-    - timer runs in the backend, which stores the current user, time, and set duration of the machines.
-*/
-
-// Send machine states from backend to the front in a JSON file
-apiRouter.get('/machines/getloads', (_req, res) => {
-    const output = JSON.stringify(machinesArray);
-    res.json(output);
-});
-
-// New endpoint: Submit a new load
-apiRouter.post('/machines/submitload', (req, res) => {
-
-    // gets loads in seconds
-    let id = req.body.id;
-    let duration = req.body.duration;
-    let curUser = req.body.curUser;
-    let curUserEmail = req.body.email;
-    let curUserRoom = req.body.room;
-
-    const machine = Machine.GetById(id);
-
-    // if machine is disabled, send an error
-    if (machine.isDisabled !== false) {
-        res.status(409).send({ msg: 'Machine is currently out of order' });
-    }
-
-    // if machine is already in use, send an error
-    else if (machine.startDate !== null) {
-        res.status(409).send({ msg: 'Machine already in use. Please choose another one' });
-    }
-    
-    // else, start a new load
-    else {
-        Machine.GetById(id).NewLoad(duration, curUser, curUserEmail, curUserRoom);
-        
-        // send response back to client: 
-        res.send({ msg: 'success' });
-    }
-});
-
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
     
@@ -147,6 +101,67 @@ apiRouter.delete('/auth/logout', (req, res) => {
 });
 
 // secureApiRouter verifies credentials for endpoints that need authorization
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+// any requests through the secure API router must past through this first, which requires verification
+secureApiRouter.use(async (req, res, next) => {
+    const authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+
+    if (user) {
+        next();
+    }
+    else {
+        res.status(401).send({ msg: "Unauthorized" });
+    }
+})
+
+/*
+    BACKEND MACHINE SERVICE ENDPOINTS
+
+    - GET: Machine states from the backend, and update the main page
+    - POST: When there's a new load, upload the current user and their info, the time of submission, and how long the machine was set for.
+    
+    - timer runs in the backend, which stores the current user, time, and set duration of the machines.
+*/
+
+// Send machine states from backend to the front in a JSON file
+secureApiRouter.get('/machines/getloads', (_req, res) => {
+    const output = JSON.stringify(machinesArray);
+    res.json(output);
+});
+
+// New endpoint: Submit a new load
+apiRouter.post('/machines/submitload', (req, res) => {
+
+    // gets loads in seconds
+    let id = req.body.id;
+    let duration = req.body.duration;
+    let curUser = req.body.curUser;
+    let curUserEmail = req.body.email;
+    let curUserRoom = req.body.room;
+
+    const machine = Machine.GetById(id);
+
+    // if machine is disabled, send an error
+    if (machine.isDisabled !== false) {
+        res.status(409).send({ msg: 'Machine is currently out of order' });
+    }
+
+    // if machine is already in use, send an error
+    else if (machine.startDate !== null) {
+        res.status(409).send({ msg: 'Machine already in use. Please choose another one' });
+    }
+    
+    // else, start a new load
+    else {
+        Machine.GetById(id).NewLoad(duration, curUser, curUserEmail, curUserRoom);
+        
+        // send response back to client: 
+        res.send({ msg: 'success' });
+    }
+});
 
 // Return the application's default page if the path is unknown
 app.use(express.static('public'));
