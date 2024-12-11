@@ -1887,3 +1887,23 @@ There are so many data breaches and stuff. Even for big companies!
 In general, line of death: anything on the page could be fake. The only thing you can trust is the domain name. You can easily tell it's fake
 
 OWASP 10 - Open Worldwide Application Security Project. List of top 10 security risks
+
+
+# 2024.12.10 Final review
+
+- Port 80 is reviewed for: HTTP
+  - 443: HTTPS
+  - 20: FTP
+  - 22: SSH
+- HTTP status codes in the 300 range are for content redirects or caching
+  - 500: server errors
+  - 400: client errors
+  - 200: success
+- Standard HTTP headers: Content-type, host, and cookie.
+  - Not one: language
+- Cookies allow a server to store data on the client
+- `app.use` on backend code, means whenever a backend service is called, it is called every time
+- Hashing stored passwords is important because it makes the password unreadable to others
+- What value does WebSocket add to HTTP? It is peer to peer, instead of client to server
+- Purposes of JSX: to render HTML from JavaScript, 
+- You can use fetch in both front-end and back-end code.

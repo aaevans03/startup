@@ -39,12 +39,6 @@ app.set('trust proxy', true);
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// default user
-function defaultUser() {
-    const user = { email: "1@1.com", password: "a", name: "Alex", buildingNumber: 4, roomNumber: 3102 };
-    users[user.email] = user;
-}
-
 /*
     BACKEND MACHINE SERVICE ENDPOINTS
 
@@ -93,33 +87,51 @@ apiRouter.post('/machines/submitload', (req, res) => {
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
-    const user = users[req.body.email];
-    if (user) {
+    
+    // if the user already exists in the database
+    if (await DB.getUser(req.body.email)) {
         res.status(409).send({ msg: 'Existing user' });
     }
+
     else {
-        const user = { email: req.body.email, password: req.body.password, name: req.body.name, buildingNumber: req.body.buildingNumber, roomNumber: req.body.roomNumber, token: uuid.v4() };
-        users[user.email] = user;
+        // create a new user in the database
+        const user = await DB.createUser(
+            req.body.email,
+            req.body.password,
+            req.body.name,
+            req.body.buildingNumber,
+            req.body.roomNumber,
+        );
+        
+        // Set the cookie
+        setAuthCookie(res, user.token);
+        
     
-        res.send({ token: user.token });
+        res.send({
+            id: user._id
+        });
     }
 });
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = users[req.body.email];
+    const user = await DB.getUser(req.body.email);
+
     if (user) {
-        if (req.body.password === user.password) {
-            user.token = uuid.v4();
+        if (await bcrypt.compare(req.body.password, user.password)) {
+
+            setAuthCookie(res, user.token);
+
             res.send({
                 name: user.name,
                 userEmail: user.email,
                 buildingNumber: user.buildingNumber,
                 roomNumber: user.roomNumber,
-                token: user.token
+                id: user._id,
             });
             return;
         }
+
         else {
             res.status(401).send({ msg: 'Username or password does not match'})
             return;
@@ -130,12 +142,11 @@ apiRouter.post('/auth/login', async (req, res) => {
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', (req, res) => {
-    const user = Object.values(users).find((u) => u.token === req.body.token);
-    if (user) {
-        delete user.token;
-    }
+    res.clearCookie(authCookieName);
     res.status(204).end();
 });
+
+// secureApiRouter verifies credentials for endpoints that need authorization
 
 // Return the application's default page if the path is unknown
 app.use(express.static('public'));
@@ -148,6 +159,15 @@ apiRouter.get('/quotes', (req, res) => {
     const randomQuote = quoteJson[randomNum];
     res.json(randomQuote);
 });
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
+}
 
 
 app.listen(port, () => {
