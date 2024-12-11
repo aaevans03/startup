@@ -2,8 +2,6 @@
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-console.log("starting xd");
-
 let socketStatus = false;
 
 // Display that we have opened the websocket
@@ -24,6 +22,7 @@ export function sendMsg() {
     socket.send("hi");
 }
 
+// send a new load's data to the backend
 export function sendNewLoad(duration, curUser, curUserRoom, loggedInUser, originalDuration) {
     const newLoadData = {
         duration: duration,
@@ -34,6 +33,13 @@ export function sendNewLoad(duration, curUser, curUserRoom, loggedInUser, origin
     }
     socket.send(JSON.stringify(newLoadData));
 }
+
+// when a new load is detected, add it to the user's laundry interface
+socket.onmessage = async (event) => {
+    const rawData = await event.data.text();
+    const loadData = JSON.parse(rawData);
+    console.log(loadData);
+};
 
 
 
