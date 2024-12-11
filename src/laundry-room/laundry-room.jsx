@@ -147,7 +147,7 @@ export function LaundryRoom(props) {
 
                 {/* Bootstrap button trigger modals */}
                 <div className="top-buttons">
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics" disabled>
+                    <button disabled type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics">
                         View Statistics (coming soon)
                     </button>
                     <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-load">
@@ -156,7 +156,9 @@ export function LaundryRoom(props) {
                 </div>
 
                 {/* Bootstrap modal for viewing statistics */}
-                <StatsViewer />
+                <StatsViewer
+                    loggedInUserBuilding={props.userBuildingNumber}
+                />
 
                 {/* <!-- Bootstrap modal for adding a new load --> */}
                 <NewLoad
