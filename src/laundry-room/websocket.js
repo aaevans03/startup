@@ -1,3 +1,6 @@
+import { parse } from 'uuid';
+import { Machine } from './machine.js';
+
 // Adjust the webSocket protocol to what is being used for HTTP
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
@@ -23,12 +26,12 @@ export function sendMsg() {
 }
 
 // send a new load's data to the backend
-export function sendNewLoad(duration, curUser, curUserRoom, loggedInUser, originalDuration) {
+export function sendNewLoad(id, duration, curUser, curUserRoom, originalDuration) {
     const newLoadData = {
+        id: id,
         duration: duration,
         curUser: curUser,
         curUserRoom: curUserRoom,
-        loggedInUser: loggedInUser,
         originalDuration: originalDuration
     }
     socket.send(JSON.stringify(newLoadData));
@@ -37,8 +40,17 @@ export function sendNewLoad(duration, curUser, curUserRoom, loggedInUser, origin
 // when a new load is detected, add it to the user's laundry interface
 socket.onmessage = async (event) => {
     const rawData = await event.data.text();
-    const loadData = JSON.parse(rawData);
-    console.log(loadData);
+    const parsedData = JSON.parse(rawData);
+    console.log(parsedData);
+
+    let id = parsedData.id;
+    let duration = parsedData.duration;
+    let curUser = parsedData.curUser;        // this is the user name
+    let curUserRoom = parsedData.curUserRoom;// this is the user's room
+    let setTime = parsedData.setTime;        // milliseconds!
+    let originalDuration = parsedData.originalDuration;    // milliseconds!
+
+    Machine.GetById(id).NewLoad(duration, curUser, curUserRoom, "unknown", originalDuration);
 };
 
 

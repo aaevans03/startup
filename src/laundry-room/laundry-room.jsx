@@ -174,9 +174,9 @@ export function LaundryRoom(props) {
                     loggedInUserRoom={props.userRoomNumber}
                     submitLoad={(id, time, curUser, curUserRoom) => {
                         Machine.GetById(id).NewLoad(time, curUser, curUserRoom, props.userName, time);
-                        // here: do a websocket thing
-                        sendNewLoad(time, curUser, curUserRoom, props.userName, time)
-
+                        
+                        // send the load info through the websocket
+                        sendNewLoad(id, time, props.userName, curUserRoom, time);
                     }
                 }/>
                 
