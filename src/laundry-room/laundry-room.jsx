@@ -153,9 +153,9 @@ export function LaundryRoom(props) {
 
                 {/* Bootstrap button trigger modals */}
                 <div className="top-buttons">
-                    <button disabled type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics">
+                    {/* <button disabled type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#view-statistics">
                         View Statistics (coming soon)
-                    </button>
+                    </button> */}
                     <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-load">
                         New Load
                     </button>
