@@ -102,6 +102,8 @@ Laundry machine usage data is stored on the frontend and backend, with ways to u
 
 For this deliverable, I linked up my login system to a database, to store user information such as emails and passwords.
 
+*Note: because of time constraints, I deployed this on top of my service deliverable before it was graded.*
+
 - **New user registration** - When a new user is created, their information is sent to a MongoDB database
 - **Existing user authentication** - When a user attempts to login, their information is compared with what is on the database, and if it matches they are logged in
 - **Stores and retrieves credentials in MongoDB**
@@ -110,6 +112,8 @@ For this deliverable, I linked up my login system to a database, to store user i
 ## WebSocket Deliverable
 
 For this deliverable, I added a websocket to the backend and frontend, so that whenever a user submits a load, the timer for that load is automatically started on other users' screens.
+
+*Note: because of time constraints, I deployed this on top of my login deliverable before it was graded.*
 
 - **Backend listens for WebSocket connection** - Implemented
 - **Frontend makes WebSocket connection** - Implemented
